@@ -38,6 +38,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Wait for other jobs to complete
+      uses: softprops/turnstyle@8db075d65b19bf94e6e8687b504db69938dc3c65
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Pull builder image
       run: docker pull ghcr.io/steamdeckhomebrew/builder:latest
 
