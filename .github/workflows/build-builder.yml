@@ -25,4 +25,12 @@ jobs:
     - name: Build
       run: |
         cd builder
-        docker build -t ghcr.io/SteamDeckHomebrew/builder:latest .
+        docker build -t ghcr.io/steamdeckhomebrew/builder:latest .
+
+    - name: Push
+      run: |
+        docker push ghcr.io/steamdeckhomebrew/builder:latest
+
+    - name: Log out of GitHub Containr Registry
+      run: |
+        docker logout ghcr.io
