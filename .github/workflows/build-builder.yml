@@ -30,6 +30,11 @@ jobs:
         cd builder
         docker build -t ghcr.io/steamdeckhomebrew/builder:latest .
 
+    - name: Wait for other runs to complete
+      uses: softprops/turnstyle@8db075d65b19bf94e6e8687b504db69938dc3c65
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Push
       run: |
         docker push ghcr.io/steamdeckhomebrew/builder:latest
