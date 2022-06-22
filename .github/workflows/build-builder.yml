@@ -1,0 +1,28 @@
+name: Build Builder Docker image
+
+on:
+  push:
+    branches:
+      - main
+    files:
+      - "builder/**"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    
+    - name: Login to GitHub Container Registry
+      run: |
+        echo $GITHUB_TOKEN | docker login ghcr.io -u SteamDeckHomebrew --password-stdin
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build
+      run: |
+        cd builder
+        docker build -t ghcr.io/SteamDeckHomebrew/builder:latest .
