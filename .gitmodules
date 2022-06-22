@@ -1,0 +1,3 @@
+[submodule "plugins/plugin-template"]
+	path = plugins/plugin-template
+	url = https://github.com/SteamDeckHomebrew/decky-plugin-template
