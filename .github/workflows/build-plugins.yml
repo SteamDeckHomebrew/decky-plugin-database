@@ -30,9 +30,7 @@ jobs:
           plugins/*
 
     - name: Cache Docker images
-      uses: ScribeMD/docker-cache@0.1.4
-      with:
-        key: docker-${{ runner.os }}-${{ hashFiles(...) }}
+      uses: satackey/action-docker-layer-caching@v0.0.11
 
     - name: Pull builder image
       run: docker pull ghcr.io/steamdeckhomebrew/builder:latest
