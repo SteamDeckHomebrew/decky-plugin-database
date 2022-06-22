@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "builder/**"
+      - ".github/workflows/build-builder.yml"
 
 jobs:
   build:

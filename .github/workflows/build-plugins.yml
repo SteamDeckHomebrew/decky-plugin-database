@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "plugins/**"
+      - ".github/workflows/build-plugins.yml"
 
 jobs:
   build:
