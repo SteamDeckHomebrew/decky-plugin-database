@@ -54,7 +54,7 @@ jobs:
         done
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
-          docker run --rm -i -t -v $PWD:/plugin -v /tmp/output/$plugin:/out ghcr.io/steamdeckhomebrew/builder:latest
+          docker run --rm -i -v $PWD:/plugin -v /tmp/output/$plugin:/out ghcr.io/steamdeckhomebrew/builder:latest
           echo Built $plugin
           ls -lla /tmp/output/$plugin
           popd
