@@ -27,7 +27,7 @@ jobs:
       with:
         sha: ${{ github.sha }}
         files: |
-          plugins/**
+          plugins/*
 
     - name: List all changed files
       run: |
