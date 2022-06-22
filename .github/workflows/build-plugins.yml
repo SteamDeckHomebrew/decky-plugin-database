@@ -27,7 +27,7 @@ jobs:
       with:
         sha: ${{ github.sha }}
         files: |
-          plugins/*
+          plugins
         dir_names: true
         diff_relative: true
 
