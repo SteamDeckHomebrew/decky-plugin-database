@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-    files:
+    paths:
       - "plugins/**"
 
 jobs:
@@ -23,6 +23,10 @@ jobs:
     - name: Get changed files
       id: changed-files
       uses: tj-actions/changed-files@v23
+      with:
+        sha: ${{ github.sha }}
+        files: |
+          plugins/**
 
     - name: List all changed files
       run: |
