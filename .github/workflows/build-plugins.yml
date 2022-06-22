@@ -29,6 +29,7 @@ jobs:
         files: |
           plugins/*
         dir_names: true
+        diff_relative: true
 
     - name: List all changed files
       run: |
