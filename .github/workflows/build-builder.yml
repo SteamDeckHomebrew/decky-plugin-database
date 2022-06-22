@@ -34,6 +34,6 @@ jobs:
       run: |
         docker push ghcr.io/steamdeckhomebrew/builder:latest
 
-    - name: Log out of GitHub Containr Registry
+    - name: Log out of GitHub Container Registry
       run: |
         docker logout ghcr.io

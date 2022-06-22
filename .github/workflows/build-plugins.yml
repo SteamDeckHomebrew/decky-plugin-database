@@ -32,8 +32,18 @@ jobs:
     - name: Cache Docker images
       uses: satackey/action-docker-layer-caching@v0.0.11
 
+    - name: Login to GitHub Container Registry
+      run: |
+        echo $GITHUB_TOKEN | docker login ghcr.io -u SteamDeckHomebrew --password-stdin
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Pull builder image
       run: docker pull ghcr.io/steamdeckhomebrew/builder:latest
+
+    - name: Log out of GitHub Container Registry
+      run: |
+        docker logout ghcr.io
 
     - name: Build plugins
       run: |
