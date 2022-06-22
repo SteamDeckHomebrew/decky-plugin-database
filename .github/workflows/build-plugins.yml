@@ -15,7 +15,7 @@ jobs:
     
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
       with:
         fetch-depth: 0
         submodules: "recursive"
@@ -23,14 +23,14 @@ jobs:
 
     - name: Get changed files
       id: changed-files
-      uses: tj-actions/changed-files@v23
+      uses: tj-actions/changed-files@fb1fe28aa9ff24afc553b37545437005a4cf2115
       with:
         sha: ${{ github.sha }}
         files: |
           plugins/*
 
     - name: Cache Docker images
-      uses: satackey/action-docker-layer-caching@v0.0.11
+      uses: satackey/action-docker-layer-caching@46d2c640b1d8ef50d185452ad6fb324e6bd1d052
 
     - name: Login to GitHub Container Registry
       run: |
@@ -59,3 +59,4 @@ jobs:
           ls -lla /tmp/output/$plugin
           popd
         done
+        popd
