@@ -1,0 +1,31 @@
+name: Build Plugins
+
+on:
+  push:
+    branches:
+      - main
+    files:
+      - "plugins/**"
+
+jobs:
+  build:
+    name: Build updated plugins
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        submodules: "recursive"
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v23
+
+    - name: List all changed files
+      run: |
+        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          echo "$file was changed"
+        done
