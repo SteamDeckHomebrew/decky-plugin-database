@@ -81,7 +81,7 @@ jobs:
         for plugin in /tmp/output/*; do
           pushd $plugin
           zip /tmp/zips/$(basename $plugin).zip ./*
-          curl -X POST -H "Auth-Key: $PLUGIN_STORE_KEY" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.oublish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@/tmp/zips/$(basename $plugin).zip" https://beta.deckbrew.xyz/__submit
+          curl -X POST -H "Auth-Key: $PLUGIN_STORE_KEY" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@/tmp/zips/$(basename $plugin).zip" https://beta.deckbrew.xyz/__submit
           popd
         done
       env:
