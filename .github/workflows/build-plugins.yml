@@ -28,6 +28,7 @@ jobs:
         sha: ${{ github.sha }}
         files: |
           plugins/*
+          .github/workflows/build-plugins.yml
 
     - name: Cache Docker images
       uses: satackey/action-docker-layer-caching@46d2c640b1d8ef50d185452ad6fb324e6bd1d052
@@ -52,11 +53,19 @@ jobs:
 
     - name: Build plugins
       run: |
+        echo "${{ steps.changed-files.outputs.all_changed_files }}"
         pushd plugins
         files=()
-        for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-          files+=($(cut -d/ -f2 <<< $file))
-        done
+        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* ]]; then
+          echo "Rebuilding all plugins due to workflow edit"
+          for file in ./plugins/*; do
+            files+=($(cut -d/ -f2 <<< $file))
+          done
+        else
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            files+=($(cut -d/ -f2 <<< $file))
+          done
+        fi
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
           docker run --rm -i -v $PWD:/plugin -v /tmp/output/$plugin:/out ghcr.io/steamdeckhomebrew/builder:latest
