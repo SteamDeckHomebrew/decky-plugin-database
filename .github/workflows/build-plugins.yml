@@ -59,7 +59,7 @@ jobs:
         if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* ]]; then
           echo "Rebuilding all plugins due to workflow edit"
           for file in ./plugins/*; do
-            files+=($(cut -d/ -f2 <<< $file))
+            files+=($(cut -d/ -f3 <<< $file))
           done
         else
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
