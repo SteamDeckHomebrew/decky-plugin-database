@@ -79,9 +79,10 @@ jobs:
         shopt -s dotglob
         mkdir -p /tmp/zips/
         for plugin in /tmp/output/*; do
-          pushd $plugin
           zipname=/tmp/zips/$(basename ${plugin}).zip
-          zip $zipname ./*
+          zip $zipname ./$plugin
+          
+          pushd $plugin
           curl -X POST -H "Auth-Key: ${PLUGIN_STORE_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" https://beta.deckbrew.xyz/__submit
           popd
         done
