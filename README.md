@@ -7,4 +7,4 @@ Use the built-in [Plugin Store](https://deckbrew.xyz/en/user-guide/plugin-store)
 ## Submit your plugin
 To submit a plugin to Decky's plugin store, open a pull request adding your plugin as a submodule (tatke a look at [#8](https://github.com/SteamDeckHomebrew/decky-plugin-database/pull/8) for example).
 
-Don't forget to adhere to the **pull request guidelines**
+Don't forget to adhere to the pull request template.
