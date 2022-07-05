@@ -82,7 +82,8 @@ jobs:
         mkdir -p /tmp/zips/
         for plugin in /tmp/output/*; do
           zipname=/tmp/zips/$(basename ${plugin}).zip
-          zip -r -j $zipname $plugin
+          cd $plugin
+          zip -r $zipname * -x "*.git*" -x "*.jpg" -x "*.png" -x "*.bmp"
         done
       
     - name: Upload PR Artifacts
