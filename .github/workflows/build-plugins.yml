@@ -110,9 +110,8 @@ jobs:
           popd
         done
 
-    - name: Upload PR Artifacts
+    - name: Upload Artifacts to Github
       uses: actions/upload-artifact@v3
-      if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
       with:
         name: plugins
         path: /tmp/zips/*
