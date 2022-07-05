@@ -82,8 +82,7 @@ jobs:
         mkdir -p /tmp/zips/
         for plugin in /tmp/output/*; do
           zipname=/tmp/zips/$(basename ${plugin}).zip
-          cd $plugin
-          zip -r $zipname * -x "*assets*" -x "*.pnpm-store*" -x "tsconfig.json" -x "rollup.config.js" -x "*.yaml" -x "*.yml" -x "*.vscode*" -x "*.git*" -x "*.jpg" -x "*.png" -x "*.bmp"
+          zip -r $zipname "$plugin" -x "$plugin/*assets*" -x "$plugin/*.pnpm-store*" -x "$plugin/tsconfig.json" -x "$plugin/rollup.config.js" -x "$plugin/*.yaml" -x "$plugin/*.yml" -x "$plugin/*.vscode*" -x "$plugin/*.git*" -x "$plugin/*.jpg" -x "$plugin/*.png" -x "$plugin/*.bmp"
         done
       
     - name: Upload PR Artifacts
