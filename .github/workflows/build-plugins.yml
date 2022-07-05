@@ -92,9 +92,15 @@ jobs:
           zip -r $zipname "$plugin/dist" "$plugin/plugin.json" "$plugin/package.json"
           # Check if other files exist, and if they do, add them
           echo "$plugin/$license $plugin/$readme $plugin/$mainpy"
-          [ ! -z "$license" ] && zip -r $zipname "$plugin/$license"
-          [ ! -z "$readme" ] && zip -r $zipname "$plugin/$readme"
-          [ ! -z "$mainpy" ] && zip -r $zipname "$plugin/$mainpy"
+          if [ ! -z "$license" ]; then
+            zip -r $zipname "$plugin/$license"
+          fi
+          if [ ! -z "$readme" ]; then
+            zip -r $zipname "$plugin/$readme"
+          fi
+          if [ ! -z "$mainpy" ]; then
+            zip -r $zipname "$plugin/$mainpy"
+          fi
         done
       
     - name: Upload PR Artifacts
