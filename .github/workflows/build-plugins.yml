@@ -82,7 +82,17 @@ jobs:
         mkdir -p /tmp/zips/
         for plugin in /tmp/output/*; do
           zipname=/tmp/zips/$(basename ${plugin}).zip
-          zip -r $zipname "$plugin" -x "$plugin/*assets*" -x "$plugin/*.pnpm-store*" -x "$plugin/tsconfig.json" -x "$plugin/rollup.config.js" -x "$plugin/*.yaml" -x "$plugin/*.yml" -x "$plugin/*.vscode*" -x "$plugin/*.git*" -x "$plugin/*.jpg" -x "$plugin/*.png" -x "$plugin/*.bmp"
+          # Names of the optional files (the license can either be called license or license.md, not both)
+          # (head is there to take the first file, because we're assuming there's only a single license file)
+          license="$(find $plugin -maxdepth 1 -type f \( -iname "license" -o -iname "license.md" \) -printf '%P\n' | head -n 1)"
+          readme="$(find $plugin -maxdepth 1 -type f -iname 'readme.md' -printf '%P\n')"
+          mainpy="$(find $plugin -maxdepth 1 -type f -name 'main.py' -printf '%P\n')"
+          # Add required plugin files (and directory) to zip file
+          zip -r $zipname "$plugin/dist" "$plugin/plugin.json" "$plugin/package.json"
+          # Check if other files exist, and if they do, add them
+          [ ! -z "$license" ] && zip -r $zipname "$plugin/$license"
+          [ ! -z "$readme" ] && zip -r $zipname "$plugin/$readme"
+          [ ! -z "$mainpy" ] && zip -r $zipname "$plugin/$mainpy"
         done
       
     - name: Upload PR Artifacts
