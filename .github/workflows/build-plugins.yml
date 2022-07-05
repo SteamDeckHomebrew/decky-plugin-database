@@ -81,9 +81,8 @@ jobs:
         shopt -s dotglob
         mkdir -p /tmp/zips/
         for plugin in /tmp/output/*; do
-          pluginname=$(sed 's/\/tmp\/output\///' <<< "$plugin")
           zipname=/tmp/zips/$(basename ${plugin}).zip
-          zip $zipname $pluginname
+          zip -r -j $zipname $plugin
         done
       
     - name: Upload PR Artifacts
