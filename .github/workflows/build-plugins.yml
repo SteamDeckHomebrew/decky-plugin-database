@@ -9,6 +9,11 @@ on:
       - ".github/workflows/build-plugins.yml"
   pull_request:
     branches: ['*']
+  workflow_dispatch:
+    inputs:
+      upload:
+        type: boolean
+        description: Re-upload the plugins to the store
 
 jobs:
   build:
@@ -107,13 +112,13 @@ jobs:
 
     - name: Upload PR Artifacts
       uses: actions/upload-artifact@v3
-      if: ${{ github.event_name == 'pull_request' }}
+      if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
       with:
         name: plugins
         path: /tmp/zips/*
 
     - name: Upload plugins
-      if: ${{ github.event_name == 'push' }}
+      if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload) }}
       run: |
         shopt -s dotglob
         for plugin in /tmp/output/*; do
