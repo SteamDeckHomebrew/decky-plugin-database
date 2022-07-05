@@ -88,8 +88,10 @@ jobs:
           readme="$(find $plugin -maxdepth 1 -type f -iname 'readme.md' -printf '%P\n')"
           mainpy="$(find $plugin -maxdepth 1 -type f -name 'main.py' -printf '%P\n')"
           # Add required plugin files (and directory) to zip file
+          echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
           zip -r $zipname "$plugin/dist" "$plugin/plugin.json" "$plugin/package.json"
           # Check if other files exist, and if they do, add them
+          echo "$plugin/$license $plugin/$readme $plugin/$mainpy"
           [ ! -z "$license" ] && zip -r $zipname "$plugin/$license"
           [ ! -z "$readme" ] && zip -r $zipname "$plugin/$readme"
           [ ! -z "$mainpy" ] && zip -r $zipname "$plugin/$mainpy"
