@@ -7,6 +7,9 @@ on:
     paths:
       - "plugins/**"
       - ".github/workflows/build-plugins.yml"
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
@@ -75,6 +78,7 @@ jobs:
         popd
 
     - name: Upload plugins
+      if: ${{ github.event_name == 'push' }}
       run: |
         shopt -s dotglob
         mkdir -p /tmp/zips/
