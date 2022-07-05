@@ -9,6 +9,11 @@ on:
       - ".github/workflows/build-plugins.yml"
   pull_request:
     branches: ['*']
+  workflow_dispatch:
+    inputs:
+      upload:
+        type: boolean
+        description: Re-upload the plugins to the store
 
 jobs:
   build:
@@ -82,19 +87,38 @@ jobs:
         mkdir -p /tmp/zips/
         for plugin in /tmp/output/*; do
           zipname=/tmp/zips/$(basename ${plugin}).zip
-          cd $plugin
-          zip -r $zipname * -x "*assets*" -x "*.pnpm-store*" -x "tsconfig.json" -x "rollup.config.js" -x "*.yaml" -x "*.yml" -x "*.vscode*" -x "*.git*" -x "*.jpg" -x "*.png" -x "*.bmp"
+          pushd "$plugin"
+          # Names of the optional files (the license can either be called license or license.md, not both)
+          # (head is there to take the first file, because we're assuming there's only a single license file)
+          license="$(find . -maxdepth 1 -type f \( -iname "license" -o -iname "license.md" \) -printf '%P\n' | head -n 1)"
+          readme="$(find . -maxdepth 1 -type f -iname 'readme.md' -printf '%P\n')"
+          mainpy="$(find . -maxdepth 1 -type f -name 'main.py' -printf '%P\n')"
+          # Add required plugin files (and directory) to zip file
+          echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
+          zip -r $zipname "dist" "plugin.json" "package.json"
+          # Check if other files exist, and if they do, add them
+          echo "$plugin/$license $plugin/$readme $plugin/$mainpy"
+          if [ ! -z "$license" ]; then
+            zip -r $zipname "$license"
+          fi
+          if [ ! -z "$readme" ]; then
+            zip -r $zipname "$readme"
+          fi
+          if [ ! -z "$mainpy" ]; then
+            zip -r $zipname "$mainpy"
+          fi
+          popd
         done
-      
+
     - name: Upload PR Artifacts
       uses: actions/upload-artifact@v3
-      if: ${{ github.event_name == 'pull_request' }}
+      if: ${{ github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch' }}
       with:
         name: plugins
         path: /tmp/zips/*
-      
+
     - name: Upload plugins
-      if: ${{ github.event_name == 'push' }}
+      if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload) }}
       run: |
         shopt -s dotglob
         for plugin in /tmp/output/*; do
