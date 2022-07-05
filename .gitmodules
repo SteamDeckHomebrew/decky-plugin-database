@@ -1,3 +1,6 @@
 [submodule "plugins/SDH-SystemToolbox"]
 	path = plugins/SDH-SystemToolbox
 	url = https://github.com/WerWolv/SDH-SystemToolbox
+[submodule "plugins/deckfaqs"]
+	path = plugins/deckfaqs
+	url = https://github.com/hulkrelax/deckfaqs
