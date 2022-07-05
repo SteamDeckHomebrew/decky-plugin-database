@@ -7,6 +7,8 @@ on:
     paths:
       - "plugins/**"
       - ".github/workflows/build-plugins.yml"
+  pull_request:
+    branches: ['*']
 
 jobs:
   build:
@@ -73,15 +75,30 @@ jobs:
           popd
         done
         popd
-
-    - name: Upload plugins
+        
+    - name: Zip Plugins
       run: |
         shopt -s dotglob
         mkdir -p /tmp/zips/
         for plugin in /tmp/output/*; do
           zipname=/tmp/zips/$(basename ${plugin}).zip
-          zip $zipname $plugin
-          
+          cd $plugin
+          zip -r $zipname * -x "*assets*" -x "*.pnpm-store*" -x "tsconfig.json" -x "rollup.config.js" -x "*.yaml" -x "*.yml" -x "*.vscode*" -x "*.git*" -x "*.jpg" -x "*.png" -x "*.bmp"
+        done
+      
+    - name: Upload PR Artifacts
+      uses: actions/upload-artifact@v3
+      if: ${{ github.event_name == 'pull_request' }}
+      with:
+        name: plugins
+        path: /tmp/zips/*
+      
+    - name: Upload plugins
+      if: ${{ github.event_name == 'push' }}
+      run: |
+        shopt -s dotglob
+        for plugin in /tmp/output/*; do
+          zipname=/tmp/zips/$(basename ${plugin}).zip
           pushd $plugin
           curl -X POST -H "Auth-Key: ${PLUGIN_STORE_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" https://beta.deckbrew.xyz/__submit
           popd

@@ -1,6 +1,9 @@
 [submodule "plugins/SDH-SystemToolbox"]
 	path = plugins/SDH-SystemToolbox
 	url = https://github.com/WerWolv/SDH-SystemToolbox
+[submodule "plugins/deckfaqs"]
+	path = plugins/deckfaqs
+	url = https://github.com/hulkrelax/deckfaqs
 [submodule "plugins/PowerTools"]
 	path = plugins/PowerTools
 	url = https://github.com/NGnius/PowerTools
