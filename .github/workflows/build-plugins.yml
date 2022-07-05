@@ -104,14 +104,14 @@ jobs:
           fi
           popd
         done
-      
+
     - name: Upload PR Artifacts
       uses: actions/upload-artifact@v3
       if: ${{ github.event_name == 'pull_request' }}
       with:
         name: plugins
         path: /tmp/zips/*
-      
+
     - name: Upload plugins
       if: ${{ github.event_name == 'push' }}
       run: |
