@@ -8,8 +8,7 @@ on:
       - "plugins/**"
       - ".github/workflows/build-plugins.yml"
   pull_request:
-    branches:
-      - main
+    branches: ['*']
 
 jobs:
   build:
