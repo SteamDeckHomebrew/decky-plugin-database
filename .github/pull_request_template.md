@@ -1,11 +1,3 @@
----
-name: Plugin submission
-about: Submit your plugin to the store
-title: 'Plugin Name'
-labels: 'plugin-addition'
-assignees: ''
----
-
 # Plugin Name
 
 Please include a summary of what the plugin does.
