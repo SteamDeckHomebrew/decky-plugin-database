@@ -83,7 +83,7 @@ jobs:
         for plugin in /tmp/output/*; do
           zipname=/tmp/zips/$(basename ${plugin}).zip
           cd $plugin
-          zip -r $zipname * -x "*.pnpm-store*" -x "*.vscode*" -x "*.git*" -x "*.jpg" -x "*.png" -x "*.bmp"
+          zip -r $zipname * -x "*assets*" -x "*.pnpm-store*" -x "tsconfig.json" -x "rollup.config.js" -x "*.yaml" -x "*.yml" -x "*.vscode*" -x "*.git*" -x "*.jpg" -x "*.png" -x "*.bmp"
         done
       
     - name: Upload PR Artifacts
