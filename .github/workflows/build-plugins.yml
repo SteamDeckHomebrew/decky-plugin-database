@@ -86,7 +86,8 @@ jobs:
         shopt -s dotglob
         mkdir -p /tmp/zips/
         pushd /tmp/output
-        for plugin in /tmp/output/*; do
+        for abs_plugin in /tmp/output/*; do
+          plugin=$(basename $abs_plugin)
           zipname=/tmp/zips/$(basename ${plugin}).zip
 
           # Names of the optional files (the license can either be called license or license.md, not both)
