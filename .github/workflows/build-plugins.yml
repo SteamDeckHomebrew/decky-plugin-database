@@ -107,7 +107,7 @@ jobs:
             zip -r $zipname "$plugin/$readme"
           fi
           if [ ! -z "$haspython" ]; then
-            find $plugin -maxdepth 1 -type f -name '$plugin/*.py' -exec zip -r $zipname {} \;
+            find $plugin -maxdepth 1 -type f -name '*.py' -exec zip -r $zipname {} \;
           fi
         done
         popd
