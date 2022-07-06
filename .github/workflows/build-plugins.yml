@@ -92,7 +92,7 @@ jobs:
           # (head is there to take the first file, because we're assuming there's only a single license file)
           license="$(find . -maxdepth 1 -type f \( -iname "license" -o -iname "license.md" \) -printf '%P\n' | head -n 1)"
           readme="$(find . -maxdepth 1 -type f -iname 'readme.md' -printf '%P\n')"
-          mainpy="$(find . -maxdepth 1 -type f -name 'main.py' -printf '%P\n')"
+          haspython="$(find . -maxdepth 1 -type f -name '*.py' -printf '%P\n')"
           # Add required plugin files (and directory) to zip file
           echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
           zip -r $zipname "dist" "plugin.json" "package.json"
@@ -104,8 +104,8 @@ jobs:
           if [ ! -z "$readme" ]; then
             zip -r $zipname "$readme"
           fi
-          if [ ! -z "$mainpy" ]; then
-            zip -r $zipname "$mainpy"
+          if [ ! -z "$haspython" ]; then
+            zip -r $zipname "*.py"
           fi
           popd
         done
