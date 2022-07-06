@@ -105,7 +105,7 @@ jobs:
             zip -r $zipname "$readme"
           fi
           if [ ! -z "$haspython" ]; then
-            zip -r $zipname "*.py"
+            find . -maxdepth 1 -type f -name '*.py' -exec zip -r $zipname {} \;
           fi
           popd
         done
