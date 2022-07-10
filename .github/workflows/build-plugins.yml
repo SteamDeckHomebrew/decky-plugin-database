@@ -95,6 +95,7 @@ jobs:
           license="$(find $plugin -maxdepth 1 -type f \( -iname "license" -o -iname "license.md" \) -printf '%P\n' | head -n 1)"
           readme="$(find $plugin -maxdepth 1 -type f -iname 'readme.md' -printf '%P\n')"
           haspython="$(find $plugin -maxdepth 1 -type f -name '*.py' -printf '%P\n')"
+          bin="$(find $plugin -maxdepth 1 -type d -name 'bin' -printf '%P\n')"
           # Add required plugin files (and directory) to zip file
           echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
           zip -r $zipname "$plugin/dist" "$plugin/plugin.json" "$plugin/package.json"
@@ -105,6 +106,11 @@ jobs:
           fi
           if [ ! -z "$readme" ]; then
             zip -r $zipname "$plugin/$readme"
+          fi
+          if [ ! -z "$bin" && ! -z "$(ls -A "$plugin/$bin")" ]; then
+            # eventually zip it but not for now since we're missing checks
+            # zip -r $zipname "$plugin/$bin"
+            echo "bin folder not implemented yet"
           fi
           if [ ! -z "$haspython" ]; then
             find $plugin -maxdepth 1 -type f -name '*.py' -exec zip -r $zipname {} \;
