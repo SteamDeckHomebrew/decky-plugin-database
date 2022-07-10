@@ -85,10 +85,9 @@ jobs:
       run: |
         shopt -s dotglob
         mkdir -p /tmp/zips/
-         for plugin in /tmp/output/*; do
+        for plugin in /tmp/output/*; do
           zipname=/tmp/zips/$(basename ${plugin}).zip
-           pushd "$plugin"
-
+          pushd "$plugin"
           # Names of the optional files (the license can either be called license or license.md, not both)
           # (head is there to take the first file, because we're assuming there's only a single license file)
           license="$(find . -maxdepth 1 -type f \( -iname "license" -o -iname "license.md" \) -printf '%P\n' | head -n 1)"
