@@ -85,38 +85,37 @@ jobs:
       run: |
         shopt -s dotglob
         mkdir -p /tmp/zips/
-        pushd /tmp/output
-        for abs_plugin in /tmp/output/*; do
-          plugin=$(basename $abs_plugin)
+         for plugin in /tmp/output/*; do
           zipname=/tmp/zips/$(basename ${plugin}).zip
+           pushd "$plugin"
 
           # Names of the optional files (the license can either be called license or license.md, not both)
           # (head is there to take the first file, because we're assuming there's only a single license file)
-          license="$(find $plugin -maxdepth 1 -type f \( -iname "license" -o -iname "license.md" \) -printf '%P\n' | head -n 1)"
-          readme="$(find $plugin -maxdepth 1 -type f -iname 'readme.md' -printf '%P\n')"
-          haspython="$(find $plugin -maxdepth 1 -type f -name '*.py' -printf '%P\n')"
-          bin="$(find $plugin -maxdepth 1 -type d -name 'bin' -printf '%P\n')"
+          license="$(find . -maxdepth 1 -type f \( -iname "license" -o -iname "license.md" \) -printf '%P\n' | head -n 1)"
+          readme="$(find . -maxdepth 1 -type f -iname 'readme.md' -printf '%P\n')"
+          haspython="$(find . -maxdepth 1 -type f -name '*.py' -printf '%P\n')"
+          bin="$(find . -maxdepth 1 -type d -name 'bin' -printf '%P\n')"
           # Add required plugin files (and directory) to zip file
           echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
-          zip -r $zipname "$plugin/dist" "$plugin/plugin.json" "$plugin/package.json"
+          zip -r $zipname "dist" "plugin.json" "package.json"
           # Check if other files exist, and if they do, add them
           echo "$plugin/$license $plugin/$readme $plugin/$mainpy"
           if [ ! -z "$license" ]; then
-            zip -r $zipname "$plugin/$license"
+            zip -r $zipname "$license"
           fi
           if [ ! -z "$readme" ]; then
-            zip -r $zipname "$plugin/$readme"
+            zip -r $zipname "$readme"
           fi
-          if [ ! -z "$bin" && ! -z "$(ls -A "$plugin/$bin")" ]; then
+          if [ ! -z "$bin" && ! -z "$(ls -A "$bin")" ]; then
             # eventually zip it but not for now since we're missing checks
-            # zip -r $zipname "$plugin/$bin"
+            # zip -r $zipname "$bin"
             echo "bin folder not implemented yet"
           fi
           if [ ! -z "$haspython" ]; then
-            find $plugin -maxdepth 1 -type f -name '*.py' -exec zip -r $zipname {} \;
+            find . -maxdepth 1 -type f -name '*.py' -exec zip -r $zipname {} \;
           fi
+          popd
         done
-        popd
 
     - name: Upload PR Artifacts
       uses: actions/upload-artifact@v3
