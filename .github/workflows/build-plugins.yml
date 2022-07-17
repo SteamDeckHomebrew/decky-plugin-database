@@ -61,6 +61,8 @@ jobs:
 
     - name: Build plugins
       run: |
+        OLD_IFS=$IFS
+        IFS=,
         pushd plugins
         files=()
         if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* ]]; then
@@ -69,12 +71,9 @@ jobs:
             files+=($(cut -d/ -f3 <<< $file))
           done
         else
-          OLD_IFS=$IFS
-          IFS=,
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             files+=($(cut -d/ -f2 <<< $file))
           done
-          IFS=$OLD_IFS
         fi
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
@@ -84,6 +83,7 @@ jobs:
           popd
         done
         popd
+        IFS=$OLD_IFS
         
     - name: Zip Plugins
       run: |
