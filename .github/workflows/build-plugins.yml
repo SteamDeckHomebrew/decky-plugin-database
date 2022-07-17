@@ -61,8 +61,6 @@ jobs:
 
     - name: Build plugins
       run: |
-        OLD_IFS=$IFS
-        IFS=,
         pushd plugins
         files=()
         if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* ]]; then
@@ -71,19 +69,18 @@ jobs:
             files+=($(cut -d/ -f3 <<< $file))
           done
         else
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          (IFS=,;for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             files+=($(cut -d/ -f2 <<< $file))
-          done
+          done)
         fi
-        for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
+        (IFS=,;for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
           docker run --rm -i -v $PWD:/plugin -v /tmp/output/$plugin:/out ghcr.io/steamdeckhomebrew/builder:latest
           echo Built $plugin
           ls -lla /tmp/output/$plugin
           popd
-        done
+        done)
         popd
-        IFS=$OLD_IFS
         
     - name: Zip Plugins
       run: |
