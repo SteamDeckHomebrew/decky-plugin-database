@@ -73,13 +73,13 @@ jobs:
             files+=($(cut -d/ -f2 <<< $file))
           done)
         fi
-        (IFS=,;for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
+        for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
           docker run --rm -i -v $PWD:/plugin -v /tmp/output/$plugin:/out ghcr.io/steamdeckhomebrew/builder:latest
           echo Built $plugin
           ls -lla /tmp/output/$plugin
           popd
-        done)
+        done
         popd
         
     - name: Zip Plugins
