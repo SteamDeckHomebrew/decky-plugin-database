@@ -7,3 +7,6 @@
 [submodule "plugins/PowerTools"]
 	path = plugins/PowerTools
 	url = https://github.com/NGnius/PowerTools
+[submodule "plugins/Fantastic"]
+	path = plugins/Fantastic
+	url = https://github.com/NGnius/Fantastic
