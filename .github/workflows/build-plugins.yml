@@ -33,6 +33,7 @@ jobs:
       uses: tj-actions/changed-files@fb1fe28aa9ff24afc553b37545437005a4cf2115
       with:
         sha: ${{ github.sha }}
+        separator: ","
         files: |
           plugins/*
           .github/workflows/build-plugins.yml
@@ -68,9 +69,9 @@ jobs:
             files+=($(cut -d/ -f3 <<< $file))
           done
         else
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          (IFS=,;for file in "${{ steps.changed-files.outputs.all_changed_files }}"; do
             files+=($(cut -d/ -f2 <<< $file))
-          done
+          done)
         fi
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
@@ -125,7 +126,7 @@ jobs:
         for plugin in /tmp/output/*; do
           zipname=/tmp/zips/$(basename ${plugin}).zip
           pushd $plugin
-          curl -X POST -H "Auth-Key: ${PLUGIN_STORE_KEY}" -F "force=1" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" https://beta.deckbrew.xyz/__submit
+          curl -X POST -H "Authorization: ${PLUGIN_STORE_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" https://beta.deckbrew.xyz/__submit
           popd
         done
       env:
