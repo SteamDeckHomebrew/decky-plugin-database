@@ -69,7 +69,7 @@ jobs:
             files+=($(cut -d/ -f3 <<< $file))
           done
         else
-          (IFS=,;for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          (IFS=,;for file in "${{ steps.changed-files.outputs.all_changed_files }}"; do
             files+=($(cut -d/ -f2 <<< $file))
           done)
         fi
