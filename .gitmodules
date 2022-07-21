@@ -7,6 +7,9 @@
 [submodule "plugins/PowerTools"]
 	path = plugins/PowerTools
 	url = https://github.com/NGnius/PowerTools
+[submodule "plugins/Fantastic"]
+	path = plugins/Fantastic
+	url = https://github.com/NGnius/Fantastic
 [submodule "plugins/SDH-CssLoader"]
 	path = plugins/SDH-CssLoader
 	url = https://github.com/suchmememanyskill/SDH-CssLoader
