@@ -72,12 +72,11 @@ jobs:
         else
           rest="${{ steps.changed-files.outputs.all_changed_files }}"
           while [ -n "$rest" ] ; do
-          printf "rest = $rest\n"
             str=${rest%%,*}
             [ "$rest" = "${rest/,/}" ] && rest= || rest=${rest#*,}
             files+=($(cut -d/ -f2 <<< $str))
           done <<< "$files"
-          printf "%s\n" "${files[@]}" | sort -u
+          #printf "%s\n" "${files[@]}" | sort -u
         fi
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
