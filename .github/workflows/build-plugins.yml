@@ -63,14 +63,16 @@ jobs:
       run: |
         pushd plugins
         files=()
-        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* ]]; then
+        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* ]]; 
+        then
           echo "Rebuilding all plugins due to workflow edit"
           for file in ./plugins/*; do
             files+=($(cut -d/ -f3 <<< $file))
           done
         else
-          rest=$test
+          rest="${{ steps.changed-files.outputs.all_changed_files }}"
           while [ -n "$rest" ] ; do
+          printf "rest = $rest\n"
             str=${rest%%,*}
             [ "$rest" = "${rest/,/}" ] && rest= || rest=${rest#*,}
             files+=($(cut -d/ -f2 <<< $str))
