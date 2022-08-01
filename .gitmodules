@@ -10,3 +10,6 @@
 [submodule "plugins/SDH-CssLoader"]
 	path = plugins/SDH-CssLoader
 	url = https://github.com/suchmememanyskill/SDH-CssLoader
+[submodule "plugins/ProtonDBGameBadge"]
+	path = plugins/ProtonDBGameBadge
+	url = https://github.com/joamjoamjoam/ProtonDBGameBadge
