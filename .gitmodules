@@ -10,3 +10,6 @@
 [submodule "plugins/SDH-CssLoader"]
 	path = plugins/SDH-CssLoader
 	url = https://github.com/suchmememanyskill/SDH-CssLoader
+[submodule "plugins/vibrantDeck"]
+	path = plugins/vibrantDeck
+	url = https://github.com/libvibrant/vibrantDeck.git
