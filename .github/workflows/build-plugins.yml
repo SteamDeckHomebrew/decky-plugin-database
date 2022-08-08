@@ -91,16 +91,35 @@ jobs:
           pushd $plugin
           echo "Detecting backend for plugin $plugin"
           dockerfile_exists="false"
+          entrypoint_exists="false"
           # [ -d $PWD/backend ] && echo "$(ls -lla $PWD/backend | grep Dockerfile)"
           [ -f $PWD/backend/Dockerfile ] && dockerfile_exists=true
+          [ -f $PWD/backend/entrypoint.sh ] && entrypoint_exists=true
+          # check for Dockerfile
           if [[ "$dockerfile_exists" == "true" ]]; then
+            echo "Grabbing provided dockerfile."
             mkdir -p $PWD/build/
             mkdir -p $PWD/build/backend
+            echo "Building provided dockerfile."
             docker build -f $PWD/backend/Dockerfile -t backend-$plugin .
-            # docker run
-            # cp $PWD/build/backend/bin /tmp/output/$plugin/bin
-            echo Built $plugin backend
-          else 
+            # check entrypoint script exists
+            if [[ "$entrypoint_exists" == "true" ]]; then
+              echo "Running docker image with provided entrypoint script."
+              docker run --rm -i -v $PWD:/plugin -v /tmp/output/$plugin:/out --entrypoint $PWD/backend/entrypoint.sh backend-$plugin
+            else
+              # Default behavior
+              echo "Running docker image with entrypoint script specified in dockerfile." 
+              docker run --rm -i -v $PWD:/plugin -v /tmp/output/$plugin:/out backend-$plugin
+              # cp $PWD/build/backend/bin /tmp/output/$plugin/bin
+            fi
+            echo "Built $plugin backend"
+          # Dockerfile doesn't exist but entrypoint script does, run w/ default image
+          elif [[ "$dockerfile_exists" == "false" && "$entrypoint_exists" == "true" ]]; then
+            echo "Grabbing default docker image and using provided entrypoint script."
+            docker run --rm --entrypoint $PWD/backend/entrypoint.sh -i -v $PWD:/plugin -v /tmp/output/$plugin:/out ghcr.io/steamdeckhomebrew/holo-base:latest
+            # do more things to copy bin file for cd
+            echo "Built $plugin backend"
+          else
             echo "Plugin $plugin does not have a backend"
           fi
           # ls -lla /tmp/output/$plugin
