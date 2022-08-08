@@ -100,23 +100,23 @@ jobs:
             echo "Grabbing provided dockerfile."
             mkdir -p $PWD/build/
             mkdir -p $PWD/build/backend
-            echo "Building provided dockerfile."
+            echo "Building provided Dockerfile."
             docker build -f $PWD/backend/Dockerfile -t backend-$plugin .
             # check entrypoint script exists
             if [[ "$entrypoint_exists" == "true" ]]; then
-              echo "Running docker image with provided entrypoint script."
-              docker run --rm -i -v $PWD:/plugin -v /tmp/output/$plugin:/out --entrypoint $PWD/backend/entrypoint.sh backend-$plugin
+              echo "Running docker image backend-$plugin with provided entrypoint script."
+              docker run --rm -i -v $PWD:/plugin -v /tmp/output/$plugin:/out --entrypoint $PWD/backend/entrypoint.sh backend-$plugin ls
             else
               # Default behavior
-              echo "Running docker image with entrypoint script specified in dockerfile." 
-              docker run --rm -i -v $PWD:/plugin -v /tmp/output/$plugin:/out backend-$plugin
+              echo "Running docker image backend-$plugin with entrypoint script specified in Dockerfile." 
+              docker run --rm -i -v $PWD:/plugin -v /tmp/output/$plugin:/out backend-$plugin ls
               # cp $PWD/build/backend/bin /tmp/output/$plugin/bin
             fi
             echo "Built $plugin backend"
           # Dockerfile doesn't exist but entrypoint script does, run w/ default image
           elif [[ "$dockerfile_exists" == "false" && "$entrypoint_exists" == "true" ]]; then
             echo "Grabbing default docker image and using provided entrypoint script."
-            docker run --rm --entrypoint $PWD/backend/entrypoint.sh -i -v $PWD:/plugin -v /tmp/output/$plugin:/out ghcr.io/steamdeckhomebrew/holo-base:latest
+            docker run --rm --entrypoint $PWD/backend/entrypoint.sh -i -v $PWD:/plugin -v /tmp/output/$plugin:/out ghcr.io/steamdeckhomebrew/holo-base:latest ls
             # do more things to copy bin file for cd
             echo "Built $plugin backend"
           else
