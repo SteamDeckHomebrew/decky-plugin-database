@@ -147,7 +147,9 @@ jobs:
           if [ ! -z "$hasdefaults" ]; then
             workingdir=$PWD
             cd $plugin/defaults
-            zip -r $zipname *
+            if [ ! -f "defaults.txt" ]; then
+              zip -r $zipname *
+            fi
             cd "$workingdir"
           fi
           # Check if other files exist, and if they do, add them
