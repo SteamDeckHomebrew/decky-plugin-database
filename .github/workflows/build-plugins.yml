@@ -153,14 +153,14 @@ jobs:
           license="$(find $plugin -maxdepth 1 -type f \( -iname "license" -o -iname "license.md" \) -printf '%P\n' | head -n 1)"
           readme="$(find $plugin -maxdepth 1 -type f -iname 'readme.md' -printf '%P\n')"
           haspython="$(find $plugin -maxdepth 1 -type f -name '*.py' -printf '%P\n')"
-          bin="$(find $plugin -maxdepth 1 -type d -name 'bin' -printf '%P\n')"
+          bin="$(find $plugin/backend -maxdepth 1 -type d -name 'out' -printf '%P\n')"
           # Add required plugin files (and directory) to zip file
           echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
           zip -r $zipname "$plugin/dist" "$plugin/plugin.json" "$plugin/package.json"
           # Check if plugin has a defaults folder, if so, add "default" contents to root dir
           hasdefaults="$(find $plugin -maxdepth 1 -type d -name 'defaults' -printf '%P\n')"
-          if [ ! -z "$bin"] && ![ -z "$(ls -A "$plugin/$bin")" ]; then
-            zip -r $zipname "$plugin/$bin"
+          if [ ! -z "$bin"] && ![ -z "$(ls -A "$plugin/backend/$bin")" ]; then
+            zip -r $zipname "$plugin/backend/$bin"
           fi
           if [ ! -z "$hasdefaults" ]; then
             workingdir=$PWD
@@ -191,7 +191,7 @@ jobs:
         path: /tmp/zips/*
 
     - name: Upload plugins
-      if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload) }}
+      if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload)) }}
       run: |
         shopt -s dotglob
         for plugin in /tmp/output/*; do
