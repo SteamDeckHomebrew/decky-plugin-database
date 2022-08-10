@@ -56,6 +56,9 @@ jobs:
     - name: Pull frontend builder image
       run: docker pull ghcr.io/steamdeckhomebrew/builder:latest
 
+    - name: Pull backend builder image
+      run: docker pull ghcr.io/steamdeckhomebrew/holo-base:latest
+
     - name: Log out of GitHub Container Registry
       run: |
         docker logout ghcr.io
