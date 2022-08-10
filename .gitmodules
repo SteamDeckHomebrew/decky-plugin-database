@@ -1,3 +1,7 @@
+[submodule "plugins/decky-plugin-template"]
+	path = plugins/decky-plugin-template
+	url = https://github.com/SteamDeckHomebrew/decky-plugin-template
+	branch = ci-testing
 [submodule "plugins/SDH-SystemToolbox"]
 	path = plugins/SDH-SystemToolbox
 	url = https://github.com/WerWolv/SDH-SystemToolbox
@@ -10,7 +14,6 @@
 [submodule "plugins/SDH-CssLoader"]
 	path = plugins/SDH-CssLoader
 	url = https://github.com/suchmememanyskill/SDH-CssLoader
-[submodule "plugins/decky-plugin-template"]
-	path = plugins/decky-plugin-template
-	url = https://github.com/SteamDeckHomebrew/decky-plugin-template
-	branch = ci-testing
+[submodule "plugins/vibrantDeck"]
+	path = plugins/vibrantDeck
+	url = https://github.com/libvibrant/vibrantDeck.git
