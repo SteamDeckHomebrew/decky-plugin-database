@@ -104,18 +104,18 @@ jobs:
             # check entrypoint script exists
             if [[ "$entrypoint_exists" == "true" ]]; then
               echo "Running docker image backend-$plugin with provided entrypoint script."
-              docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/out --entrypoint $PWD/backend/entrypoint.sh backend-$plugin
+              docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out --entrypoint $PWD/backend/entrypoint.sh backend-$plugin
             else
               # Default behavior
               echo "Running docker image backend-$plugin with entrypoint script specified in Dockerfile." 
-               docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/out backend-$plugin
+               docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out backend-$plugin
               # cp $PWD/build/backend/bin /tmp/output/$plugin/bin
             fi
             echo "Built $plugin backend"
           # Dockerfile doesn't exist but entrypoint script does, run w/ default image
           elif [[ "$dockerfile_exists" == "false" && "$entrypoint_exists" == "true" ]]; then
             echo "Grabbing default docker image and using provided entrypoint script."
-             docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/out ghcr.io/steamdeckhomebrew/holo-base:latest
+             docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out ghcr.io/steamdeckhomebrew/holo-base:latest
             # do more things to copy bin file for cd
             echo "Built $plugin backend"
           else
