@@ -156,7 +156,7 @@ jobs:
           license="$(find $plugin -maxdepth 1 -type f \( -iname "license" -o -iname "license.md" \) -printf '%P\n' | head -n 1)"
           readme="$(find $plugin -maxdepth 1 -type f -iname 'readme.md' -printf '%P\n')"
           haspython="$(find $plugin -maxdepth 1 -type f -name '*.py' -printf '%P\n')"
-          bin="$([ -f $plugin/backend ] && find $plugin/backend -maxdepth 1 -type d -name 'out' -printf '%P\n'))"
+          bin="$(test -f $plugin/backend && find $plugin/backend -maxdepth 1 -type d -name 'out' -printf '%P\n'))"
           # Add required plugin files (and directory) to zip file
           echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
           zip -r $zipname "$plugin/dist" "$plugin/plugin.json" "$plugin/package.json"
