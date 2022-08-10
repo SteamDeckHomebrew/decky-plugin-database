@@ -104,7 +104,7 @@ jobs:
             # check entrypoint script exists
             if [[ "$entrypoint_exists" == "true" ]]; then
               echo "Running docker image backend-$plugin with provided entrypoint script."
-              docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out --entrypoint $PWD/backend/entrypoint.sh backend-$plugin
+              docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out --entrypoint /backend/entrypoint.sh backend-$plugin
             else
               # Default behavior
               echo "Running docker image backend-$plugin with entrypoint script specified in Dockerfile." 
