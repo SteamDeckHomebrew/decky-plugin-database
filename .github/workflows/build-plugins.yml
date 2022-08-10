@@ -109,12 +109,12 @@ jobs:
               echo "Running docker image backend-$plugin with provided entrypoint script."
               docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out --entrypoint /backend/entrypoint.sh backend-$plugin
               mkdir -p /tmp/output/$plugin/bin
-              cp -r /tmp/output/$plugin/backend/out /tmp/output/$plugin/bin
+              cp -r /tmp/output/$plugin/backend/out/. /tmp/output/$plugin/bin
             else
               echo "Running docker image backend-$plugin with entrypoint script specified in Dockerfile." 
               docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out backend-$plugin
               mkdir -p /tmp/output/$plugin/bin
-              cp -r /tmp/output/$plugin/backend/out /tmp/output/$plugin/bin
+              cp -r /tmp/output/$plugin/backend/out/. /tmp/output/$plugin/bin
             fi
             docker image rm backend-$plugin
             echo "Built $plugin backend"
@@ -123,7 +123,7 @@ jobs:
             echo "Grabbing default docker image and using provided entrypoint script."
             docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out ghcr.io/steamdeckhomebrew/holo-base:latest
             mkdir -p /tmp/output/$plugin/bin
-            cp /tmp/output/$plugin/backend/out /tmp/output/$plugin/bin
+            cp /tmp/output/$plugin/backend/out/. /tmp/output/$plugin/bin
             echo "Built $plugin backend"
           else
             echo "Plugin $plugin does not have a backend"
@@ -169,7 +169,7 @@ jobs:
           echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
           zip -r $zipname "$plugin/dist" "$plugin/plugin.json" "$plugin/package.json"
 
-          if [ ! -z "$hasbin"]; then
+          if [ ! -z "$hasbin" ]; then
             echo "$plugin/bin"
             zip -r $zipname "$plugin/bin"
           fi
@@ -188,7 +188,7 @@ jobs:
             cd "$workingdir"
           fi
           # Check if other files exist, and if they do, add them
-          echo "$plugin/$license $plugin/$readme"
+          echo "license:$plugin/$license readme:$plugin/$readme"
           if [ ! -z "$license" ]; then
             zip -r $zipname "$plugin/$license"
           fi
