@@ -13,3 +13,6 @@
 [submodule "plugins/vibrantDeck"]
 	path = plugins/vibrantDeck
 	url = https://github.com/libvibrant/vibrantDeck.git
+[submodule "plugins/protondb-decky"]
+	path = plugins/protondb-decky
+	url = https://github.com/OMGDuke/protondb-decky
