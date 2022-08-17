@@ -20,3 +20,6 @@
 [submodule "plugins/MusicControl"]
 	path = plugins/MusicControl
 	url = https://github.com/mirobouma/MusicControl.git
+[submodule "plugins/SDH-PauseGames"]
+	path = plugins/SDH-PauseGames
+	url = https://github.com/popsUlfr/SDH-PauseGames.git
