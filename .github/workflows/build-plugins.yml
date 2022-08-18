@@ -84,6 +84,8 @@ jobs:
           printf "%s\n" "${files[@]}" | sort -u
         fi
         popd
+        IFS=$'\n' sorted=($(sort -u <<<"$${files[@]}"))
+        unset $IFS
         echo ::set-output name=edited_files::${files[@]}
     
     - name: Build plugin backends
