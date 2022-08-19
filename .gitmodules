@@ -26,3 +26,6 @@
 [submodule "plugins/protondb-decky"]
 	path = plugins/protondb-decky
 	url = https://github.com/OMGDuke/protondb-decky
+[submodule "plugins/SDH-AudioLoader"]
+	path = plugins/SDH-AudioLoader
+	url = https://github.com/EMERALD0874/SDH-AudioLoader
