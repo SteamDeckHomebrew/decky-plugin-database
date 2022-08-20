@@ -26,3 +26,6 @@
 [submodule "plugins/protondb-decky"]
 	path = plugins/protondb-decky
 	url = https://github.com/OMGDuke/protondb-decky
+[submodule "plugins/FriendsFix"]
+	path = plugins/FriendsFix
+	url = https://git.catvibers.me/aa/FriendsFix.git
