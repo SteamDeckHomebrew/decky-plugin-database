@@ -29,3 +29,6 @@
 [submodule "plugins/SDH-AudioLoader"]
 	path = plugins/SDH-AudioLoader
 	url = https://github.com/EMERALD0874/SDH-AudioLoader
+[submodule "plugins/FriendsFix"]
+	path = plugins/FriendsFix
+	url = https://git.catvibers.me/aa/FriendsFix.git
