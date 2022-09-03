@@ -41,3 +41,6 @@
 [submodule "plugins/SDH-Notebook"]
 	path = plugins/SDH-Notebook
 	url = https://github.com/popsUlfr/SDH-Notebook.git
+[submodule "plugins/Fantastic"]
+	path = plugins/Fantastic
+	url = https://github.com/NGnius/Fantastic
