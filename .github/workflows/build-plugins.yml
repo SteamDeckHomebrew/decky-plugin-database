@@ -86,17 +86,19 @@ jobs:
         popd
         IFS=$'\n' sorted=($(sort -u <<<"$${files[@]}"))
         unset $IFS
+        echo "${sorted[@]}"
         echo ::set-output name=edited_files::${files[@]}
     
     - name: Build plugin backends
       run: |
-        files="${{ steps.list-files.outputs.edited_files }}"
+        IFS=' ' read -ra files <<< "${{ steps.list-files.outputs.edited_files }}"
         pushd plugins
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
           echo "Detecting backend for plugin $plugin"
           dockerfile_exists="false"
           entrypoint_exists="false"
+          docker_name="backend-${plugin,,}"
           # [ -d $PWD/backend ] && echo "$(ls -lla $PWD/backend | grep Dockerfile)"
           [ -f $PWD/backend/Dockerfile ] && dockerfile_exists=true
           [ -f $PWD/backend/entrypoint.sh ] && entrypoint_exists=true
@@ -104,21 +106,21 @@ jobs:
           if [[ "$dockerfile_exists" == "true" ]]; then
             echo "Grabbing provided dockerfile."
             echo "Building provided Dockerfile."
-            docker build -f $PWD/backend/Dockerfile -t backend-$plugin .
+            docker build -f $PWD/backend/Dockerfile -t "$docker_name" .
             mkdir -p /tmp/output/$plugin/backend/out
             # check entrypoint script exists
             if [[ "$entrypoint_exists" == "true" ]]; then
-              echo "Running docker image backend-$plugin with provided entrypoint script."
-              docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out --entrypoint /backend/entrypoint.sh backend-$plugin
+              echo "Running docker image "$docker_name" with provided entrypoint script."
+              docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out --entrypoint /backend/entrypoint.sh "$docker_name"
               mkdir -p /tmp/output/$plugin/bin
               cp -r /tmp/output/$plugin/backend/out/. /tmp/output/$plugin/bin
             else
-              echo "Running docker image backend-$plugin with entrypoint script specified in Dockerfile." 
-              docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out backend-$plugin
+              echo "Running docker image "$docker_name" with entrypoint script specified in Dockerfile."
+              docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out "$docker_name"
               mkdir -p /tmp/output/$plugin/bin
               cp -r /tmp/output/$plugin/backend/out/. /tmp/output/$plugin/bin
             fi
-            docker image rm backend-$plugin
+            docker image rm "$docker_name"
             echo "Built $plugin backend"
           # Dockerfile doesn't exist but entrypoint script does, run w/ default image
           elif [[ "$dockerfile_exists" == "false" && "$entrypoint_exists" == "true" ]]; then
