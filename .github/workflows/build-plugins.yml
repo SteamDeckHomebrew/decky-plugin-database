@@ -184,6 +184,9 @@ jobs:
             remotebin="$(cat $plugin/package.json | jq -s -r ".[].remote_binary")"
             curl -L "$remotebin" -o "/tmp/$(basename $remotebin)"
             zip -r $zipname "/tmp/$(basename $remotebin)"
+          else
+            echo "hasremotebin: $hasremotebin"
+            echo "$plugin does not have remote binary"!
           fi
 
           if [ ! -z "$haspython" ]; then
