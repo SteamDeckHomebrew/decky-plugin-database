@@ -44,3 +44,6 @@
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
 	url = https://github.com/NGnius/Fantastic
+[submodule "plugins/DeckWallpapers"]
+	path = plugins/DeckWallpapers
+	url = https://github.com/joamjoamjoam/DeckWallpapers.git
