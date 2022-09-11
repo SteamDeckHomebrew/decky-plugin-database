@@ -167,6 +167,8 @@ jobs:
           hasbin="$(find $plugin -maxdepth 1 -type d -name 'bin' -printf '%P\n')"
           # Check if plugin has a defaults folder, if so, add "default" contents to root dir
           hasdefaults="$(find $plugin -maxdepth 1 -type d -name 'defaults' -printf '%P\n')"
+          hasremotebin="$(cat $plugin/package.json | jq -e -s -r ".[].remote_binary")"
+          
 
           # Add required plugin files (and directory) to zip file
           echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
@@ -175,6 +177,12 @@ jobs:
           if [ ! -z "$hasbin" ]; then
             echo "$plugin/bin"
             zip -r $zipname "$plugin/bin"
+          fi
+
+          if [ ! "$hasremotebin" == "null"  ]; then
+            remotebin="$(cat $plugin/package.json | jq -s -r ".[].remote_binary")"
+            curl -L "$remotebin" -o "/tmp/$(basename $remotebin)"
+            zip -r $zipname "/tmp/$(basename $remotebin)"
           fi
 
           if [ ! -z "$haspython" ]; then
