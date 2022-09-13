@@ -158,6 +158,7 @@ jobs:
         for abs_plugin in /tmp/output/*; do
           plugin=$(basename $abs_plugin)
           zipname=/tmp/zips/$(basename ${plugin}).zip
+          echo $plugin
 
           # Names of the optional files (the license can either be called license or license.md, not both)
           # (head is there to take the first file, because we're assuming there's only a single license file)
@@ -168,22 +169,22 @@ jobs:
           hasbin="$(find $plugin -maxdepth 1 -type d -name 'bin' -printf '%P\n')"
           # Check if plugin has a defaults folder, if so, add "default" contents to root dir
           hasdefaults="$(find $plugin -maxdepth 1 -type d -name 'defaults' -printf '%P\n')"
-          hasremotebin="$(cat $plugin/package.json | jq -e -s -r ".[].remote_binary")"
-          
-
+          # Check if plugin has a remote binary. Eat the non zero result if not
+          hasremotebin="$(cat ${plugin}/package.json | jq -e -s -r ".[].remote_binary")" || true
           # Add required plugin files (and directory) to zip file
           echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
           zip -r $zipname "$plugin/dist" "$plugin/plugin.json" "$plugin/package.json"
-
           if [ ! -z "$hasbin" ]; then
             echo "$plugin/bin"
             zip -r $zipname "$plugin/bin"
           fi
 
           if [ ! "$hasremotebin" == "null"  ]; then
-            remotebin="$(cat $plugin/package.json | jq -s -r ".[].remote_binary")"
-            curl -L "$remotebin" -o "/tmp/$(basename $remotebin)"
-            zip -r $zipname "/tmp/$(basename $remotebin)"
+            sudo chmod -R 777 $plugin
+            mkdir -p $plugin/bin
+            filename="$(basename $hasremotebin)"
+            curl -L "$hasremotebin" -o "$plugin/bin/$filename"
+            zip -r $zipname "$plugin/bin/$filename"
           else
             echo "hasremotebin: $hasremotebin"
             echo "$plugin does not have remote binary"!
