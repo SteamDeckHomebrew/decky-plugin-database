@@ -44,3 +44,6 @@
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
 	url = https://github.com/NGnius/Fantastic
+[submodule "plugins/RemotePlayWhatever"]
+	path = plugins/RemotePlayWhatever
+	url = https://github.com/joamjoamjoam/RemotePlayWhatever.git
