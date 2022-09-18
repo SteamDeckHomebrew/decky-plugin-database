@@ -87,7 +87,7 @@ jobs:
         IFS=$'\n' sorted=($(sort -u <<<"$${files[@]}"))
         unset $IFS
         echo "${sorted[@]}"
-        echo ::set-output name=edited_files::${files[@]}
+        echo ::set-output name=edited_files::${sorted[@]}
     
     - name: Build plugin backends
       run: |
