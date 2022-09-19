@@ -139,7 +139,7 @@ jobs:
 
     - name: Build plugin frontends
       run: |
-        files="${{ steps.list-files.outputs.edited_files }}"
+        IFS=' ' read -ra files <<< "${{ steps.list-files.outputs.edited_files }}"
         pushd plugins
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
