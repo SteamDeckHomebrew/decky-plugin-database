@@ -47,3 +47,6 @@
 [submodule "plugins/RemotePlayWhatever"]
 	path = plugins/RemotePlayWhatever
 	url = https://github.com/joamjoamjoam/RemotePlayWhatever.git
+[submodule "plugins/memory-deck"]
+	path = plugins/memory-deck
+	url = https://github.com/CameronRedmore/memory-deck.git
