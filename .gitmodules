@@ -50,3 +50,6 @@
 [submodule "plugins/memory-deck"]
 	path = plugins/memory-deck
 	url = https://github.com/CameronRedmore/memory-deck.git
+[submodule "plugins/bash-shortcuts"]
+	path = plugins/bash-shortcuts
+	url = https://github.com/Tormak9970/bash-shortcuts
