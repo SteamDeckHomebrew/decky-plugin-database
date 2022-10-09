@@ -50,3 +50,6 @@
 [submodule "plugins/memory-deck"]
 	path = plugins/memory-deck
 	url = https://github.com/CameronRedmore/memory-deck.git
+[submodule "plugins/SDH-AnimationChanger"]
+	path = plugins/SDH-AnimationChanger
+	url = https://github.com/TheLogicMaster/SDH-AnimationChanger.git
