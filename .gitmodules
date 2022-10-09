@@ -32,9 +32,6 @@
 [submodule "plugins/FriendsFix"]
 	path = plugins/FriendsFix
 	url = https://git.catvibers.me/aa/FriendsFix.git
-[submodule "plugins/custom-mangohud"]
-	path = plugins/custom-mangohud
-	url = https://github.com/simons-public/custom-mangohud
 [submodule "plugins/Bluetooth"]
 	path = plugins/Bluetooth
 	url = https://github.com/Outpox/Bluetooth.git
