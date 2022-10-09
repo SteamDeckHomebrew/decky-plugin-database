@@ -204,7 +204,7 @@ jobs:
                 done
               ' find-sh {} + ;
             else
-              if [[ ! "$plugin" =~ "plugin-template" ]]
+              if [[ ! "$plugin" =~ "plugin-template" ]]; then
                 printf "${red}defaults.txt found in defaults folder, please remove either defaults.txt or the defaults folder.${end}\n"
               else
                 printf "plugin template, allowing defaults.txt\n"
