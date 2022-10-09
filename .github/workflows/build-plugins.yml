@@ -158,6 +158,8 @@ jobs:
         shopt -s dotglob
         mkdir -p /tmp/zips/
         mkdir -p /tmp/output/
+        redtext=$'\e[1;31m'
+        end=$'\e[0m'
         pushd /tmp/output
         for abs_plugin in /tmp/output/*; do
           plugin=$(basename $abs_plugin)
@@ -203,8 +205,7 @@ jobs:
               ' find-sh {} + ;
             else
               if [[ ! "$plugin" =~ "plugin-template" ]]
-                printf "defaults.txt found in defaults folder, please remove either defaults.txt or the defaults folder.\n"
-                exit 1
+                printf "${red}defaults.txt found in defaults folder, please remove either defaults.txt or the defaults folder.${end}\n"
               else
                 printf "plugin template, allowing defaults.txt\n"
               fi
