@@ -50,3 +50,6 @@
 [submodule "plugins/SDH-AnimationChanger"]
 	path = plugins/SDH-AnimationChanger
 	url = https://github.com/TheLogicMaster/SDH-AnimationChanger.git
+[submodule "plugins/bash-shortcuts"]
+	path = plugins/bash-shortcuts
+	url = https://github.com/Tormak9970/bash-shortcuts
