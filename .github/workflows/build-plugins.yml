@@ -90,7 +90,7 @@ jobs:
         IFS=$'\n' sorted=($(sort -u <<<"${files[@]}"))
         unset $IFS
         echo "${sorted[@]}"
-        echo name=edited_files::${sorted[@]} >> $GITHUB_OUTPUT
+        echo edited_files=${sorted[@]} >> $GITHUB_OUTPUT
     
     - name: Build plugin backends
       run: |
