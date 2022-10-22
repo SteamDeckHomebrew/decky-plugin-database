@@ -32,9 +32,6 @@
 [submodule "plugins/FriendsFix"]
 	path = plugins/FriendsFix
 	url = https://git.catvibers.me/aa/FriendsFix.git
-[submodule "plugins/custom-mangohud"]
-	path = plugins/custom-mangohud
-	url = https://github.com/simons-public/custom-mangohud
 [submodule "plugins/Bluetooth"]
 	path = plugins/Bluetooth
 	url = https://github.com/Outpox/Bluetooth.git
@@ -44,3 +41,15 @@
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
 	url = https://github.com/NGnius/Fantastic
+[submodule "plugins/RemotePlayWhatever"]
+	path = plugins/RemotePlayWhatever
+	url = https://github.com/joamjoamjoam/RemotePlayWhatever.git
+[submodule "plugins/memory-deck"]
+	path = plugins/memory-deck
+	url = https://github.com/CameronRedmore/memory-deck.git
+[submodule "plugins/SDH-AnimationChanger"]
+	path = plugins/SDH-AnimationChanger
+	url = https://github.com/TheLogicMaster/SDH-AnimationChanger.git
+[submodule "plugins/radiyo-steam-deck"]
+	path = plugins/radiyo-steam-deck
+	url = https://github.com/isiah-lloyd/radiyo-steam-deck
