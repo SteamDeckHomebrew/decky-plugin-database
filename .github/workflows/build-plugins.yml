@@ -24,7 +24,7 @@ jobs:
     steps:
     - name: Checkout
       if: ${{ !env.ACT }}
-      uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+      uses: actions/checkout@8230315d06ad95c617244d2f265d237a1682d445
       with:
         fetch-depth: 0
         submodules: "recursive"
@@ -32,7 +32,7 @@ jobs:
 
     - name: Get changed files
       id: changed-files
-      uses: tj-actions/changed-files@fb1fe28aa9ff24afc553b37545437005a4cf2115
+      uses: tj-actions/changed-files@210f4edecfff9e901066850eb306b947d09092bc
       with:
         sha: ${{ github.sha }}
         separator: ","
@@ -90,7 +90,7 @@ jobs:
         IFS=$'\n' sorted=($(sort -u <<<"${files[@]}"))
         unset $IFS
         echo "${sorted[@]}"
-        echo ::set-output name=edited_files::${sorted[@]}
+        echo edited_files=${sorted[@]} >> $GITHUB_OUTPUT
     
     - name: Build plugin backends
       run: |
@@ -226,7 +226,7 @@ jobs:
 
     - name: Upload Artifacts to Github
       if: ${{ !env.ACT }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
       with:
         name: plugins
         path: /tmp/zips/*
