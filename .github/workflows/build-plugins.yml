@@ -23,7 +23,8 @@ jobs:
     
     steps:
     - name: Checkout
-      uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+      if: ${{ !env.ACT }}
+      uses: actions/checkout@8230315d06ad95c617244d2f265d237a1682d445
       with:
         fetch-depth: 0
         submodules: "recursive"
@@ -31,7 +32,7 @@ jobs:
 
     - name: Get changed files
       id: changed-files
-      uses: tj-actions/changed-files@fb1fe28aa9ff24afc553b37545437005a4cf2115
+      uses: tj-actions/changed-files@210f4edecfff9e901066850eb306b947d09092bc
       with:
         sha: ${{ github.sha }}
         separator: ","
@@ -40,6 +41,7 @@ jobs:
           .github/workflows/build-plugins.yml
 
     - name: Cache Docker images
+      if: ${{ !env.ACT }}
       uses: satackey/action-docker-layer-caching@46d2c640b1d8ef50d185452ad6fb324e6bd1d052
 
     - name: Login to GitHub Container Registry
@@ -49,6 +51,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Wait for other runs to complete
+      if: ${{ !env.ACT }}
       uses: softprops/turnstyle@8db075d65b19bf94e6e8687b504db69938dc3c65
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -87,7 +90,7 @@ jobs:
         IFS=$'\n' sorted=($(sort -u <<<"${files[@]}"))
         unset $IFS
         echo "${sorted[@]}"
-        echo ::set-output name=edited_files::${sorted[@]}
+        echo edited_files=${sorted[@]} >> $GITHUB_OUTPUT
     
     - name: Build plugin backends
       run: |
@@ -154,6 +157,9 @@ jobs:
       run: |
         shopt -s dotglob
         mkdir -p /tmp/zips/
+        mkdir -p /tmp/output/
+        redtext=$'\e[1;31m'
+        end=$'\e[0m'
         pushd /tmp/output
         for abs_plugin in /tmp/output/*; do
           plugin=$(basename $abs_plugin)
@@ -183,13 +189,30 @@ jobs:
           fi
 
           if [ ! -z "$hasdefaults" ]; then
-            workingdir=$PWD
+            export workingdir=$PWD
             cd $plugin/defaults
+            export plugin="$plugin"
+            export zipname="$zipname"
             if [ ! -f "defaults.txt" ]; then
-              zip -r $zipname *
+              find . -mindepth 1 -maxdepth 2 -type d,f -name '*' -exec sh -c '
+                for object do
+                  outdir="/tmp/output"
+                  name="$(basename $object)"
+                  sudo cp -r "$object" $outdir/$plugin/$name
+                  cd $workingdir
+                  zip -r $zipname $plugin/$name
+                done
+              ' find-sh {} + ;
+            else
+              if [[ ! "$plugin" =~ "plugin-template" ]]; then
+                printf "${red}defaults.txt found in defaults folder, please remove either defaults.txt or the defaults folder.${end}\n"
+              else
+                printf "plugin template, allowing defaults.txt\n"
+              fi
             fi
             cd "$workingdir"
           fi
+
           # Check if other files exist, and if they do, add them
           echo "license:$plugin/$license readme:$plugin/$readme"
           if [ ! -z "$license" ]; then
@@ -202,13 +225,14 @@ jobs:
         popd
 
     - name: Upload Artifacts to Github
-      uses: actions/upload-artifact@v3
+      if: ${{ !env.ACT }}
+      uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
       with:
         name: plugins
         path: /tmp/zips/*
 
     - name: Upload plugins
-      if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload)) }}
+      if: ${{ !env.ACT && github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload)) }}
       run: |
         shopt -s dotglob
         for plugin in /tmp/output/*; do
