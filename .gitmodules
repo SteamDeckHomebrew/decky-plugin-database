@@ -56,3 +56,6 @@
 [submodule "plugins/bash-shortcuts"]
 	path = plugins/bash-shortcuts
 	url = https://github.com/Tormak9970/bash-shortcuts.git
+[submodule "plugins/hltb-for-deck"]
+	path = plugins/hltb-for-deck
+	url = https://github.com/hulkrelax/hltb-for-deck
