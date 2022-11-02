@@ -65,6 +65,9 @@
 [submodule "plugins/Emuchievements"]
 	path = plugins/Emuchievements
 	url = https://github.com/EmuDeck/Emuchievements
+[submodule "plugins/SteamlessTimes"]
+	path = plugins/SteamlessTimes
+	url = https://github.com/EmuDeck/SteamlessTimes
 [submodule "plugins/TunnelDeck"]
 	path = plugins/TunnelDeck
 	url = https://github.com/steve228uk/TunnelDeck
