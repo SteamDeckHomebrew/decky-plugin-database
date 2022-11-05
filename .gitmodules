@@ -56,3 +56,15 @@
 [submodule "plugins/bash-shortcuts"]
 	path = plugins/bash-shortcuts
 	url = https://github.com/Tormak9970/bash-shortcuts.git
+[submodule "plugins/hltb-for-deck"]
+	path = plugins/hltb-for-deck
+	url = https://github.com/hulkrelax/hltb-for-deck
+[submodule "plugins/decky-autosuspend"]
+	path = plugins/decky-autosuspend
+	url = https://github.com/jurassicplayer/decky-autosuspend.git
+[submodule "plugins/Emuchievements"]
+	path = plugins/Emuchievements
+	url = https://github.com/EmuDeck/Emuchievements
+[submodule "plugins/SteamlessTimes"]
+	path = plugins/SteamlessTimes
+	url = https://github.com/EmuDeck/SteamlessTimes
