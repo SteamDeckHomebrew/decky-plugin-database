@@ -73,7 +73,7 @@ jobs:
       run: |
         pushd plugins
         files=()
-        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* ]]; 
+        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* || "${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.upload) && 'true' }}" == "true" ]]; 
         then
           echo "Rebuilding all plugins due to workflow edit"
           for file in ./plugins/*; do
