@@ -8,7 +8,7 @@ on:
     paths:
       - "plugins/**"
       - ".github/workflows/build-plugins.yml"
-  pull_request:
+  pull_request_target:
     branches: ['*']
   workflow_dispatch:
     inputs:
@@ -27,6 +27,7 @@ jobs:
       if: ${{ !env.ACT }}
       uses: actions/checkout@8230315d06ad95c617244d2f265d237a1682d445
       with:
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
         fetch-depth: 0
         submodules: "recursive"
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -35,7 +36,7 @@ jobs:
       id: changed-files
       uses: tj-actions/changed-files@210f4edecfff9e901066850eb306b947d09092bc
       with:
-        sha: ${{ github.sha }}
+        sha: ${{ github.event.pull_request.head.sha || github.sha }}
         separator: ","
         files: |
           plugins/*
