@@ -52,7 +52,7 @@ jobs:
 
     - name: Wait for other runs to complete
       if: ${{ !env.ACT }}
-      uses: softprops/turnstyle@8db075d65b19bf94e6e8687b504db69938dc3c65
+      uses: pau1ocampos/turnstyle@17e7c2e349edeb2fc92d15e99f389c6011e02956
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -194,13 +194,20 @@ jobs:
             export plugin="$plugin"
             export zipname="$zipname"
             if [ ! -f "defaults.txt" ]; then
-              find . -mindepth 1 -maxdepth 2 -type d,f -name '*' -exec sh -c '
+              find . -mindepth 1 -type d,f -name '*' -exec bash -c '
                 for object do
                   outdir="/tmp/output"
                   name="$(basename $object)"
-                  sudo cp -r "$object" $outdir/$plugin/$name
-                  cd $workingdir
-                  zip -r $zipname $plugin/$name
+                  # echo "object = $object, name = $name"
+                  if [ -e "$object" ]; then
+                    sudo mv "$object" $outdir/$plugin/$name
+                    moved="$?"
+                    # echo "moved = $moved"
+                    cd $workingdir
+                    if [ "$moved" = "0" ]; then
+                      zip -r $zipname $plugin/$name
+                    fi
+                  fi
                 done
               ' find-sh {} + ;
             else
