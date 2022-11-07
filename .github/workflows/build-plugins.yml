@@ -20,7 +20,8 @@ jobs:
   build:
     name: Build updated plugins
     runs-on: ubuntu-latest
-    
+    environment: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}    
+
     steps:
     - name: Checkout
       if: ${{ !env.ACT }}
@@ -52,7 +53,7 @@ jobs:
 
     - name: Wait for other runs to complete
       if: ${{ !env.ACT }}
-      uses: softprops/turnstyle@8db075d65b19bf94e6e8687b504db69938dc3c65
+      uses: pau1ocampos/turnstyle@17e7c2e349edeb2fc92d15e99f389c6011e02956
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -194,13 +195,20 @@ jobs:
             export plugin="$plugin"
             export zipname="$zipname"
             if [ ! -f "defaults.txt" ]; then
-              find . -mindepth 1 -maxdepth 2 -type d,f -name '*' -exec sh -c '
+              find . -mindepth 1 -type d,f -name '*' -exec bash -c '
                 for object do
                   outdir="/tmp/output"
                   name="$(basename $object)"
-                  sudo cp -r "$object" $outdir/$plugin/$name
-                  cd $workingdir
-                  zip -r $zipname $plugin/$name
+                  # echo "object = $object, name = $name"
+                  if [ -e "$object" ]; then
+                    sudo mv "$object" $outdir/$plugin/$name
+                    moved="$?"
+                    # echo "moved = $moved"
+                    cd $workingdir
+                    if [ "$moved" = "0" ]; then
+                      zip -r $zipname $plugin/$name
+                    fi
+                  fi
                 done
               ' find-sh {} + ;
             else
@@ -231,8 +239,8 @@ jobs:
         name: plugins
         path: /tmp/zips/*
 
-    - name: Upload plugins
-      if: ${{ !env.ACT && github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload)) }}
+    - name: Upload plugins to store
+      if: ${{ !env.ACT }}
       run: |
         shopt -s dotglob
         for plugin in /tmp/output/*; do
@@ -240,11 +248,12 @@ jobs:
           pushd $plugin
           donotupload=$(jq -r '.publish | any(.tags[] == "dnu"; .)' ./plugin.json)
           if [[ "$donotupload" == "false" ]]; then
-            curl -X POST -H "Authorization: ${PLUGIN_STORE_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" https://plugins.deckbrew.xyz/__submit
+            curl -X POST -H "Authorization: ${SUBMIT_AUTH_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" ${STORE_URL}/__submit
           else
             echo "Plugin is designated as 'do not upload', likely a template or CI demonstration."
           fi
           popd
         done
       env:
-        PLUGIN_STORE_KEY: ${{ secrets.PLUGIN_STORE_KEY }}
+        SUBMIT_AUTH_KEY: ${{ secrets.SUBMIT_AUTH_KEY }}
+        STORE_URL: ${{ secrets.STORE_URL }}
