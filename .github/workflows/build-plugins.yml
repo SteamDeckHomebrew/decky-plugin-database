@@ -240,7 +240,7 @@ jobs:
         path: /tmp/zips/*
 
     - name: Upload plugins to store
-      if: ${{ !env.ACT && github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload)) }}
+      if: ${{ !env.ACT }}
       run: |
         shopt -s dotglob
         for plugin in /tmp/output/*; do
