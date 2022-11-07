@@ -79,7 +79,8 @@ jobs:
             files+=($(cut -d/ -f3 <<< $file))
           done
         else
-          rest="${{ steps.changed-files.outputs.all_changed_files }}"
+          # rest="${{ steps.changed-files.outputs.all_changed_files }}"
+          rest="SDH-CssLoader"
           while [ -n "$rest" ] ; do
             str=${rest%%,*}
             [ "$rest" = "${rest/,/}" ] && rest= || rest=${rest#*,}
