@@ -182,7 +182,7 @@ jobs:
           if [[ "${{ secrets.STORE_ENV }}" == "testing" ]]; then
             sha="${{ github.event.pull_request.head.sha || github.sha }}"
             testingjson=$(jq '.version |= . + "-$sha"' $plugin/package.json)
-            sudo echo -E "${testingjson}" > $plugin/package.json
+            sudo sh -c echo -E "${testingjson}" > $plugin/package.json
           fi
           # Add required plugin files (and directory) to zip file
           echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
