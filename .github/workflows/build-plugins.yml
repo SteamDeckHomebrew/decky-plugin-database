@@ -20,7 +20,9 @@ jobs:
   build:
     name: Build updated plugins
     runs-on: ubuntu-latest
-    environment: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}    
+    environment:
+      name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}    
+      url: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'https://plugins.deckbrew.xyz' || 'https://testing.deckbrew.xyz' }}    
 
     steps:
     - name: Checkout
