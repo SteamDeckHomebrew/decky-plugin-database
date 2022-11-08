@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}    
-      url: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'https://plugins.deckbrew.xyz' || 'https://testing.deckbrew.xyz' }}    
+      url: ${{ steps.upload-plugins.outputs.deployment_url }}    
 
     steps:
     - name: Checkout
@@ -249,8 +249,14 @@ jobs:
 
     - name: Upload plugins to store
       if: ${{ !env.ACT }}
+      id: upload-plugins
       run: |
         shopt -s dotglob
+        if [[ "${{ secrets.STORE_ENV }}" == "prod" ]]; then
+          echo deployment_url="https://plugins.deckbrew.xyz" >> $GITHUB_OUTPUT
+        else
+          echo deployment_url="https://testing.deckbrew.xyz" >> $GITHUB_OUTPUT
+        fi
         for plugin in /tmp/output/*; do
           zipname=/tmp/zips/$(basename ${plugin}).zip
           pushd $plugin
