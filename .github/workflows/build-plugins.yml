@@ -20,7 +20,8 @@ jobs:
   build:
     name: Build updated plugins
     runs-on: ubuntu-latest
-    environment: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}    
+    environment:
+      name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}    
 
     steps:
     - name: Checkout
@@ -73,7 +74,7 @@ jobs:
       run: |
         pushd plugins
         files=()
-        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* ]]; 
+        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* || "${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.upload) && 'true' }}" == "true" ]]; 
         then
           echo "Rebuilding all plugins due to workflow edit"
           for file in ./plugins/*; do
@@ -177,6 +178,11 @@ jobs:
           hasbin="$(find $plugin -maxdepth 1 -type d -name 'bin' -printf '%P\n')"
           # Check if plugin has a defaults folder, if so, add "default" contents to root dir
           hasdefaults="$(find $plugin -maxdepth 1 -type d -name 'defaults' -printf '%P\n')"
+          if [[ "${{ secrets.STORE_ENV }}" == "testing" ]]; then
+            sha="${{ github.event.pull_request.head.sha || github.sha }}"
+            cat $plugin/package.json | jq --arg jqsha "$sha" '.version |= . + "-" + $jqsha' | sudo tee $plugin/$sha-package.json
+            sudo mv $plugin/$sha-package.json $plugin/package.json
+          fi
           # Add required plugin files (and directory) to zip file
           echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
           zip -r $zipname "$plugin/dist" "$plugin/plugin.json" "$plugin/package.json"
@@ -242,6 +248,7 @@ jobs:
 
     - name: Upload plugins to store
       if: ${{ !env.ACT }}
+      id: upload-plugins
       run: |
         shopt -s dotglob
         for plugin in /tmp/output/*; do
