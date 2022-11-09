@@ -180,8 +180,8 @@ jobs:
           hasdefaults="$(find $plugin -maxdepth 1 -type d -name 'defaults' -printf '%P\n')"
           if [[ "${{ secrets.STORE_ENV }}" == "testing" ]]; then
             sha="${{ github.event.pull_request.head.sha || github.sha }}"
-            cat $plugin/package.json | jq --arg jqsha "$sha" '.version |= . + "-" + $jqsha' > $plugin/$sha-package.json
-            mv $plugin/$sha-package.json $plugin/package.json
+            cat $plugin/package.json | jq --arg jqsha "$sha" '.version |= . + "-" + $jqsha' | sudo tee $plugin/$sha-package.json
+            sudo mv $plugin/$sha-package.json $plugin/package.json
           fi
           # Add required plugin files (and directory) to zip file
           echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
