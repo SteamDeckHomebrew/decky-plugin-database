@@ -68,6 +68,3 @@
 [submodule "plugins/SteamlessTimes"]
 	path = plugins/SteamlessTimes
 	url = https://github.com/EmuDeck/SteamlessTimes
-[submodule "plugins/decky-autoflatpaks"]
-	path = plugins/decky-autoflatpaks
-	url = https://github.com/jurassicplayer/decky-autoflatpaks.git
