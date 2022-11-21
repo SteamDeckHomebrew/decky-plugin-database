@@ -74,3 +74,6 @@
 [submodule "plugins/FkatpakUpdater"]
 	path = plugins/FlatpakUpdater
 	url = https://github.com/0xD34D/FlatpakUpdater
+[submodule "plugins/decky-autoflatpaks"]
+	path = plugins/decky-autoflatpaks
+	url = https://github.com/jurassicplayer/decky-autoflatpaks.git
