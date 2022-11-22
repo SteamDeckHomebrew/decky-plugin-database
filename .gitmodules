@@ -74,3 +74,6 @@
 [submodule "plugins/MetaDeck"]
 	path = plugins/MetaDeck
 	url = https://github.com/EmuDeck/MetaDeck
+[submodule "plugins/decky-autoflatpaks"]
+	path = plugins/decky-autoflatpaks
+	url = https://github.com/jurassicplayer/decky-autoflatpaks.git

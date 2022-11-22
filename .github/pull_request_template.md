@@ -2,6 +2,8 @@
 
 Please include a summary of what the plugin does.
 
+If this is an update, please include a summary of what changes you made.
+
 ## Checklist:
 
 - [ ] I am the original author of this plugin.
