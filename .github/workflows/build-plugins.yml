@@ -8,7 +8,7 @@ on:
     paths:
       - "plugins/**"
       - ".github/workflows/build-plugins.yml"
-  pull_request:
+  pull_request_target:
     branches: ['*']
   workflow_dispatch:
     inputs:
@@ -20,21 +20,24 @@ jobs:
   build:
     name: Build updated plugins
     runs-on: ubuntu-latest
-    
+    environment:
+      name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}    
+
     steps:
     - name: Checkout
       if: ${{ !env.ACT }}
-      uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+      uses: actions/checkout@8230315d06ad95c617244d2f265d237a1682d445
       with:
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
         fetch-depth: 0
         submodules: "recursive"
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Get changed files
       id: changed-files
-      uses: tj-actions/changed-files@fb1fe28aa9ff24afc553b37545437005a4cf2115
+      uses: tj-actions/changed-files@210f4edecfff9e901066850eb306b947d09092bc
       with:
-        sha: ${{ github.sha }}
+        sha: ${{ github.event.pull_request.head.sha || github.sha }}
         separator: ","
         files: |
           plugins/*
@@ -52,7 +55,7 @@ jobs:
 
     - name: Wait for other runs to complete
       if: ${{ !env.ACT }}
-      uses: softprops/turnstyle@8db075d65b19bf94e6e8687b504db69938dc3c65
+      uses: pau1ocampos/turnstyle@17e7c2e349edeb2fc92d15e99f389c6011e02956
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -71,7 +74,7 @@ jobs:
       run: |
         pushd plugins
         files=()
-        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* ]]; 
+        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* || "${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.upload) && 'true' }}" == "true" ]]; 
         then
           echo "Rebuilding all plugins due to workflow edit"
           for file in ./plugins/*; do
@@ -90,7 +93,7 @@ jobs:
         IFS=$'\n' sorted=($(sort -u <<<"${files[@]}"))
         unset $IFS
         echo "${sorted[@]}"
-        echo ::set-output name=edited_files::${sorted[@]}
+        echo edited_files=${sorted[@]} >> $GITHUB_OUTPUT
     
     - name: Build plugin backends
       run: |
@@ -175,6 +178,11 @@ jobs:
           hasbin="$(find $plugin -maxdepth 1 -type d -name 'bin' -printf '%P\n')"
           # Check if plugin has a defaults folder, if so, add "default" contents to root dir
           hasdefaults="$(find $plugin -maxdepth 1 -type d -name 'defaults' -printf '%P\n')"
+          if [[ "${{ secrets.STORE_ENV }}" == "testing" ]]; then
+            sha="${{ github.event.pull_request.head.sha || github.sha }}"
+            cat $plugin/package.json | jq --arg jqsha "$sha" '.version |= . + "-" + $jqsha' | sudo tee $plugin/$sha-package.json
+            sudo mv $plugin/$sha-package.json $plugin/package.json
+          fi
           # Add required plugin files (and directory) to zip file
           echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
           zip -r $zipname "$plugin/dist" "$plugin/plugin.json" "$plugin/package.json"
@@ -194,13 +202,20 @@ jobs:
             export plugin="$plugin"
             export zipname="$zipname"
             if [ ! -f "defaults.txt" ]; then
-              find . -mindepth 1 -maxdepth 2 -type d,f -name '*' -exec sh -c '
+              find . -mindepth 1 -type d,f -name '*' -exec bash -c '
                 for object do
                   outdir="/tmp/output"
                   name="$(basename $object)"
-                  sudo cp -r "$object" $outdir/$plugin/$name
-                  cd $workingdir
-                  zip -r $zipname $plugin/$name
+                  # echo "object = $object, name = $name"
+                  if [ -e "$object" ]; then
+                    sudo mv "$object" $outdir/$plugin/$name
+                    moved="$?"
+                    # echo "moved = $moved"
+                    cd $workingdir
+                    if [ "$moved" = "0" ]; then
+                      zip -r $zipname $plugin/$name
+                    fi
+                  fi
                 done
               ' find-sh {} + ;
             else
@@ -226,13 +241,14 @@ jobs:
 
     - name: Upload Artifacts to Github
       if: ${{ !env.ACT }}
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
       with:
         name: plugins
         path: /tmp/zips/*
 
-    - name: Upload plugins
-      if: ${{ !env.ACT && github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload)) }}
+    - name: Upload plugins to store
+      if: ${{ !env.ACT }}
+      id: upload-plugins
       run: |
         shopt -s dotglob
         for plugin in /tmp/output/*; do
@@ -240,11 +256,12 @@ jobs:
           pushd $plugin
           donotupload=$(jq -r '.publish | any(.tags[] == "dnu"; .)' ./plugin.json)
           if [[ "$donotupload" == "false" ]]; then
-            curl -X POST -H "Authorization: ${PLUGIN_STORE_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" https://beta.deckbrew.xyz/__submit
+            curl -X POST -H "Authorization: ${SUBMIT_AUTH_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" ${STORE_URL}/__submit
           else
             echo "Plugin is designated as 'do not upload', likely a template or CI demonstration."
           fi
           popd
         done
       env:
-        PLUGIN_STORE_KEY: ${{ secrets.PLUGIN_STORE_KEY }}
+        SUBMIT_AUTH_KEY: ${{ secrets.SUBMIT_AUTH_KEY }}
+        STORE_URL: ${{ secrets.STORE_URL }}
