@@ -77,3 +77,6 @@
 [submodule "plugins/decky-autoflatpaks"]
 	path = plugins/decky-autoflatpaks
 	url = https://github.com/jurassicplayer/decky-autoflatpaks.git
+[submodule "plugins/moondeck"]
+	path = plugins/moondeck
+	url = https://github.com/FrogTheFrog/moondeck
