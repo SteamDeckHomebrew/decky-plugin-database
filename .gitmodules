@@ -65,15 +65,15 @@
 [submodule "plugins/Emuchievements"]
 	path = plugins/Emuchievements
 	url = https://github.com/EmuDeck/Emuchievements
-[submodule "plugins/SteamlessTimes"]
-	path = plugins/SteamlessTimes
-	url = https://github.com/EmuDeck/SteamlessTimes
 [submodule "plugins/TunnelDeck"]
 	path = plugins/TunnelDeck
 	url = https://github.com/steve228uk/TunnelDeck
 [submodule "plugins/FkatpakUpdater"]
 	path = plugins/FlatpakUpdater
 	url = https://github.com/0xD34D/FlatpakUpdater
+[submodule "plugins/MetaDeck"]
+	path = plugins/MetaDeck
+	url = https://github.com/EmuDeck/MetaDeck
 [submodule "plugins/decky-autoflatpaks"]
 	path = plugins/decky-autoflatpaks
 	url = https://github.com/jurassicplayer/decky-autoflatpaks.git
