@@ -8,5 +8,4 @@ If this is an update, please include a summary of what changes you made.
 
 - [ ] I am the original author of this plugin.
 - [ ] I made my code efficient and readable.
-- [ ] I have verified that my plugin works properly on the latest versions of SteamOS and decky-loader.
-- [ ] I have verified that my plugin is unique and does not have the same functionality as another plugin on the store.
+- [ ] I have verified that my plugin works properly on the latest versions of SteamOS and decky-loader.on the store.
