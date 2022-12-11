@@ -13,7 +13,6 @@ If this is an update, please include a summary of what changes you made.
 - [ ] I am the original author or an authorized maintainer of this plugin.
 - [ ] I have abided by the licenses of the libraries I am utilizing, including attaching license notices where appropriate.
 - [ ] I have verified that my plugin works properly on the Stable and Beta update channels of SteamOS.
-- [ ] 
 
 ### Plugin Checklist
 
