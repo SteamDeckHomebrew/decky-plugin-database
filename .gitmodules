@@ -83,3 +83,6 @@
 [submodule "plugins/moondeck"]
 	path = plugins/moondeck
 	url = https://github.com/FrogTheFrog/moondeck
+[submodule "plugins/decky-steamgriddb"]
+	path = plugins/decky-steamgriddb
+	url = https://github.com/SteamGridDB/decky-steamgriddb
