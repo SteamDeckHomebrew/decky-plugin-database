@@ -179,7 +179,8 @@ jobs:
           # Check if plugin has a defaults folder, if so, add "default" contents to root dir
           hasdefaults="$(find $plugin -maxdepth 1 -type d -name 'defaults' -printf '%P\n')"
           if [[ "${{ secrets.STORE_ENV }}" == "testing" ]]; then
-            sha="${{ github.event.pull_request.head.sha || github.sha }}"
+            long_sha="${{ github.event.pull_request.head.sha || github.sha }}"
+            sha=$(echo $long_sha | cut -c1-7)
             cat $plugin/package.json | jq --arg jqsha "$sha" '.version |= . + "-" + $jqsha' | sudo tee $plugin/$sha-package.json
             sudo mv $plugin/$sha-package.json $plugin/package.json
           fi
