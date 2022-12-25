@@ -86,3 +86,6 @@
 [submodule "plugins/decky-steamgriddb"]
 	path = plugins/decky-steamgriddb
 	url = https://github.com/SteamGridDB/decky-steamgriddb
+[submodule "plugins/SDH-FreeGames"]
+	path = plugins/SDH-FreeGames
+	url = https://github.com/WerWolv/SDH-FreeGames
