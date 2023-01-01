@@ -86,3 +86,6 @@
 [submodule "plugins/decky-steamgriddb"]
 	path = plugins/decky-steamgriddb
 	url = https://github.com/SteamGridDB/decky-steamgriddb
+[submodule "plugins/sharedeck-y"]
+	path = plugins/sharedeck-y
+	url = https://github.com/davocarli/sharedeck-y
