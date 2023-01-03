@@ -86,3 +86,6 @@
 [submodule "plugins/decky-steamgriddb"]
 	path = plugins/decky-steamgriddb
 	url = https://github.com/SteamGridDB/decky-steamgriddb
+[submodule "plugins/VolumeMixer-decky"]
+	path = plugins/VolumeMixer-decky
+	url = https://github.com/isiah-lloyd/VolumeMixer-decky
