@@ -89,3 +89,6 @@
 [submodule "plugins/DiscordStatus"]
 	path = plugins/DiscordStatus
 	url = https://github.com/andrewburgess/steamdeck-discord-status
+[submodule "plugins/VolumeMixer-decky"]
+	path = plugins/VolumeMixer-decky
+	url = https://github.com/isiah-lloyd/VolumeMixer-decky
