@@ -34,4 +34,5 @@ If this is an update, please include a summary of what changes you made.
 
 - [ ] Tested on SteamOS Stable Update Channel.
 - [ ] Tested on SteamOS Beta Update Channel.
+<!-- If you answered "No" to all of the Plugin Backend Checklist then you may remove the below line for testing on preview channel. -->
 - [ ] Tested on SteamOS Preview Update Channel.
