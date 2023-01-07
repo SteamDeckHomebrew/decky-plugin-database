@@ -94,7 +94,28 @@ jobs:
         unset $IFS
         echo "${sorted[@]}"
         echo edited_files=${sorted[@]} >> $GITHUB_OUTPUT
-    
+
+    - name: Build plugins with top-level Dockerfiles
+      id: build-top-level
+      run: |
+        pushd plugins
+        TO_BUILD_PLUGINS=$(find . -maxdepth 2 -name "Dockerfile" -exec dirname {} \;)
+        for plugin in $TO_BUILD_PLUGINS; do
+          echo $plugin
+
+          # Pretend to sanitize the directory name. Should improve this later
+          sane_plugin_name=$(basename $plugin)
+          output=/tmp/output-top-level/$sane_plugin_name
+
+          # Build plugin's top-level Dockerfile
+          docker build -f $plugin/Dockerfile -t $sane_plugin_name $plugin
+          docker run --rm -v $output:/output $sane_plugin_name
+
+          # Replace current plugin directory with built one from Docker
+          rm -r $plugin
+          cp -r $output .
+        done
+
     - name: Build plugin backends
       run: |
         IFS=' ' read -ra files <<< "${{ steps.list-files.outputs.edited_files }}"
