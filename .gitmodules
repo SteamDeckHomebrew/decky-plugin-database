@@ -92,6 +92,9 @@
 [submodule "plugins/VolumeMixer-decky"]
 	path = plugins/VolumeMixer-decky
 	url = https://github.com/isiah-lloyd/VolumeMixer-decky
+[submodule "plugins/SDH-FreeGames"]
+	path = plugins/SDH-FreeGames
+	url = https://github.com/WerWolv/SDH-FreeGames
 [submodule "plugins/ControllerTools"]
 	path = plugins/ControllerTools
 	url = https://github.com/alphamercury/ControllerTools
