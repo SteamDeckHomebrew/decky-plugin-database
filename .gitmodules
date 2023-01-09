@@ -95,3 +95,6 @@
 [submodule "plugins/SDH-FreeGames"]
 	path = plugins/SDH-FreeGames
 	url = https://github.com/WerWolv/SDH-FreeGames
+[submodule "plugins/ControllerTools"]
+	path = plugins/ControllerTools
+	url = https://github.com/alphamercury/ControllerTools
