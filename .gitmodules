@@ -98,3 +98,6 @@
 [submodule "plugins/ControllerTools"]
 	path = plugins/ControllerTools
 	url = https://github.com/alphamercury/ControllerTools
+[submodule "plugins/sharedeck-y"]
+	path = plugins/sharedeck-y
+	url = https://github.com/davocarli/sharedeck-y
