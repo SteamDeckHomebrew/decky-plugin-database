@@ -95,6 +95,12 @@
 [submodule "plugins/SDH-FreeGames"]
 	path = plugins/SDH-FreeGames
 	url = https://github.com/WerWolv/SDH-FreeGames
+[submodule "plugins/ControllerTools"]
+	path = plugins/ControllerTools
+	url = https://github.com/alphamercury/ControllerTools
+[submodule "plugins/sharedeck-y"]
+	path = plugins/sharedeck-y
+	url = https://github.com/davocarli/sharedeck-y
 [submodule "plugins/decky-wine-manager"]
 	path = plugins/decky-wine-manager
 	url = git@github.com:SkyLeite/decky-wine-manager.git
