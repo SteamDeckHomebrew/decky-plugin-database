@@ -79,7 +79,7 @@
 	url = https://github.com/jurassicplayer/decky-autoflatpaks.git
 [submodule "plugins/SDH-KLang"]
 	path = plugins/SDH-KLang
-	url = git@github.com:Loidbae/SDH-KLang.git
+	url = https://github.com/Loidbae/SDH-KLang.git
 [submodule "plugins/moondeck"]
 	path = plugins/moondeck
 	url = https://github.com/FrogTheFrog/moondeck
@@ -101,3 +101,6 @@
 [submodule "plugins/sharedeck-y"]
 	path = plugins/sharedeck-y
 	url = https://github.com/davocarli/sharedeck-y
+[submodule "plugins/decky-wine-manager"]
+	path = plugins/decky-wine-manager
+	url = https://github.com/SkyLeite/decky-wine-manager.git
