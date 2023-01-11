@@ -101,3 +101,6 @@
 [submodule "plugins/sharedeck-y"]
 	path = plugins/sharedeck-y
 	url = https://github.com/davocarli/sharedeck-y
+[submodule "plugins/decky-wine-manager"]
+	path = plugins/decky-wine-manager
+	url = git@github.com:SkyLeite/decky-wine-manager.git
