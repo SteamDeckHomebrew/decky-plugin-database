@@ -15,7 +15,8 @@ on:
     inputs:
       upload:
         type: boolean
-        description: Re-upload the plugins to the store
+        default: false
+        description: Upload the detected plugins to the store
 
 jobs:
   find_plugins:
@@ -238,7 +239,7 @@ jobs:
     needs:
       - find_plugins
       - build
-    if: ${{ needs.find_plugins.outputs.plugins != '[]' }}
+    if: ${{ needs.find_plugins.outputs.plugins != '[]' && inputs.upload }}
     environment:
       name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}
     strategy:
