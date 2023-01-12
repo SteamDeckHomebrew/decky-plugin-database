@@ -13,6 +13,10 @@ on:
     branches: ['*']
   workflow_dispatch:
     inputs:
+      build_all:
+        type: boolean
+        default: false
+        description: Build all plugins, not just the ones that are detected as changing
       upload:
         type: boolean
         default: false
@@ -35,9 +39,10 @@ jobs:
         id: find_plugins
         env:
           isPr: ${{ github.event_name == 'pull_request' }}
+          buildAll: ${{ inputs.build_all }}
         run: |
           workflow_changed=$(git diff --name-only --submodule=diff $REF -- .github/workflows/build-plugins.yml)
-          if $workflow_changed; then
+          if [[ $workflow_changed || $buildAll == "true" ]]; then
             # Workflow changed. Build everything to be safe
             PLUGINS=$(find ./plugins -mindepth 1 -maxdepth 1 -type d -print0 | xargs -0 -n1 -- basename | jq -Rsc 'split("\n")[:-1]')
           else
