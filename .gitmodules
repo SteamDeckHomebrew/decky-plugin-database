@@ -79,7 +79,7 @@
 	url = https://github.com/jurassicplayer/decky-autoflatpaks.git
 [submodule "plugins/SDH-KLang"]
 	path = plugins/SDH-KLang
-	url = git@github.com:Loidbae/SDH-KLang.git
+	url = https://github.com/Loidbae/SDH-KLang.git
 [submodule "plugins/moondeck"]
 	path = plugins/moondeck
 	url = https://github.com/FrogTheFrog/moondeck
