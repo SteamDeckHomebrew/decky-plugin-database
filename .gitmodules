@@ -101,3 +101,6 @@
 [submodule "plugins/sharedeck-y"]
 	path = plugins/sharedeck-y
 	url = https://github.com/davocarli/sharedeck-y
+[submodule "plugins/decky-recorder"]
+	path = plugins/decky-recorder
+	url = git@github.com:marissa999/decky-recorder.git
