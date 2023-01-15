@@ -105,3 +105,6 @@
 [submodule "plugins/tailscale-control"]
 	path = plugins/tailscale-control
 	url = https://github.com/saumya-banthia/tailscale-control
+[submodule "plugins/deckshot"]
+	path = plugins/deckshot
+	url = https://github.com/apognu/deckshot
