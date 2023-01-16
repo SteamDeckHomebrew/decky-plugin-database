@@ -104,3 +104,6 @@
 [submodule "plugins/decky-wine-manager"]
 	path = plugins/decky-wine-manager
 	url = https://github.com/SkyLeite/decky-wine-manager.git
+[submodule "plugins/decky-proton-manager"]
+	path = plugins/decky-proton-manager
+	url = https://github.com/SkyLeite/decky-wine-manager.git
