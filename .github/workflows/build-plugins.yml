@@ -212,10 +212,11 @@ jobs:
                     sudo mv "$object" $outdir/$plugin/$name
                     moved="$?"
                     # echo "moved = $moved"
-                    cd $workingdir
+                    pushd $workingdir
                     if [ "$moved" = "0" ]; then
                       zip -r $zipname $plugin/$name
                     fi
+                    popd
                   fi
                 done
               ' find-sh {} + ;
