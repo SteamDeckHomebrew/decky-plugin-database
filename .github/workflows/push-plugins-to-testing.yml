@@ -2,7 +2,7 @@ run-name : Deploy plugins from ${{ github.event.workflow_run.head_repository.nam
 
 on:
   workflow_run:
-    workflows: ["Build plugins"]
+    workflows: ["Build Plugins for testing"]
     types:
       - completed
 
