@@ -42,6 +42,7 @@ jobs:
         files: |
           plugins/*
           .github/workflows/build-plugins.yml
+
     - name: Cache Docker images
       if: ${{ !env.ACT }}
       uses: satackey/action-docker-layer-caching@46d2c640b1d8ef50d185452ad6fb324e6bd1d052
@@ -67,6 +68,7 @@ jobs:
     - name: Log out of GitHub Container Registry
       run: |
         docker logout ghcr.io
+
     - name: Detect edited files/plugins
       id: list-files
       run: |
@@ -140,6 +142,7 @@ jobs:
           popd
         done
         popd
+
     - name: Build plugin frontends
       run: |
         IFS=' ' read -ra files <<< "${{ steps.list-files.outputs.edited_files }}"
@@ -165,6 +168,7 @@ jobs:
           plugin=$(basename $abs_plugin)
           zipname=/tmp/zips/$(basename ${plugin}).zip
           echo $plugin
+
           # Names of the optional files (the license can either be called license or license.md, not both)
           # (head is there to take the first file, because we're assuming there's only a single license file)
           license="$(find $plugin -maxdepth 1 -type f \( -iname "license" -o -iname "license.md" \) -printf '%P\n' | head -n 1)"
@@ -187,10 +191,12 @@ jobs:
             echo "$plugin/bin"
             zip -r $zipname "$plugin/bin"
           fi
+
           if [ ! -z "$haspython" ]; then
             echo "$plugin/*.py"
             find $plugin -maxdepth 1 -type f -name '*.py' -exec zip -r $zipname {} \;
           fi
+
           if [ ! -z "$hasdefaults" ]; then
             export workingdir=$PWD
             cd $plugin/defaults
@@ -223,6 +229,7 @@ jobs:
             fi
             cd "$workingdir"
           fi
+
           # Check if other files exist, and if they do, add them
           echo "license:$plugin/$license readme:$plugin/$readme"
           if [ ! -z "$license" ]; then
@@ -233,6 +240,7 @@ jobs:
           fi
         done
         popd
+
     - name: Upload Artifacts to Github
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
