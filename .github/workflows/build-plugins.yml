@@ -21,7 +21,7 @@ jobs:
     name: Build updated plugins
     runs-on: ubuntu-latest
     environment:
-      name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}    
+      name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}
 
     steps:
     - name: Checkout
@@ -74,7 +74,7 @@ jobs:
       run: |
         pushd plugins
         files=()
-        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* || "${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.upload) && 'true' }}" == "true" ]]; 
+        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* || "${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.upload) && 'true' }}" == "true" ]];
         then
           echo "Rebuilding all plugins due to workflow edit"
           for file in ./plugins/*; do
@@ -94,7 +94,7 @@ jobs:
         unset $IFS
         echo "${sorted[@]}"
         echo edited_files=${sorted[@]} >> $GITHUB_OUTPUT
-    
+
     - name: Build plugin backends
       run: |
         IFS=' ' read -ra files <<< "${{ steps.list-files.outputs.edited_files }}"
@@ -155,7 +155,7 @@ jobs:
           popd
         done
         popd
-        
+
     - name: Zip Plugins
       run: |
         shopt -s dotglob
