@@ -102,3 +102,6 @@
 [submodule "plugins/sharedeck-y"]
 	path = plugins/sharedeck-y
 	url = https://github.com/davocarli/sharedeck-y
+[submodule "plugins/decky-cloud-save"]
+	path = plugins/decky-cloud-save
+	url = https://github.com/GedasFX/decky-cloud-save
