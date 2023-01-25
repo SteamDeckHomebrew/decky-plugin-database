@@ -102,3 +102,6 @@
 [submodule "plugins/sharedeck-y"]
 	path = plugins/sharedeck-y
 	url = https://github.com/davocarli/sharedeck-y
+[submodule "plugins/tailscale-control"]
+	path = plugins/tailscale-control
+	url = https://github.com/saumya-banthia/tailscale-control
