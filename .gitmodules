@@ -86,9 +86,22 @@
 [submodule "plugins/decky-steamgriddb"]
 	path = plugins/decky-steamgriddb
 	url = https://github.com/SteamGridDB/decky-steamgriddb
+	branch = steam_beta_hotfix
 [submodule "plugins/DiscordStatus"]
 	path = plugins/DiscordStatus
 	url = https://github.com/andrewburgess/steamdeck-discord-status
 [submodule "plugins/VolumeMixer-decky"]
 	path = plugins/VolumeMixer-decky
 	url = https://github.com/isiah-lloyd/VolumeMixer-decky
+[submodule "plugins/SDH-FreeGames"]
+	path = plugins/SDH-FreeGames
+	url = https://github.com/WerWolv/SDH-FreeGames
+[submodule "plugins/ControllerTools"]
+	path = plugins/ControllerTools
+	url = https://github.com/alphamercury/ControllerTools
+[submodule "plugins/sharedeck-y"]
+	path = plugins/sharedeck-y
+	url = https://github.com/davocarli/sharedeck-y
+[submodule "plugins/tailscale-control"]
+	path = plugins/tailscale-control
+	url = https://github.com/saumya-banthia/tailscale-control
