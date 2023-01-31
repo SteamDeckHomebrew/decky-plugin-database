@@ -194,7 +194,7 @@ jobs:
 
           if [ ! -z "$haspython" ]; then
             echo "$plugin/*.py"
-            find $plugin -maxdepth 0 -type f -name '*.py' -exec zip -r $zipname {} \;
+            find $plugin -mindepth 0 -maxdepth 1 -name 'defaults' -prune -o -type f -name '*.py' -exec zip -r $zipname {} \;
           fi
 
           if [ ! -z "$hasdefaults" ]; then
