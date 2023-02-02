@@ -105,3 +105,6 @@
 [submodule "plugins/tailscale-control"]
 	path = plugins/tailscale-control
 	url = https://github.com/saumya-banthia/tailscale-control
+[submodule "plugins/DeckMTP"]
+	path = plugins/DeckMTP
+	url = https://github.com/dafta/DeckMTP
