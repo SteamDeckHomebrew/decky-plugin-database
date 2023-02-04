@@ -112,7 +112,7 @@ jobs:
           if [[ "$dockerfile_exists" == "true" ]]; then
             echo "Grabbing provided dockerfile."
             echo "Building provided Dockerfile."
-            docker build -f $PWD/backend/Dockerfile -t "$docker_name" .
+            docker build --pull -f $PWD/backend/Dockerfile -t "$docker_name" .
             mkdir -p /tmp/output/$plugin/backend/out
             # check entrypoint script exists
             if [[ "$entrypoint_exists" == "true" ]]; then
