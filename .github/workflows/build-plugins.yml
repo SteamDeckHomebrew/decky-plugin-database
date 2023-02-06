@@ -109,8 +109,8 @@ jobs:
         echo "Sorted "Changed" Files:   ${sorted[@]}"
         echo "Sorted Edited Files:      ${sorted_edited[@]}"
         echo "Sorted Edited Plugins:    ${edited_plugins[@]}"
-        echo files_out=${sorted[@]} >> $GITHUB_OUTPUT
-        echo edited_files_out=${sorted_edited[@]} >> $GITHUB_OUTPUT
+        echo "files_out=${sorted[@]}" >> $GITHUB_OUTPUT
+        echo "edited_files_out=${sorted_edited[@]}" >> $GITHUB_OUTPUT
     
     - name: Build plugin backends
       run: |
