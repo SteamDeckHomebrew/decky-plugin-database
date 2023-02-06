@@ -106,15 +106,15 @@ jobs:
         unset $IFS
         IFS='\n' edited_plugins=($(sort -u <<<"${edited_files[@]}"))
         unset $IFS
+        echo files_out=${sorted[@]} >> $GITHUB_OUTPUT
+        echo edited_files_out=${sorted_edited[@]} >> $GITHUB_OUTPUT
         echo "Sorted "Changed" Files:"
         echo "${sorted[@]}"
         echo "Sorted Edited Files:"
         echo "${sorted_edited[@]}"
         echo "Sorted Edited Plugins:"
         echo "${edited_plugins[@]}"
-        echo files_out=${sorted[@]} >> $GITHUB_OUTPUT
-        echo edited_files_out=${sorted_edited[@]} >> $GITHUB_OUTPUT
-    
+        
     - name: Build plugin backends
       run: |
         IFS=' ' read -ra files <<< "${{ steps.list-files.outputs.files_out }}"
