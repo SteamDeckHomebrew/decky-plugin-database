@@ -104,7 +104,7 @@ jobs:
         unset $IFS
         IFS=$'\n' sorted_edited=($(sort -u <<<"${edited_files[@]}"))
         unset $IFS
-        IFS='\n' read -ra edited_plugins=($(sort -u <<<"${edited_files[@]}"))
+        IFS='\n' edited_plugins=($(sort -u <<<"${edited_files[@]}"))
         unset $IFS
         echo "Sorted "Changed" Files:   ${sorted[@]}"
         echo "Sorted Edited Files:      ${sorted_edited[@]}"
