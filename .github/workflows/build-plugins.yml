@@ -103,21 +103,21 @@ jobs:
         unset $IFS
         IFS=$'\n' sorted_edited=($(sort -u <<<"${edited_files[@]}"))
         unset $IFS
-        IFS='\n' edited_plugins=($(sort -u <<<"${edited_files[@]}"))
-        unset $IFS
+        echo "files_out=${sorted[@]}" >> $GITHUB_ENV
+        echo "edited_files_out=${sorted_edited[@]}" >> $GITHUB_ENV
+        # IFS='\n' edited_plugins=($(sort -u <<<"${edited_files[@]}"))
+        # unset $IFS
         popd
-        echo "files_out=${sorted[@]}" >> $GITHUB_OUTPUT
-        echo "edited_files_out=${sorted_edited[@]}" >> $GITHUB_OUTPUT
         echo "Sorted "Changed" Files:"
         echo "${sorted[@]}"
         echo "Sorted Edited Files:"
         echo "${sorted_edited[@]}"
-        echo "Sorted Edited Plugins:"
-        echo "${edited_plugins[@]}"
+        # echo "Sorted Edited Plugins:"
+        # echo "${edited_plugins[@]}"
         
     - name: Build plugin backends
       run: |
-        IFS=' ' read -ra files <<< "${{ steps.list-files.outputs.files_out }}"
+        IFS=' ' read -ra files <<< "${{ env.files_out }}"
         pushd plugins
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
@@ -165,7 +165,7 @@ jobs:
 
     - name: Build plugin frontends
       run: |
-        IFS=' ' read -ra files <<< "${{ steps.list-files.outputs.files_out }}"
+        IFS=' ' read -ra files <<< "${{ env.files_out }}"
         pushd plugins
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
@@ -279,7 +279,7 @@ jobs:
           donotupload=$(jq -r '.publish | any(.tags[] == "dnu"; .)' ./plugin.json)
           
           if [[ "$donotupload" == "false" ]]; then
-            if ! [[ "${{ steps.list-files.outputs.edited_files_out }}" =~ "$plugin" ]]; then
+            if ! [[ "${{ env.edited_files_out }}" =~ "$plugin" ]]; then
               curl -X POST -H "Authorization: ${SUBMIT_AUTH_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" ${STORE_URL}/__submit
             else
               echo "Plugin $plugin could not be uploaded as it was built only to test CI changes."
