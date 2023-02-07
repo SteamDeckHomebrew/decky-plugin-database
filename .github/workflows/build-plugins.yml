@@ -81,7 +81,7 @@ jobs:
           [ "$rest" = "${rest/,/}" ] && rest= || rest=${rest#*,}
           edited_files+=($(cut -d/ -f2 <<< $str))
         done <<< "$edited_files"
-        printf "%s\n" "${edited_files[@]}" | sort -u
+        # printf "%s\n" "${edited_files[@]}" | sort -u
         if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* || "${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.upload) && 'true' }}" == "true" ]]; 
         then
           echo "Rebuilding all plugins due to workflow edit"
@@ -99,15 +99,15 @@ jobs:
         else
           files=edited_files
         fi
-        popd
         IFS=$'\n' sorted=($(sort -u <<<"${files[@]}"))
         unset $IFS
         IFS=$'\n' sorted_edited=($(sort -u <<<"${edited_files[@]}"))
         unset $IFS
         IFS='\n' edited_plugins=($(sort -u <<<"${edited_files[@]}"))
         unset $IFS
-        echo files_out=${sorted[@]} >> $GITHUB_OUTPUT
-        echo edited_files_out=${sorted_edited[@]} >> $GITHUB_OUTPUT
+        popd
+        echo "files_out=${sorted[@]}" >> $GITHUB_OUTPUT
+        echo "edited_files_out=${sorted_edited[@]}" >> $GITHUB_OUTPUT
         echo "Sorted "Changed" Files:"
         echo "${sorted[@]}"
         echo "Sorted Edited Files:"
