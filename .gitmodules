@@ -108,6 +108,3 @@
 [submodule "plugins/DeckMTP"]
 	path = plugins/DeckMTP
 	url = https://github.com/dafta/DeckMTP
-[submodule "plugins/decky-wol"]
-	path = plugins/decky-wol
-	url = https://github.com/scramble45/decky-wol
