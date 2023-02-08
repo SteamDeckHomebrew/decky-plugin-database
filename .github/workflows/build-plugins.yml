@@ -274,7 +274,7 @@ jobs:
           donotupload=$(jq -r '.publish | any(.tags[] == "dnu"; .)' ./plugin.json)
           
           if [[ "$donotupload" == "false" ]]; then
-            if ! [[ "${{ env.edited_files_out }}" =~ "$plugin" ]]; then
+            if [[ "${{ env.edited_files_out }}" =~ "$plugin" ]]; then
               curl -X POST -H "Authorization: ${SUBMIT_AUTH_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" ${STORE_URL}/__submit
             else
               echo "Plugin $plugin could not be uploaded as it was built only to test CI changes."
