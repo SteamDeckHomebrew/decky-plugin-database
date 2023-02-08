@@ -74,30 +74,45 @@ jobs:
       run: |
         pushd plugins
         files=()
+        echo "Checking for file edits"
+        rest="${{ steps.changed-files.outputs.all_changed_files }}"
+        while [ -n "$rest" ] ; do
+          str=${rest%%,*}
+          [ "$rest" = "${rest/,/}" ] && rest= || rest=${rest#*,}
+          edited_files+=($(cut -d/ -f2 <<< $str))
+        done <<< "$edited_files"
         if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* || "${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.upload) && 'true' }}" == "true" ]]; 
         then
           echo "Rebuilding all plugins due to workflow edit"
           for file in ./plugins/*; do
             files+=($(cut -d/ -f3 <<< $file))
           done
-        else
+          echo "Checking to see what files were actually edited"
           rest="${{ steps.changed-files.outputs.all_changed_files }}"
           while [ -n "$rest" ] ; do
             str=${rest%%,*}
             [ "$rest" = "${rest/,/}" ] && rest= || rest=${rest#*,}
-            files+=($(cut -d/ -f2 <<< $str))
-          done <<< "$files"
-          printf "%s\n" "${files[@]}" | sort -u
+            edited_files+=($(cut -d/ -f2 <<< $str))
+          done <<< "$edited_files"
+          printf "%s\n" "${edited_files[@]}" | sort -u
+        else
+          files=$edited_files
         fi
-        popd
         IFS=$'\n' sorted=($(sort -u <<<"${files[@]}"))
         unset $IFS
+        IFS=$'\n' sorted_edited=($(sort -u <<<"${edited_files[@]}"))
+        unset $IFS
+        echo "files_out=${sorted[@]}" >> $GITHUB_ENV
+        echo "edited_files_out=${sorted_edited[@]}" >> $GITHUB_ENV
+        popd
+        echo "Sorted "Changed" Files:"
         echo "${sorted[@]}"
-        echo edited_files=${sorted[@]} >> $GITHUB_OUTPUT
-    
+        echo "Sorted Edited Files:"
+        echo "${sorted_edited[@]}"
+        
     - name: Build plugin backends
       run: |
-        IFS=' ' read -ra files <<< "${{ steps.list-files.outputs.edited_files }}"
+        IFS=' ' read -ra files <<< "${{ env.files_out }}"
         pushd plugins
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
@@ -145,7 +160,7 @@ jobs:
 
     - name: Build plugin frontends
       run: |
-        IFS=' ' read -ra files <<< "${{ steps.list-files.outputs.edited_files }}"
+        IFS=' ' read -ra files <<< "${{ env.files_out }}"
         pushd plugins
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
@@ -257,10 +272,15 @@ jobs:
           zipname=/tmp/zips/$(basename ${plugin}).zip
           pushd $plugin
           donotupload=$(jq -r '.publish | any(.tags[] == "dnu"; .)' ./plugin.json)
+          
           if [[ "$donotupload" == "false" ]]; then
-            curl -X POST -H "Authorization: ${SUBMIT_AUTH_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" ${STORE_URL}/__submit
+            if ! [[ "${{ env.edited_files_out }}" =~ "$plugin" ]]; then
+              curl -X POST -H "Authorization: ${SUBMIT_AUTH_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" ${STORE_URL}/__submit
+            else
+              echo "Plugin $plugin could not be uploaded as it was built only to test CI changes."
+            fi
           else
-            echo "Plugin is designated as 'do not upload', likely a template or CI demonstration."
+            echo "Plugin $plugin is designated as 'do not upload', likely a template or CI demonstration."
           fi
           popd
         done
