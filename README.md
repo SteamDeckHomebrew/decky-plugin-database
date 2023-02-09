@@ -1,4 +1,4 @@
-# Decky Plugin Database [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://discord.gg/DVCZYY3cnz)
+# Decky Plugin Database [![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg)](https://deckbrew.xyz/discord)
 
 **This repository exists solely for developers to submit plugins**
 
