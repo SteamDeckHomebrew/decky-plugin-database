@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - backend-builder
+      - powertools-ci-bug
     paths:
       - "plugins/**"
       - ".github/workflows/build-plugins.yml"
