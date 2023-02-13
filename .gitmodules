@@ -108,3 +108,6 @@
 [submodule "plugins/DeckMTP"]
 	path = plugins/DeckMTP
 	url = https://github.com/dafta/DeckMTP
+[submodule "plugins/decky-save-manager"]
+	path = plugins/decky-save-manager
+	url = https://github.com/metehankutlu/decky-save-manager
