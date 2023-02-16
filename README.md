@@ -9,7 +9,7 @@ Use the built-in [Plugin Store](https://wiki.deckbrew.xyz/en/user-guide/plugin-s
 **For plugin developers submitting their plugin for the first time, please consult the wiki page on [submitting your plugin](https://wiki.deckbrew.xyz/en/plugin-dev/submitting-plugins).**
 This README provides a good resource for the simple git related and a few other items, but the wiki has the rest of the information you'll need.
 
-To submit a plugin to Decky's plugin store, open a pull request adding your plugin as a submodule (take a look at [#8](https://github.com/SteamDeckHomebrew/decky-plugin-database/pull/8) for example).
+To submit a plugin to Decky's plugin store, open a pull request adding your plugin as a submodule (take a look at [#189](https://github.com/SteamDeckHomebrew/decky-plugin-database/pull/189) for example).
 Don't forget to bump your version number in package.json.
 If you are not sure how to make a submodule, please reference the [git docs](https://git-scm.com/book/en/v2/Git-Tools-Submodules) on submodules.
 
