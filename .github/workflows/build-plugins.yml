@@ -35,13 +35,34 @@ jobs:
 
     - name: Get changed files
       id: changed-files
-      uses: tj-actions/changed-files@v35.5.5
-      with:
-        sha: ${{ github.event.pull_request.head.sha || github.sha }}
-        separator: ","
-        files: |
-          plugins/*
-          .github/workflows/build-plugins.yml
+      env:
+        isPr: ${{ github.event_name == 'pull_request_target' }}
+        buildAll: ${{ inputs.build_all }}
+      run: |
+        # Returns a list of paths relative to the git repository of the files that changed
+        # In pull requests, it diffs files between the last commit in the pull request and main
+        # In push events, it diffs between the current commit and the previous
+
+        # Paths to be included in the diff
+        PATHS=(plugins .github/workflows/build-plugins.yml)
+
+        # Find refs to be diffed
+        if [[ $isPr == "true" ]]; then
+          echo "PR detected. beep boop"
+
+          # Fetch all remotes so we can properly diff
+          git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+
+          # Diff with the ref of the target branch
+          REF=origin/${{ github.base_ref }}
+        else
+          echo "This is probably a push to main or something"
+          # Diff with previous commit
+          REF=HEAD^
+        fi
+
+        FILES=$(git diff ${REF[@]} --name-only --submodule=diff -- ${PATHS[@]} | jq -Rsc 'split("\n")[:-1] | join (",")')
+        echo "all_changed_files=$FILES" >> $GITHUB_OUTPUT
 
     - name: Cache Docker images
       if: ${{ !env.ACT }}
