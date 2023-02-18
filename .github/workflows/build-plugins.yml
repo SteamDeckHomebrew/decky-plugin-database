@@ -65,16 +65,6 @@ jobs:
         FILES=$(git diff ${REF[@]} --name-only --submodule=diff -- ${PATHS[@]} | jq -Rsc 'split("\n")[:-1] | join (",")')
         echo "all_changed_files=$FILES" >> $GITHUB_OUTPUT
 
-    - name: Cache Docker images
-      if: ${{ !env.ACT }}
-      uses: satackey/action-docker-layer-caching@46d2c640b1d8ef50d185452ad6fb324e6bd1d052
-
-    - name: Login to GitHub Container Registry
-      run: |
-        echo $GITHUB_TOKEN | docker login ghcr.io -u SteamDeckHomebrew --password-stdin
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     - name: Wait for other runs to complete
       if: ${{ !env.ACT }}
       uses: pau1ocampos/turnstyle@17e7c2e349edeb2fc92d15e99f389c6011e02956
@@ -121,6 +111,14 @@ jobs:
         echo "${sorted[@]}"
         echo "Sorted Edited Files:"
         echo "${sorted_edited[@]}"
+
+    - name: Debug
+      run: |
+        echo "File"
+        echo "${{ env.files_out }}"
+
+        echo "Edited"
+        echo "${{ env.edited_files_out }}"
 
     - name: Download Decky CLI
       run: |
