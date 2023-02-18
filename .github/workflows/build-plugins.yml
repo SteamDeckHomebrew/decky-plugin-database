@@ -45,7 +45,7 @@ jobs:
         # In push events, it diffs between the current commit and the previous
 
         # Paths to be included in the diff
-        PATHS=(plugins .github/workflows/build-plugins.yml)
+        PATHS=(plugins)
 
         # Find refs to be diffed
         if [[ $isPr == "true" ]]; then
@@ -62,63 +62,34 @@ jobs:
           REF=HEAD^
         fi
 
-        FILES=$(git diff ${REF[@]} --name-only --submodule=diff -- ${PATHS[@]} | jq -Rsc 'split("\n")[:-1] | join (",")')
-        echo "all_changed_files=$FILES" >> $GITHUB_OUTPUT
+        CHANGED_PLUGINS=$(git diff ${REF[@]} --name-only --submodule=diff -- ${PATHS[@]} | xargs -r -L1 basename)
+
+        PLUGINS_PENDING_BUILD=$CHANGED_PLUGINS
+        PLUGINS_PENDING_UPLOAD=$CHANGED_PLUGINS
+
+        WORKFLOW_CHANGED=$(git diff ${REF[@]} --name-only -- .github/workflows/build-plugins.yml)
+        if [[ $WORKFLOW_CHANGED ]]; then
+          echo "Workflow was changed. Setting all plugins as pending build."
+          PLUGINS_PENDING_BUILD=$(find ${PATHS[@]} -mindepth 1 -maxdepth 1 | xargs -r -L1 basename)
+        fi
+
+        echo "all_changed_plugins<<EOF" >> $GITHUB_OUTPUT
+        echo "$CHANGED_PLUGINS" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
+        echo "plugins_pending_build<<EOF" >> $GITHUB_OUTPUT
+        echo "$PLUGINS_PENDING_BUILD" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
+        echo "plugins_pending_upload<<EOF" >> $GITHUB_OUTPUT
+        echo "$PLUGINS_PENDING_UPLOAD" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
 
     - name: Wait for other runs to complete
       if: ${{ !env.ACT }}
       uses: pau1ocampos/turnstyle@17e7c2e349edeb2fc92d15e99f389c6011e02956
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Detect edited files/plugins
-      id: list-files
-      run: |
-        pushd plugins
-        files=()
-        echo "Checking for file edits"
-        rest="${{ steps.changed-files.outputs.all_changed_files }}"
-        while [ -n "$rest" ] ; do
-          str=${rest%%,*}
-          [ "$rest" = "${rest/,/}" ] && rest= || rest=${rest#*,}
-          edited_files+=($(cut -d/ -f2 <<< $str))
-        done <<< "$edited_files"
-        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* || "${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.upload) && 'true' }}" == "true" ]]; 
-        then
-          echo "Rebuilding all plugins due to workflow edit"
-          for file in ./plugins/*; do
-            files+=($(cut -d/ -f3 <<< $file))
-          done
-          echo "Checking to see what files were actually edited"
-          rest="${{ steps.changed-files.outputs.all_changed_files }}"
-          while [ -n "$rest" ] ; do
-            str=${rest%%,*}
-            [ "$rest" = "${rest/,/}" ] && rest= || rest=${rest#*,}
-            edited_files+=($(cut -d/ -f2 <<< $str))
-          done <<< "$edited_files"
-          printf "%s\n" "${edited_files[@]}" | sort -u
-        else
-          files=$edited_files
-        fi
-        IFS=$'\n' sorted=($(sort -u <<<"${files[@]}"))
-        unset $IFS
-        IFS=$'\n' sorted_edited=($(sort -u <<<"${edited_files[@]}"))
-        unset $IFS
-        echo "files_out=${sorted[@]}" >> $GITHUB_ENV
-        echo "edited_files_out=${sorted_edited[@]}" >> $GITHUB_ENV
-        popd
-        echo "Sorted "Changed" Files:"
-        echo "${sorted[@]}"
-        echo "Sorted Edited Files:"
-        echo "${sorted_edited[@]}"
-
-    - name: Debug
-      run: |
-        echo "File"
-        echo "${{ env.files_out }}"
-
-        echo "Edited"
-        echo "${{ env.edited_files_out }}"
 
     - name: Download Decky CLI
       run: |
@@ -130,8 +101,8 @@ jobs:
 
     - name: Build plugin backends
       run: |
-        IFS=' ' read -ra files <<< "${{ env.files_out }}"
-        for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
+        PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_build }})
+        for plugin in "${PLUGINS[@]}"; do
           decky plugin build -b plugins/$plugin -o /tmp/output
         done
 
@@ -146,27 +117,46 @@ jobs:
       if: ${{ !env.ACT }}
       id: upload-plugins
       run: |
+        PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_upload }})
         shopt -s dotglob
-        for plugin in /tmp/output/*; do
-          zipname=/tmp/zips/$(basename ${plugin}).zip
-          pushd $plugin
-          donotupload=$(jq -r '.publish | any(.tags[] == "dnu"; .)' ./plugin.json)
-          IFS=' ' read -ra edited_files <<< "${{ env.edited_files_out }}"
-          if [[ "$donotupload" == "false" ]]; then
-            for edited_plugin in $(printf "%s\n" "${edited_files[@]}" | sort -u); do
-              plugin_nodir=$(echo "$plugin" | sed -e "s|^/tmp/output/||")
-              if [[ "$plugin_nodir" =~ "$edited_plugin" ]]; then
-                curl -X POST -H "Authorization: ${SUBMIT_AUTH_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" ${STORE_URL}/__submit
-              else
-                echo "Plugin $plugin could not be uploaded as it was built only to test CI changes."
-                break
-              fi
-            done
-          else
-            echo "Plugin $plugin is designated as 'do not upload', likely a template or CI demonstration."
+        for plugin in "${PLUGINS[@]}"; do
+          artifact=/tmp/output/$plugin.zip
+
+          query_plugin_json () {
+            local result=$(unzip -p $artifact $plugin/plugin.json | jq -r $1)
+            echo $result
+          }
+
+          if [[ -z $artifact ]]; then
+            echo "::error::Could not find artifact for $plugin in $artifact"
+            continue
           fi
-          unset $IFS
-          popd
+
+          shouldUpload=$(query_plugin_json '.publish | any(.tags[] == "dnu"; .) | not')
+
+          if [[ "shouldUpload" == "false" ]]; then
+            echo "::warning::Plugin $plugin is marked as 'do not upload'. Consider removing the 'dnu' tag if this is an accident."
+            continue
+          fi
+
+          PLUGIN_NAME=$(query_plugin_json '.name')
+          PLUGIN_AUTHOR=$(query_plugin_json '.author')
+          PLUGIN_DESCRIPTION=$(query_plugin_json '.publish.description')
+          PLUGIN_VERSION=$(query_plugin_json '.version')
+          PLUGIN_IMAGE=$(query_plugin_json '.publish.image')
+
+          echo "::notice::Uploading plugin $PLUGIN_NAME v$PLUGIN_VERSION (by $PLUGIN_AUTHOR)"
+
+          curl -X POST \
+               -H "Authorization: ${SUBMIT_AUTH_KEY}" \
+               -F "name=$PLUGIN_NAME" \
+               -F "author=$PLUGIN_AUTHOR" \
+               -F "description=$PLUGIN_DESCRIPTION" \
+               -F "tags=$PLGUIN_TAGS" \
+               -F "version_name=$PLUGIN_VERSION" \
+               -F "image=$PLUGIN_IMAGE" \
+               -F "file=@${artifact}" \
+               ${STORE_URL}/__submit
         done
       env:
         SUBMIT_AUTH_KEY: ${{ secrets.SUBMIT_AUTH_KEY }}
