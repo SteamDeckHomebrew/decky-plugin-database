@@ -104,7 +104,7 @@ jobs:
 
         echo "/tmp/decky-cli" >> $GITHUB_PATH
 
-    - name: Build plugin backends
+    - name: Build plugins
       run: |
         PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_build }})
         for plugin in "${PLUGINS[@]}"; do
