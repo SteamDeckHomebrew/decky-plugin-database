@@ -13,7 +13,7 @@ on:
     branches: ['*']
   workflow_dispatch:
     inputs:
-      upload:
+      upload_all:
         type: boolean
         description: Re-upload the plugins to the store
 
@@ -38,7 +38,7 @@ jobs:
       id: changed-files
       env:
         isPr: ${{ github.event_name == 'pull_request_target' }}
-        buildAll: ${{ inputs.build_all }}
+        uploadAll: ${{ inputs.upload_all }}
       run: |
         # Returns a list of paths relative to the git repository of the files that changed
         # In pull requests, it diffs files between the last commit in the pull request and main
@@ -49,8 +49,6 @@ jobs:
 
         # Find refs to be diffed
         if [[ $isPr == "true" ]]; then
-          echo "PR detected. beep boop"
-
           # Fetch all remotes so we can properly diff
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
 
@@ -61,6 +59,7 @@ jobs:
           REF=HEAD^
         fi
 
+        ALL_PLUGINS=$(find ${PATHS[@]} -mindepth 1 -maxdepth 1 | xargs -r -L1 basename)
         CHANGED_PLUGINS=$(git diff ${REF[@]} --name-only --submodule=diff -- ${PATHS[@]} | xargs -r -L1 basename)
 
         PLUGINS_PENDING_BUILD=$CHANGED_PLUGINS
@@ -68,8 +67,15 @@ jobs:
 
         WORKFLOW_CHANGED=$(git diff ${REF[@]} --name-only -- .github/workflows/build-plugins.yml)
         if [[ $WORKFLOW_CHANGED ]]; then
-          echo "Workflow was changed. Setting all plugins as pending build."
-          PLUGINS_PENDING_BUILD=$(find ${PATHS[@]} -mindepth 1 -maxdepth 1 | xargs -r -L1 basename)
+          echo "::notice::Workflow was changed. Setting all plugins as pending build."
+          PLUGINS_PENDING_BUILD=$ALL_PLUGINS
+        fi
+
+        if [[ $uploadAll == "true" ]]; then
+
+          echo "::notice::Workflow run set to upload_all. Setting all plugins as pending build and upload."
+          PLUGINS_PENDING_BUILD=$ALL_PLUGINS
+          PLUGINS_PENDING_UPLOAD=$ALL_PLUGINS
         fi
 
         echo "all_changed_plugins<<EOF" >> $GITHUB_OUTPUT
