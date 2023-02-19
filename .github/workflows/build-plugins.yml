@@ -128,7 +128,7 @@ jobs:
           artifact=/tmp/output/$plugin.zip
 
           query_plugin_json () {
-            local result=$(unzip -p $artifact $plugin/plugin.json | jq -r $1)
+            local result=$(unzip -p $artifact $plugin/plugin.json | jq -r "$1")
             echo $result
           }
 
