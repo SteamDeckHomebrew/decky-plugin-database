@@ -57,7 +57,6 @@ jobs:
           # Diff with the ref of the target branch
           REF=origin/${{ github.base_ref }}
         else
-          echo "This is probably a push to main or something"
           # Diff with previous commit
           REF=HEAD^
         fi
