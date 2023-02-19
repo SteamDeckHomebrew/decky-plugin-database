@@ -94,7 +94,7 @@ jobs:
     - name: Download Decky CLI
       run: |
         mkdir /tmp/decky-cli
-        curl -L -o /tmp/decky-cli/decky "https://github.com/SteamDeckHomebrew/cli/releases/download/0.0.1-alpha.4/decky"
+        curl -L -o /tmp/decky-cli/decky "https://github.com/SteamDeckHomebrew/cli/releases/download/0.0.1-alpha.5/decky"
         chmod +x /tmp/decky-cli/decky
 
         echo "/tmp/decky-cli" >> $GITHUB_PATH
@@ -103,7 +103,7 @@ jobs:
       run: |
         PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_build }})
         for plugin in "${PLUGINS[@]}"; do
-          decky plugin build -b plugins/$plugin -o /tmp/output
+          decky plugin build -b -o /tmp/output -s directory plugins/$plugin
         done
 
     - name: Upload Artifacts to Github
