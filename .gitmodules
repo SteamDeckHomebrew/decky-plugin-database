@@ -86,7 +86,6 @@
 [submodule "plugins/decky-steamgriddb"]
 	path = plugins/decky-steamgriddb
 	url = https://github.com/SteamGridDB/decky-steamgriddb
-	branch = steam_beta_hotfix
 [submodule "plugins/DiscordStatus"]
 	path = plugins/DiscordStatus
 	url = https://github.com/andrewburgess/steamdeck-discord-status
@@ -108,3 +107,6 @@
 [submodule "plugins/DeckMTP"]
 	path = plugins/DeckMTP
 	url = https://github.com/dafta/DeckMTP
+[submodule "plugins/decky-recorder"]
+	path = plugins/decky-recorder
+	url = git@github.com:marissa999/decky-recorder.git
