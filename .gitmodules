@@ -110,3 +110,6 @@
 [submodule "plugins/decky-recorder"]
 	path = plugins/decky-recorder
 	url = git@github.com:marissa999/decky-recorder.git
+[submodule "plugins/SteamlessTimes"]
+	path = plugins/SteamlessTimes
+	url = https://github.com/EmuDeck/SteamlessTimes.git
