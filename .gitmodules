@@ -86,6 +86,7 @@
 [submodule "plugins/decky-steamgriddb"]
 	path = plugins/decky-steamgriddb
 	url = https://github.com/SteamGridDB/decky-steamgriddb
+	branch = steam_hotfix_23-02-23
 [submodule "plugins/DiscordStatus"]
 	path = plugins/DiscordStatus
 	url = https://github.com/andrewburgess/steamdeck-discord-status
