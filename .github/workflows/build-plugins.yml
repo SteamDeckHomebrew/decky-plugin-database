@@ -54,7 +54,7 @@ jobs:
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
 
           # Diff with the ref of the target branch
-          REF=origin/${{ github.base_ref }}
+          REF=${{ github.event.base.sha }}
         else
           echo "This is probably a push to main or something"
           # Diff with previous commit
