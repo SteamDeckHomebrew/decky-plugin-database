@@ -105,3 +105,6 @@
 [submodule "plugins/decky-recorder"]
 	path = plugins/decky-recorder
 	url = git@github.com:marissa999/decky-recorder.git
+[submodule "plugins/deck-roulette"]
+	path = plugins/deck-roulette
+	url = git@github.com:davocarli/deck-roulette.git
