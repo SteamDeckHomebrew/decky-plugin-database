@@ -133,7 +133,7 @@ jobs:
         
     - name: Build plugin backends
       run: |
-        IFS=' ' read -ra files <<< "${{ env.edited_files_out }}"
+        IFS=' ' read -ra files <<< "${{ env.files_out }}"
         pushd plugins
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
@@ -181,7 +181,7 @@ jobs:
 
     - name: Build plugin frontends
       run: |
-        IFS=' ' read -ra files <<< "${{ env.edited_files_out }}"
+        IFS=' ' read -ra files <<< "${{ env.files_out }}"
         pushd plugins
         for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
           pushd $plugin
