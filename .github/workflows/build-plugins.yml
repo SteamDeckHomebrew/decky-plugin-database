@@ -117,6 +117,14 @@ jobs:
           done <<< "$edited_files"
           printf "%s\n" "${edited_files[@]}" | sort -u
         else
+          echo "Checking to see what files were edited"
+          rest="${{ steps.changed-files.outputs.all_changed_files }}"
+          while [ -n "$rest" ] ; do
+            str=${rest%%,*}
+            [ "$rest" = "${rest/,/}" ] && rest= || rest=${rest#*,}
+            edited_files+=($(cut -d/ -f2 <<< $str))
+          done <<< "$edited_files"
+          printf "%s\n" "${edited_files[@]}" | sort -u
           files=$edited_files
         fi
         IFS=$'\n' sorted=($(sort -u <<<"${files[@]}"))
