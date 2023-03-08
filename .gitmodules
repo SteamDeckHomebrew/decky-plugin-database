@@ -50,9 +50,6 @@
 [submodule "plugins/SDH-AnimationChanger"]
 	path = plugins/SDH-AnimationChanger
 	url = https://github.com/TheLogicMaster/SDH-AnimationChanger.git
-[submodule "plugins/radiyo-steam-deck"]
-	path = plugins/radiyo-steam-deck
-	url = https://github.com/isiah-lloyd/radiyo-steam-deck
 [submodule "plugins/bash-shortcuts"]
 	path = plugins/bash-shortcuts
 	url = https://github.com/Tormak9970/bash-shortcuts.git
@@ -86,12 +83,10 @@
 [submodule "plugins/decky-steamgriddb"]
 	path = plugins/decky-steamgriddb
 	url = https://github.com/SteamGridDB/decky-steamgriddb
+	branch = steam_hotfix_23-02-23
 [submodule "plugins/DiscordStatus"]
 	path = plugins/DiscordStatus
 	url = https://github.com/andrewburgess/steamdeck-discord-status
-[submodule "plugins/VolumeMixer-decky"]
-	path = plugins/VolumeMixer-decky
-	url = https://github.com/isiah-lloyd/VolumeMixer-decky
 [submodule "plugins/SDH-FreeGames"]
 	path = plugins/SDH-FreeGames
 	url = https://github.com/WerWolv/SDH-FreeGames
@@ -113,3 +108,6 @@
 [submodule "plugins/decky-recorder"]
 	path = plugins/decky-recorder
 	url = git@github.com:marissa999/decky-recorder.git
+[submodule "plugins/Steamback"]
+	path = plugins/Steamback
+	url = https://github.com/geeksville/steamback.git
