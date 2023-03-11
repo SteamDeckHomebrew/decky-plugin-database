@@ -14,14 +14,17 @@ on:
     inputs:
       upload:
         type: boolean
-        description: Re-upload the plugins to the store
+        description: Upload plugins to production if CI has failed
+
+env:
+  still_upload: ${{ inputs.upload }}
 
 jobs:
   build:
     name: Build updated plugins
     runs-on: ubuntu-latest
     environment:
-      name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}    
+      name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}
 
     steps:
     - name: Checkout
@@ -37,7 +40,6 @@ jobs:
       id: changed-files
       env:
         isPr: ${{ github.event_name == 'pull_request_target' }}
-        buildAll: ${{ inputs.build_all }}
       run: |
         # Returns a list of paths relative to the git repository of the files that changed
         # In pull requests, it diffs files between the last commit in the pull request and main
@@ -305,7 +307,7 @@ jobs:
           if [[ "$donotupload" == "false" ]]; then
             for edited_plugin in $(printf "%s\n" "${edited_files[@]}" | sort -u); do
               plugin_nodir=$(echo "$plugin" | sed -e "s|^/tmp/output/||")
-              if [[ "$plugin_nodir" =~ "$edited_plugin" ]]; then
+              if [[ "$plugin_nodir" =~ "$edited_plugin" ]] || [[ "${{ env.still_upload }}" == "true" ]]; then
                 curl --fail-with-body -X POST -H "Authorization: ${SUBMIT_AUTH_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" ${STORE_URL}/__submit
               else
                 echo "Plugin $plugin could not be uploaded as it was built only to test CI changes."
