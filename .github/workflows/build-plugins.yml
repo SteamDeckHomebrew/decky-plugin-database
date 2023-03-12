@@ -138,15 +138,17 @@ jobs:
         unset $IFS
         IFS=$'\n' sorted_edited=($(sort -u <<<"${edited_files[@]}"))
         unset $IFS
-        echo "files_out=${sorted[@]}" >> $GITHUB_ENV
         if [[ "${{ env.testing }}" == "true" ]]; then
           echo "Testing is enabled, using limited plugin set for build testing."
           read -a plugin_set <<< "${{ env.testing_plugins }}"
-          echo "edited_files_out=${plugin_set[@]}" >> $GITHUB_ENV
+          IFS=$' ' sorted=($(sort -u <<<"${plugin_set[@]}"))
+          unset $IFS
+          echo "files_out=${sorted[@]}" >> $GITHUB_ENV
         else
           echo "Testing is disabled, using expected (all for CI change or PR for changed plugins etc) plugin set for build."
-          echo "edited_files_out=${sorted_edited[@]}" >> $GITHUB_ENV
+          echo "files_out=${sorted[@]}" >> $GITHUB_ENV
         fi
+        echo "edited_files_out=${sorted_edited[@]}" >> $GITHUB_ENV
         popd
         echo "Sorted "Changed" Files:"
         echo "${sorted[@]}"
