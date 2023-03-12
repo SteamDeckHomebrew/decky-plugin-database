@@ -308,7 +308,17 @@ jobs:
             for edited_plugin in $(printf "%s\n" "${edited_files[@]}" | sort -u); do
               plugin_nodir=$(echo "$plugin" | sed -e "s|^/tmp/output/||")
               if [[ "$plugin_nodir" =~ "$edited_plugin" ]] || [[ "${{ env.still_upload }}" == "true" ]]; then
-                curl --fail-with-body -X POST -H "Authorization: ${SUBMIT_AUTH_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" ${STORE_URL}/__submit
+                output=$(curl -X POST -H "Authorization: ${SUBMIT_AUTH_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" ${STORE_URL}/__submit)
+                if [[ "$output" =~ "Version already exists" ]]; then
+                  echo "Version of $plugin being pushed already exists, moving to next plugin."
+                  echo "::warning title=Could not upload $plugin::Missing semicolon"
+                else if [[ "$output" =~ "INVALID AUTH KEY" ]]; then
+                  echo "Authentication Key used is invalid, exiting."
+                  exit 1
+                else
+                  echo "Undetermined outcome when trying to upload $plugin, see output below."
+                  echo "$output"
+                fi
               else
                 echo "Plugin $plugin could not be uploaded as it was built only to test CI changes."
                 break
