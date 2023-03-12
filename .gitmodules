@@ -41,9 +41,6 @@
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
 	url = https://github.com/NGnius/Fantastic
-[submodule "plugins/RemotePlayWhatever"]
-	path = plugins/RemotePlayWhatever
-	url = https://github.com/joamjoamjoam/RemotePlayWhatever.git
 [submodule "plugins/memory-deck"]
 	path = plugins/memory-deck
 	url = https://github.com/CameronRedmore/memory-deck.git
@@ -93,9 +90,6 @@
 [submodule "plugins/ControllerTools"]
 	path = plugins/ControllerTools
 	url = https://github.com/alphamercury/ControllerTools
-[submodule "plugins/sharedeck-y"]
-	path = plugins/sharedeck-y
-	url = https://github.com/davocarli/sharedeck-y
 [submodule "plugins/tailscale-control"]
 	path = plugins/tailscale-control
 	url = https://github.com/saumya-banthia/tailscale-control
