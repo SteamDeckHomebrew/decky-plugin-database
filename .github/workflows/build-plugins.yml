@@ -15,9 +15,14 @@ on:
       upload:
         type: boolean
         description: Upload plugins to production if CI has previously failed
+      test_build:
+        type: boolean
+        description: Enable to build a limited set of plugins
 
 env:
   still_upload: ${{ inputs.upload }}
+  testing: ${{ inputs.test_build }}
+  testing_plugins: "Bluetooth ControllerTools SDH-AudioLoader SDH-CssLoader moondeck memory-deck Fantastic"
 
 jobs:
   build:
@@ -134,7 +139,11 @@ jobs:
         IFS=$'\n' sorted_edited=($(sort -u <<<"${edited_files[@]}"))
         unset $IFS
         echo "files_out=${sorted[@]}" >> $GITHUB_ENV
-        echo "edited_files_out=${sorted_edited[@]}" >> $GITHUB_ENV
+        if [[ "${{ env.testing }}" == "true" ]]; then
+          echo "edited_files_out=${{ env.testing_plugins }}" >> $GITHUB_ENV
+        else 
+          echo "edited_files_out=${sorted_edited[@]}" >> $GITHUB_ENV
+        fi
         popd
         echo "Sorted "Changed" Files:"
         echo "${sorted[@]}"
@@ -312,7 +321,7 @@ jobs:
                 if [[ "$output" =~ "Version already exists" ]]; then
                   echo "Version of $plugin being pushed already exists, moving to next plugin."
                   echo "::warning title=Could not upload $plugin::Missing semicolon"
-                else if [[ "$output" =~ "INVALID AUTH KEY" ]]; then
+                elif [[ "$output" =~ "INVALID AUTH KEY" ]]; then
                   echo "Authentication Key used is invalid, exiting."
                   exit 1
                 else
