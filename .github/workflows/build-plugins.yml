@@ -330,7 +330,6 @@ jobs:
                   echo "Authentication Key used is invalid, exiting."
                   exit 1
                 else
-                  echo "Undetermined outcome when trying to upload $plugin, see output below."
                   echo "$output"
                 fi
               else
