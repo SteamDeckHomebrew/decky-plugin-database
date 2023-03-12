@@ -14,7 +14,7 @@ on:
     inputs:
       upload:
         type: boolean
-        description: Upload plugins to production if CI has failed
+        description: Upload plugins to production if CI has previously failed
 
 env:
   still_upload: ${{ inputs.upload }}
