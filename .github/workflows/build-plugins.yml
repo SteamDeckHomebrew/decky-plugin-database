@@ -140,7 +140,7 @@ jobs:
         unset $IFS
         echo "files_out=${sorted[@]}" >> $GITHUB_ENV
         if [[ "${{ env.testing }}" == "true" ]]; then
-          plugin_set=(${{ env.testing_plugins }})
+          plugin_set=("${{ env.testing_plugins }}")
           echo "edited_files_out=${plugin_set[@]}" >> $GITHUB_ENV
         else 
           echo "edited_files_out=${sorted_edited[@]}" >> $GITHUB_ENV
