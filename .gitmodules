@@ -102,3 +102,6 @@
 [submodule "plugins/Steamback"]
 	path = plugins/Steamback
 	url = https://github.com/geeksville/steamback.git
+[submodule "plugins/deck-roulette"]
+	path = plugins/deck-roulette
+	url = git@github.com:davocarli/deck-roulette.git
