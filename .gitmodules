@@ -105,3 +105,6 @@
 [submodule "plugins/deck-roulette"]
 	path = plugins/deck-roulette
 	url = git@github.com:davocarli/deck-roulette.git
+[submodule "plugins/SDH-QuickLaunch"]
+	path = plugins/SDH-QuickLaunch
+	url = https://github.com/Fisch03/SDH-QuickLaunch
