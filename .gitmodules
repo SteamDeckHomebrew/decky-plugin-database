@@ -41,18 +41,12 @@
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
 	url = https://github.com/NGnius/Fantastic
-[submodule "plugins/RemotePlayWhatever"]
-	path = plugins/RemotePlayWhatever
-	url = https://github.com/joamjoamjoam/RemotePlayWhatever.git
 [submodule "plugins/memory-deck"]
 	path = plugins/memory-deck
 	url = https://github.com/CameronRedmore/memory-deck.git
 [submodule "plugins/SDH-AnimationChanger"]
 	path = plugins/SDH-AnimationChanger
 	url = https://github.com/TheLogicMaster/SDH-AnimationChanger.git
-[submodule "plugins/radiyo-steam-deck"]
-	path = plugins/radiyo-steam-deck
-	url = https://github.com/isiah-lloyd/radiyo-steam-deck
 [submodule "plugins/bash-shortcuts"]
 	path = plugins/bash-shortcuts
 	url = https://github.com/Tormak9970/bash-shortcuts.git
@@ -86,22 +80,28 @@
 [submodule "plugins/decky-steamgriddb"]
 	path = plugins/decky-steamgriddb
 	url = https://github.com/SteamGridDB/decky-steamgriddb
-	branch = steam_beta_hotfix
+	branch = steam_hotfix_23-02-23
 [submodule "plugins/DiscordStatus"]
 	path = plugins/DiscordStatus
 	url = https://github.com/andrewburgess/steamdeck-discord-status
-[submodule "plugins/VolumeMixer-decky"]
-	path = plugins/VolumeMixer-decky
-	url = https://github.com/isiah-lloyd/VolumeMixer-decky
 [submodule "plugins/SDH-FreeGames"]
 	path = plugins/SDH-FreeGames
 	url = https://github.com/WerWolv/SDH-FreeGames
 [submodule "plugins/ControllerTools"]
 	path = plugins/ControllerTools
 	url = https://github.com/alphamercury/ControllerTools
-[submodule "plugins/sharedeck-y"]
-	path = plugins/sharedeck-y
-	url = https://github.com/davocarli/sharedeck-y
 [submodule "plugins/tailscale-control"]
 	path = plugins/tailscale-control
 	url = https://github.com/saumya-banthia/tailscale-control
+[submodule "plugins/DeckMTP"]
+	path = plugins/DeckMTP
+	url = https://github.com/dafta/DeckMTP
+[submodule "plugins/decky-recorder"]
+	path = plugins/decky-recorder
+	url = git@github.com:marissa999/decky-recorder.git
+[submodule "plugins/Steamback"]
+	path = plugins/Steamback
+	url = https://github.com/geeksville/steamback.git
+[submodule "plugins/deck-roulette"]
+	path = plugins/deck-roulette
+	url = git@github.com:davocarli/deck-roulette.git
