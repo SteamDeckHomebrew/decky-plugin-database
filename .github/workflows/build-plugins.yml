@@ -15,14 +15,22 @@ on:
     inputs:
       upload_all:
         type: boolean
-        description: Re-upload the plugins to the store
+        description: Upload plugins to production if CI has previously failed
+      test_build:
+        type: boolean
+        description: Enable to build a limited set of plugins
+
+env:
+  still_upload: ${{ inputs.upload }}
+  testing: ${{ inputs.test_build }}
+  testing_plugins: "Bluetooth ControllerTools SDH-AudioLoader SDH-CssLoader moondeck memory-deck Fantastic"
 
 jobs:
   build:
     name: Build updated plugins
     runs-on: ubuntu-latest
     environment:
-      name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}    
+      name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}
 
     steps:
     - name: Checkout
@@ -53,7 +61,7 @@ jobs:
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
 
           # Diff with the ref of the target branch
-          REF=origin/${{ github.base_ref }}
+          REF=${{ github.event.pull_request.base.sha }}
         else
           # Diff with previous commit
           REF=HEAD^
@@ -72,10 +80,15 @@ jobs:
         fi
 
         if [[ $uploadAll == "true" ]]; then
-
           echo "::notice::Workflow run set to upload_all. Setting all plugins as pending build and upload."
           PLUGINS_PENDING_BUILD=$ALL_PLUGINS
           PLUGINS_PENDING_UPLOAD=$ALL_PLUGINS
+        fi
+
+        if [[ "${{ env.testing }}" == "true" ]]; then
+          echo "::notice::Testing is enabled, using limited plugin set for build testing."
+          PLUGINS_PENDING_BUILD=${{ env.testing_plugins }}
+          PLUGINS_PENDING_UPLOAD=""
         fi
 
         echo "all_changed_plugins<<EOF" >> $GITHUB_OUTPUT
@@ -127,41 +140,50 @@ jobs:
         for plugin in "${PLUGINS[@]}"; do
           artifact=/tmp/output/$plugin.zip
 
-          query_plugin_json () {
-            local result=$(unzip -p $artifact $plugin/plugin.json | jq -r "$1")
-            echo $result
-          }
-
           if [[ -z $artifact ]]; then
             echo "::error::Could not find artifact for $plugin in $artifact"
             continue
           fi
 
+          query_plugin_json () {
+            local result=$(unzip -p $artifact $plugin/plugin.json | jq -r "$1")
+            echo $result
+          }
+
+          upload_plugin () {
+            PLUGIN_NAME=$(query_plugin_json '.name')
+            PLUGIN_AUTHOR=$(query_plugin_json '.author')
+            PLUGIN_DESCRIPTION=$(query_plugin_json '.publish.description')
+            PLUGIN_VERSION=$(query_plugin_json '.version')
+            PLUGIN_IMAGE=$(query_plugin_json '.publish.image')
+            PLUGIN_TAGS=$(query_plugin_json '.publish.tags|join(",")')
+
+            curl -X POST \
+                 -H "Authorization: ${SUBMIT_AUTH_KEY}" \
+                 -F "name=$PLUGIN_NAME" \
+                 -F "author=$PLUGIN_AUTHOR" \
+                 -F "description=$PLUGIN_DESCRIPTION" \
+                 -F "tags=$PLUGIN_TAGS" \
+                 -F "version_name=$PLUGIN_VERSION" \
+                 -F "image=$PLUGIN_IMAGE" \
+                 -F "file=@$artifact" ${STORE_URL}/__submit
+          }
+
           shouldUpload=$(query_plugin_json '.publish | any(.tags[] == "dnu"; .) | not')
 
-          if [[ "shouldUpload" == "false" ]]; then
+          if [[ "$shouldUpload" == "true" ]]; then
+            echo "::notice::Uploading plugin $PLUGIN_NAME v$PLUGIN_VERSION (by $PLUGIN_AUTHOR)"
+
+            upload_response=$(upload_plugin)
+            if [[ "$upload_response" =~ "Version already exists" ]]; then
+              echo "::warning title=Could not upload $plugin::Version of plugin being pushed already exists, moving to next plugin."
+            elif [[ "$upload_response" =~ "INVALID AUTH KEY" ]]; then
+              echo "::error::Authentication Key used is invalid, exiting."
+              exit 1
+            fi
+          else
             echo "::warning::Plugin $plugin is marked as 'do not upload'. Consider removing the 'dnu' tag if this is an accident."
-            continue
           fi
-
-          PLUGIN_NAME=$(query_plugin_json '.name')
-          PLUGIN_AUTHOR=$(query_plugin_json '.author')
-          PLUGIN_DESCRIPTION=$(query_plugin_json '.publish.description')
-          PLUGIN_VERSION=$(query_plugin_json '.version')
-          PLUGIN_IMAGE=$(query_plugin_json '.publish.image')
-
-          echo "::notice::Uploading plugin $PLUGIN_NAME v$PLUGIN_VERSION (by $PLUGIN_AUTHOR)"
-
-          curl -X POST \
-               -H "Authorization: ${SUBMIT_AUTH_KEY}" \
-               -F "name=$PLUGIN_NAME" \
-               -F "author=$PLUGIN_AUTHOR" \
-               -F "description=$PLUGIN_DESCRIPTION" \
-               -F "tags=$PLGUIN_TAGS" \
-               -F "version_name=$PLUGIN_VERSION" \
-               -F "image=$PLUGIN_IMAGE" \
-               -F "file=@${artifact}" \
-               ${STORE_URL}/__submit
         done
       env:
         SUBMIT_AUTH_KEY: ${{ secrets.SUBMIT_AUTH_KEY }}
