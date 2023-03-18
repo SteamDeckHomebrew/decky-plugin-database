@@ -329,6 +329,17 @@ jobs:
                 elif [[ "$output" =~ "INVALID AUTH KEY" ]]; then
                   echo "Authentication Key used is invalid, exiting."
                   exit 1
+                elif [[ "$output" =~ "invalid or missing URL scheme" ]]; then
+                  echo "url format in plugin.json is broken, please investigate."
+                  if [[ "$output" =~ "image" ]];
+                    echo "Submitted screenshot URL does not exist or is broken."
+                    exit 1
+                  else
+                    echo "Unknown URL is broken, please see output below"
+                    echo "$output"
+                    exit 1
+                  fi
+                  exit 1
                 else
                   echo "$output"
                 fi
