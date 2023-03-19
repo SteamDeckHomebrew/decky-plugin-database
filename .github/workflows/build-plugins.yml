@@ -121,7 +121,11 @@ jobs:
       run: |
         PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_build }})
         for plugin in "${PLUGINS[@]}"; do
+          echo "::group::Building plugin $plugin"
+
           decky plugin build -b -o /tmp/output -s directory plugins/$plugin
+
+          echo "::endgroup::"
         done
 
     - name: Upload Artifacts to Github
@@ -138,6 +142,7 @@ jobs:
         PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_upload }})
         shopt -s dotglob
         for plugin in "${PLUGINS[@]}"; do
+          echo "::group::Processing plugin $PLUGIN_NAME v$PLUGIN_VERSION (by $PLUGIN_AUTHOR)"
           artifact=/tmp/output/$plugin.zip
 
           if [[ -z $artifact ]]; then
@@ -150,14 +155,14 @@ jobs:
             echo $result
           }
 
-          upload_plugin () {
-            PLUGIN_NAME=$(query_plugin_json '.name')
-            PLUGIN_AUTHOR=$(query_plugin_json '.author')
-            PLUGIN_DESCRIPTION=$(query_plugin_json '.publish.description')
-            PLUGIN_VERSION=$(query_plugin_json '.version')
-            PLUGIN_IMAGE=$(query_plugin_json '.publish.image')
-            PLUGIN_TAGS=$(query_plugin_json '.publish.tags|join(",")')
+          PLUGIN_NAME=$(query_plugin_json '.name')
+          PLUGIN_AUTHOR=$(query_plugin_json '.author')
+          PLUGIN_DESCRIPTION=$(query_plugin_json '.publish.description')
+          PLUGIN_VERSION=$(query_plugin_json '.version')
+          PLUGIN_IMAGE=$(query_plugin_json '.publish.image')
+          PLUGIN_TAGS=$(query_plugin_json '.publish.tags|join(",")')
 
+          upload_plugin () {
             curl -X POST \
                  -H "Authorization: ${SUBMIT_AUTH_KEY}" \
                  -F "name=$PLUGIN_NAME" \
@@ -172,8 +177,7 @@ jobs:
           shouldUpload=$(query_plugin_json '.publish | any(.tags[] == "dnu"; .) | not')
 
           if [[ "$shouldUpload" == "true" ]]; then
-            echo "::notice::Uploading plugin $PLUGIN_NAME v$PLUGIN_VERSION (by $PLUGIN_AUTHOR)"
-
+            echo "::notice::Uploading"
             upload_response=$(upload_plugin)
             if [[ "$upload_response" =~ "Version already exists" ]]; then
               echo "::warning title=Could not upload $plugin::Version of plugin being pushed already exists, moving to next plugin."
@@ -182,8 +186,9 @@ jobs:
               exit 1
             fi
           else
-            echo "::warning::Plugin $plugin is marked as 'do not upload'. Consider removing the 'dnu' tag if this is an accident."
+            echo "::warning::Plugin $PLUGIN_NAME is marked as 'do not upload'. Consider removing the 'dnu' tag if this is an accident."
           fi
+          echo "::endgroup::"
         done
       env:
         SUBMIT_AUTH_KEY: ${{ secrets.SUBMIT_AUTH_KEY }}
