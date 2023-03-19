@@ -117,10 +117,10 @@ jobs:
         for plugin in "${PLUGINS[@]}"; do
           echo "::group::Appending hash to plugin $plugin"
 
-          PACKAGE_FiLE="plugins/$plugin"
+          PACKAGE_FILE="plugins/$plugin/package.json"
 
           SHA=$(cut -c1-7 <<< "${{ github.event.pull_request.head.sha || github.sha }}")
-          VERSION=$(jq '.version' plugins/$plugin/package.json)
+          VERSION=$(jq -r '.version' $PACKAGE_FILE)
           NEW_VERSION="$VERSION-$SHA"
 
           echo "::notice::Going from $VERSION to $NEW_VERSION"
