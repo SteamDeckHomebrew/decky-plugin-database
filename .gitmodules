@@ -108,3 +108,6 @@
 [submodule "plugins/SDH-QuickLaunch"]
 	path = plugins/SDH-QuickLaunch
 	url = https://github.com/Fisch03/SDH-QuickLaunch
+[submodule "plugins/decky-cloud-save"]
+	path = plugins/decky-cloud-save
+	url = https://github.com/GedasFX/decky-cloud-save

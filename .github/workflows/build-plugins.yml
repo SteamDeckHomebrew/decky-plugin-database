@@ -207,6 +207,17 @@ jobs:
             elif [[ "$upload_response" =~ "INVALID AUTH KEY" ]]; then
               echo "::error::Authentication Key used is invalid, exiting."
               exit 1
+            elif [[ "$upload_response" =~ "invalid or missing URL scheme" ]]; then
+                  echo "url format in plugin.json is broken, please investigate."
+                  if [[ "$upload_response" =~ "image" ]]; then
+                    echo "Submitted screenshot URL does not exist or is broken."
+                    exit 1
+                  else
+                    echo "Unknown URL is broken, please see output below"
+                    echo "$upload_response"
+                    exit 1
+                  fi
+              exit 1
             fi
           else
             echo "::warning::Plugin $PLUGIN_NAME is marked as 'do not upload'. Consider removing the 'dnu' tag if this is an accident."
