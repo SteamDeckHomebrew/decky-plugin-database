@@ -105,3 +105,9 @@
 [submodule "plugins/deck-roulette"]
 	path = plugins/deck-roulette
 	url = git@github.com:davocarli/deck-roulette.git
+[submodule "plugins/SDH-QuickLaunch"]
+	path = plugins/SDH-QuickLaunch
+	url = https://github.com/Fisch03/SDH-QuickLaunch
+[submodule "plugins/decky-cloud-save"]
+	path = plugins/decky-cloud-save
+	url = https://github.com/GedasFX/decky-cloud-save
