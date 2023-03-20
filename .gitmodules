@@ -117,3 +117,6 @@
 [submodule "plugins/decky-networkinfo"]
 	path = plugins/decky-networkinfo
 	url = https://github.com/kimar/decky-networkinfo
+[submodule "plugins/SDH-PlayTime"]
+	path = plugins/SDH-PlayTime
+	url = https://github.com/ma3a/SDH-PlayTime.git
