@@ -1,0 +1,10 @@
+{
+  "name": "Storage Cleaner",
+  "author": "Matt Carlucci <matt@uxdev.io>",
+  "flags": ["debug", "_root"],
+  "publish": {
+    "tags": ["storage", "memory", "shader", "cache", "disk", "utility"],
+    "description": "Tidy up your Deck's storage space",
+    "image": "https://opengraph.githubassets.com/1/SteamDeckHomebrew/PluginLoader"
+  }
+}
