@@ -114,3 +114,6 @@
 [submodule "plugins/decky-storage-cleaner"]
 	path = plugins/decky-storage-cleaner
 	url = https://github.com/mcarlucci/decky-storage-cleaner
+[submodule "plugins/free-game-checker"]
+	path = plugins/free-game-checker
+	url = https://github.com/danivdwerf/free-game-checker.git
