@@ -173,6 +173,11 @@ jobs:
             continue
           fi
 
+          query_package_json () {
+            local result=$(unzip -p $artifact $plugin/package.json | jq -r "$1")
+            echo $result
+          }
+
           query_plugin_json () {
             local result=$(unzip -p $artifact $plugin/plugin.json | jq -r "$1")
             echo $result
@@ -181,7 +186,7 @@ jobs:
           PLUGIN_NAME=$(query_plugin_json '.name')
           PLUGIN_AUTHOR=$(query_plugin_json '.author')
           PLUGIN_DESCRIPTION=$(query_plugin_json '.publish.description')
-          PLUGIN_VERSION=$(query_plugin_json '.version')
+          PLUGIN_VERSION=$(query_package_json '.version')
           PLUGIN_IMAGE=$(query_plugin_json '.publish.image')
           PLUGIN_TAGS=$(query_plugin_json '.publish.tags|join(",")')
 
