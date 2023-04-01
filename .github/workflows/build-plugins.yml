@@ -146,8 +146,8 @@ jobs:
         for plugin in "${PLUGINS[@]}"; do
           echo "::group::Building plugin $plugin"
 
-          # Run the CLI as sudo to get around Docker's weird permissions
-          sudo decky plugin build -b -o /tmp/output -s directory plugins/$plugin
+          # Run the CLI as root to get around Docker's weird permissions
+          sudo $(which decky) plugin build -b -o /tmp/output -s directory plugins/$plugin
           sudo chown -R $(whoami) plugins/$plugin
 
           echo "::endgroup::"
