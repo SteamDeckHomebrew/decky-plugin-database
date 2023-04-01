@@ -117,3 +117,4 @@
 [submodule "plugins/free-game-checker"]
 	path = plugins/free-game-checker
 	url = https://github.com/danivdwerf/free-game-checker.git
+	branch=main
