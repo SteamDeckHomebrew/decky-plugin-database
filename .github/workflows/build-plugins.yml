@@ -165,7 +165,7 @@ jobs:
         PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_upload }})
         shopt -s dotglob
         for plugin in "${PLUGINS[@]}"; do
-          echo "::group::Processing plugin $PLUGIN_NAME v$PLUGIN_VERSION (by $PLUGIN_AUTHOR)"
+          echo "::group::Processing plugin $plugin"
           artifact=/tmp/output/$plugin.zip
 
           if [[ -z $artifact ]]; then
@@ -189,6 +189,8 @@ jobs:
           PLUGIN_VERSION=$(query_package_json '.version')
           PLUGIN_IMAGE=$(query_plugin_json '.publish.image')
           PLUGIN_TAGS=$(query_plugin_json '.publish.tags|join(",")')
+
+          echo "::notice::Processing plugin $PLUGIN_NAME v$PLUGIN_VERSION (by $PLUGIN_AUTHOR)"
 
           upload_plugin () {
             curl -X POST \
