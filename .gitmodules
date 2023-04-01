@@ -114,3 +114,6 @@
 [submodule "plugins/decky-storage-cleaner"]
 	path = plugins/decky-storage-cleaner
 	url = https://github.com/mcarlucci/decky-storage-cleaner
+[submodule "plugins/decky-networkinfo"]
+	path = plugins/decky-networkinfo
+	url = https://github.com/kimar/decky-networkinfo
