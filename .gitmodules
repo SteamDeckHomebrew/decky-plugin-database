@@ -117,3 +117,6 @@
 [submodule "plugins/decky-networkinfo"]
 	path = plugins/decky-networkinfo
 	url = https://github.com/kimar/decky-networkinfo
+[submodule "plugins/SDH-GameThemeMusic"]
+	path = plugins/SDH-GameThemeMusic
+	url = git@github.com:OMGDuke/SDH-GameThemeMusic.git
