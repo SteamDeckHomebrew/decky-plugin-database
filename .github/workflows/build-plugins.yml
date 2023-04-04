@@ -227,6 +227,8 @@ jobs:
                     exit 1
                   fi
               exit 1
+            else then
+              echo "::notice::$upload_response"
             fi
           else
             echo "::warning::Plugin $PLUGIN_NAME is marked as 'do not upload'. Consider removing the 'dnu' tag if this is an accident."
