@@ -217,13 +217,13 @@ jobs:
               echo "::error::Authentication Key used is invalid, exiting."
               exit 1
             elif [[ "$upload_response" =~ "invalid or missing URL scheme" ]]; then
-                  echo "url format in plugin.json is broken, please investigate."
+                  echo "::error::url format in plugin.json is broken, please investigate."
                   if [[ "$upload_response" =~ "image" ]]; then
-                    echo "Submitted screenshot URL does not exist or is broken."
+                    echo "::error::Submitted screenshot URL does not exist or is broken."
                     exit 1
                   else
-                    echo "Unknown URL is broken, please see output below"
-                    echo "$upload_response"
+                    echo "::error::Unknown URL is broken, please see output below"
+                    echo "::error::$upload_response"
                     exit 1
                   fi
               exit 1
