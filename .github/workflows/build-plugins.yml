@@ -227,7 +227,7 @@ jobs:
                     exit 1
                   fi
               exit 1
-            else then
+            else
               echo "::notice::$upload_response"
             fi
           else
