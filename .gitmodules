@@ -102,3 +102,18 @@
 [submodule "plugins/Steamback"]
 	path = plugins/Steamback
 	url = https://github.com/geeksville/steamback.git
+[submodule "plugins/deck-roulette"]
+	path = plugins/deck-roulette
+	url = git@github.com:davocarli/deck-roulette.git
+[submodule "plugins/SDH-QuickLaunch"]
+	path = plugins/SDH-QuickLaunch
+	url = https://github.com/Fisch03/SDH-QuickLaunch
+[submodule "plugins/decky-cloud-save"]
+	path = plugins/decky-cloud-save
+	url = https://github.com/GedasFX/decky-cloud-save
+[submodule "plugins/decky-storage-cleaner"]
+	path = plugins/decky-storage-cleaner
+	url = https://github.com/mcarlucci/decky-storage-cleaner
+[submodule "plugins/decky-networkinfo"]
+	path = plugins/decky-networkinfo
+	url = https://github.com/kimar/decky-networkinfo
