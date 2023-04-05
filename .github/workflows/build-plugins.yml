@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - backend-builder
+      - use-cli
     paths:
       - "plugins/**"
       - ".github/workflows/build-plugins.yml"
@@ -12,7 +13,7 @@ on:
     branches: ['*']
   workflow_dispatch:
     inputs:
-      upload:
+      upload_all:
         type: boolean
         description: Upload plugins to production if CI has previously failed
       test_build:
@@ -45,41 +46,62 @@ jobs:
       id: changed-files
       env:
         isPr: ${{ github.event_name == 'pull_request_target' }}
+        uploadAll: ${{ inputs.upload_all }}
       run: |
         # Returns a list of paths relative to the git repository of the files that changed
         # In pull requests, it diffs files between the last commit in the pull request and main
         # In push events, it diffs between the current commit and the previous
 
         # Paths to be included in the diff
-        PATHS=(plugins .github/workflows/build-plugins.yml)
+        PATHS=(plugins)
 
         # Find refs to be diffed
         if [[ $isPr == "true" ]]; then
-          echo "PR detected. beep boop"
-
           # Fetch all remotes so we can properly diff
           git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
 
           # Diff with the ref of the target branch
           REF=${{ github.event.pull_request.base.sha }}
         else
-          echo "This is probably a push to main or something"
           # Diff with previous commit
           REF=HEAD^
         fi
 
-        FILES=$(git diff ${REF[@]} --name-only --submodule=diff -- ${PATHS[@]} | jq -Rsc 'split("\n")[:-1] | join (",")')
-        echo "all_changed_files=$FILES" >> $GITHUB_OUTPUT
+        ALL_PLUGINS=$(find ${PATHS[@]} -mindepth 1 -maxdepth 1 | xargs -r -L1 basename)
+        CHANGED_PLUGINS=$(git diff ${REF[@]} --name-only --submodule=diff -- ${PATHS[@]} | xargs -r -L1 basename)
 
-    - name: Cache Docker images
-      if: ${{ !env.ACT }}
-      uses: satackey/action-docker-layer-caching@46d2c640b1d8ef50d185452ad6fb324e6bd1d052
+        PLUGINS_PENDING_BUILD=$CHANGED_PLUGINS
+        PLUGINS_PENDING_UPLOAD=$CHANGED_PLUGINS
 
-    - name: Login to GitHub Container Registry
-      run: |
-        echo $GITHUB_TOKEN | docker login ghcr.io -u SteamDeckHomebrew --password-stdin
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WORKFLOW_CHANGED=$(git diff ${REF[@]} --name-only -- .github/workflows/build-plugins.yml)
+        if [[ $WORKFLOW_CHANGED ]]; then
+          echo "::notice::Workflow was changed. Setting all plugins as pending build."
+          PLUGINS_PENDING_BUILD=$ALL_PLUGINS
+        fi
+
+        if [[ $uploadAll == "true" ]]; then
+          echo "::notice::Workflow run set to upload_all. Setting all plugins as pending build and upload."
+          PLUGINS_PENDING_BUILD=$ALL_PLUGINS
+          PLUGINS_PENDING_UPLOAD=$ALL_PLUGINS
+        fi
+
+        if [[ "${{ env.testing }}" == "true" ]]; then
+          echo "::notice::Testing is enabled, using limited plugin set for build testing."
+          PLUGINS_PENDING_BUILD=${{ env.testing_plugins }}
+          PLUGINS_PENDING_UPLOAD=""
+        fi
+
+        echo "all_changed_plugins<<EOF" >> $GITHUB_OUTPUT
+        echo "$CHANGED_PLUGINS" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
+        echo "plugins_pending_build<<EOF" >> $GITHUB_OUTPUT
+        echo "$PLUGINS_PENDING_BUILD" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
+        echo "plugins_pending_upload<<EOF" >> $GITHUB_OUTPUT
+        echo "$PLUGINS_PENDING_UPLOAD" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
 
     - name: Wait for other runs to complete
       if: ${{ !env.ACT }}
@@ -87,261 +109,131 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Pull frontend builder image
-      run: docker pull ghcr.io/steamdeckhomebrew/builder:latest
-
-    - name: Pull backend builder image
-      run: docker pull ghcr.io/steamdeckhomebrew/holo-base:latest
-
-    - name: Log out of GitHub Container Registry
+    - name: Append hash to plugin version
+      if: ${{ github.event_name == 'pull_request_target' }}
       run: |
-        docker logout ghcr.io
+        echo "::notice::This run was triggered by a pull request. Appending the commit hash to the plugin version."
+        PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_build }})
+        for plugin in "${PLUGINS[@]}"; do
+          echo "::group::Appending hash to plugin $plugin"
 
-    - name: Detect edited files/plugins
-      id: list-files
-      run: |
-        pushd plugins
-        files=()
-        echo "Checking for file edits"
-        rest="${{ steps.changed-files.outputs.all_changed_files }}"
-        while [ -n "$rest" ] ; do
-          str=${rest%%,*}
-          [ "$rest" = "${rest/,/}" ] && rest= || rest=${rest#*,}
-          edited_files+=($(cut -d/ -f2 <<< $str))
-        done <<< "$edited_files"
-        if [[ "${{ steps.changed-files.outputs.all_changed_files }}" == *".github/workflows/build-plugins.yml"* || "${{ (github.event_name == 'workflow_dispatch' && github.event.inputs.upload) && 'true' }}" == "true" ]]; 
-        then
-          echo "Rebuilding all plugins due to workflow edit"
-          for file in ./plugins/*; do
-            files+=($(cut -d/ -f3 <<< $file))
-          done
-          echo "Checking to see what files were actually edited"
-          rest="${{ steps.changed-files.outputs.all_changed_files }}"
-          while [ -n "$rest" ] ; do
-            str=${rest%%,*}
-            [ "$rest" = "${rest/,/}" ] && rest= || rest=${rest#*,}
-            edited_files+=($(cut -d/ -f2 <<< $str))
-          done <<< "$edited_files"
-          printf "%s\n" "${edited_files[@]}" | sort -u
-        else
-          echo "Checking to see what files were edited"
-          rest="${{ steps.changed-files.outputs.all_changed_files }}"
-          while [ -n "$rest" ] ; do
-            str=${rest%%,*}
-            [ "$rest" = "${rest/,/}" ] && rest= || rest=${rest#*,}
-            edited_files+=($(cut -d/ -f2 <<< $str))
-          done <<< "$edited_files"
-          printf "%s\n" "${edited_files[@]}" | sort -u
-          files=$edited_files
-        fi
-        IFS=$'\n' sorted=($(sort -u <<<"${files[@]}"))
-        unset $IFS
-        IFS=$'\n' sorted_edited=($(sort -u <<<"${edited_files[@]}"))
-        unset $IFS
-        if [[ "${{ env.testing }}" == "true" ]]; then
-          echo "Testing is enabled, using limited plugin set for build testing."
-          read -a plugin_set <<< "${{ env.testing_plugins }}"
-          IFS=$' ' sorted=($(sort -u <<<"${plugin_set[@]}"))
-          unset $IFS
-          echo "files_out=${sorted[@]}" >> $GITHUB_ENV
-        else
-          echo "Testing is disabled, using expected (all for CI change or PR for changed plugins etc) plugin set for build."
-          echo "files_out=${sorted[@]}" >> $GITHUB_ENV
-        fi
-        echo "edited_files_out=${sorted_edited[@]}" >> $GITHUB_ENV
-        popd
-        echo "Sorted "Changed" Files:"
-        echo "${sorted[@]}"
-        echo "Sorted Edited Files:"
-        echo "${sorted_edited[@]}"
-        
-    - name: Build plugin backends
-      run: |
-        IFS=' ' read -ra files <<< "${{ env.files_out }}"
-        pushd plugins
-        for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
-          pushd $plugin
-          echo "Detecting backend for plugin $plugin"
-          dockerfile_exists="false"
-          entrypoint_exists="false"
-          docker_name="backend-${plugin,,}"
-          # [ -d $PWD/backend ] && echo "$(ls -lla $PWD/backend | grep Dockerfile)"
-          [ -f $PWD/backend/Dockerfile ] && dockerfile_exists=true
-          [ -f $PWD/backend/entrypoint.sh ] && entrypoint_exists=true
-          # check for Dockerfile
-          if [[ "$dockerfile_exists" == "true" ]]; then
-            echo "Grabbing provided dockerfile."
-            echo "Building provided Dockerfile."
-            docker build --pull -f $PWD/backend/Dockerfile -t "$docker_name" .
-            mkdir -p /tmp/output/$plugin/backend/out
-            # check entrypoint script exists
-            if [[ "$entrypoint_exists" == "true" ]]; then
-              echo "Running docker image "$docker_name" with provided entrypoint script."
-              docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out --entrypoint /backend/entrypoint.sh "$docker_name"
-              mkdir -p /tmp/output/$plugin/bin
-              cp -r /tmp/output/$plugin/backend/out/. /tmp/output/$plugin/bin
-            else
-              echo "Running docker image "$docker_name" with entrypoint script specified in Dockerfile."
-              docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out "$docker_name"
-              mkdir -p /tmp/output/$plugin/bin
-              cp -r /tmp/output/$plugin/backend/out/. /tmp/output/$plugin/bin
-            fi
-            docker image rm "$docker_name"
-            echo "Built $plugin backend"
-          # Dockerfile doesn't exist but entrypoint script does, run w/ default image
-          elif [[ "$dockerfile_exists" == "false" && "$entrypoint_exists" == "true" ]]; then
-            echo "Grabbing default docker image and using provided entrypoint script."
-            docker run --rm -i -v $PWD/backend:/backend -v /tmp/output/$plugin/backend/out:/backend/out ghcr.io/steamdeckhomebrew/holo-base:latest
-            mkdir -p /tmp/output/$plugin/bin
-            cp /tmp/output/$plugin/backend/out/. /tmp/output/$plugin/bin
-            echo "Built $plugin backend"
-          else
-            echo "Plugin $plugin does not have a backend"
-          fi
-          # ls -lla /tmp/output/$plugin
-          popd
+          PACKAGE_FILE="plugins/$plugin/package.json"
+
+          SHA=$(cut -c1-7 <<< "${{ github.event.pull_request.head.sha || github.sha }}")
+          VERSION=$(jq -r '.version' $PACKAGE_FILE)
+          NEW_VERSION="$VERSION-$SHA"
+
+          echo "::notice::Going from $VERSION to $NEW_VERSION"
+
+          tmp=$(mktemp)
+          jq --arg newversion "$NEW_VERSION" '.version = $newversion' $PACKAGE_FILE > $tmp
+          mv $tmp $PACKAGE_FILE
+
+          echo "::endgroup::"
         done
-        popd
 
-    - name: Build plugin frontends
+    - name: Download Decky CLI
       run: |
-        IFS=' ' read -ra files <<< "${{ env.files_out }}"
-        pushd plugins
-        for plugin in $(printf "%s\n" "${files[@]}" | sort -u); do
-          pushd $plugin
-          docker run --rm -i -v $PWD:/plugin -v /tmp/output/$plugin:/out ghcr.io/steamdeckhomebrew/builder:latest
-          echo Built $plugin frontend
-          ls -lla /tmp/output/$plugin
-          popd
-        done
-        popd
-        
-    - name: Zip Plugins
+        mkdir /tmp/decky-cli
+        curl -L -o /tmp/decky-cli/decky "https://github.com/SteamDeckHomebrew/cli/releases/download/0.0.1-alpha.9/decky"
+        chmod +x /tmp/decky-cli/decky
+
+        echo "/tmp/decky-cli" >> $GITHUB_PATH
+
+    - name: Build plugins
       run: |
-        shopt -s dotglob
-        mkdir -p /tmp/zips/
-        mkdir -p /tmp/output/
-        redtext=$'\e[1;31m'
-        end=$'\e[0m'
-        pushd /tmp/output
-        for abs_plugin in /tmp/output/*; do
-          plugin=$(basename $abs_plugin)
-          zipname=/tmp/zips/$(basename ${plugin}).zip
-          echo $plugin
+        PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_build }})
+        for plugin in "${PLUGINS[@]}"; do
+          echo "::group::Building plugin $plugin"
 
-          # Names of the optional files (the license can either be called license or license.md, not both)
-          # (head is there to take the first file, because we're assuming there's only a single license file)
-          license="$(find $plugin -maxdepth 1 -type f \( -iname "license" -o -iname "license.md" \) -printf '%P\n' | head -n 1)"
-          readme="$(find $plugin -maxdepth 1 -type f -iname 'readme.md' -printf '%P\n')"
-          haspython="$(find $plugin -maxdepth 1 -type f -name '*.py' -printf '%P\n')"
-          # Check if plugin has a bin folder, if so, add "bin" and it's contents to root dir
-          hasbin="$(find $plugin -maxdepth 1 -type d -name 'bin' -printf '%P\n')"
-          # Check if plugin has a defaults folder, if so, add "default" contents to root dir
-          hasdefaults="$(find $plugin -maxdepth 1 -type d -name 'defaults' -printf '%P\n')"
-          if [[ "${{ secrets.STORE_ENV }}" == "testing" ]]; then
-            long_sha="${{ github.event.pull_request.head.sha || github.sha }}"
-            sha=$(echo $long_sha | cut -c1-7)
-            cat $plugin/package.json | jq --arg jqsha "$sha" '.version |= . + "-" + $jqsha' | sudo tee $plugin/$sha-package.json
-            sudo mv $plugin/$sha-package.json $plugin/package.json
-          fi
-          # Add required plugin files (and directory) to zip file
-          echo "$plugin/dist $plugin/plugin.json $plugin/package.json"
-          zip -r $zipname "$plugin/dist" "$plugin/plugin.json" "$plugin/package.json"
-          if [ ! -z "$hasbin" ]; then
-            echo "$plugin/bin"
-            zip -r $zipname "$plugin/bin"
-          fi
+          # Run the CLI as root to get around Docker's weird permissions
+          sudo $(which decky) plugin build -b -o /tmp/output -s directory plugins/$plugin
+          sudo chown -R $(whoami) plugins/$plugin
 
-          if [ ! -z "$haspython" ]; then
-            echo "$plugin/*.py"
-            find $plugin -mindepth 0 -maxdepth 1 -name 'defaults' -prune -o -type f -name '*.py' -exec zip -r $zipname {} \;
-          fi
-
-          if [ ! -z "$hasdefaults" ]; then
-            export workingdir=$PWD
-            cd $plugin/defaults
-            export plugin="$plugin"
-            export zipname="$zipname"
-            if [ ! -f "defaults.txt" ]; then
-              find . -mindepth 1 -type d,f -name '*' -exec bash -c '
-                for object do
-                  outdir="/tmp/output"
-                  name="$(basename $object)"
-                  # echo "object = $object, name = $name"
-                  if [ -e "$object" ]; then
-                    sudo mv "$object" $outdir/$plugin/$name
-                    moved="$?"
-                    # echo "moved = $moved"
-                    pushd $workingdir
-                    if [ "$moved" = "0" ]; then
-                      zip -r $zipname $plugin/$name
-                    fi
-                    popd
-                  fi
-                done
-              ' find-sh {} + ;
-            else
-              if [[ ! "$plugin" =~ "plugin-template" ]]; then
-                printf "${red}defaults.txt found in defaults folder, please remove either defaults.txt or the defaults folder.${end}\n"
-              else
-                printf "plugin template, allowing defaults.txt\n"
-              fi
-            fi
-            cd "$workingdir"
-          fi
-
-          # Check if other files exist, and if they do, add them
-          echo "license:$plugin/$license readme:$plugin/$readme"
-          if [ ! -z "$license" ]; then
-            zip -r $zipname "$plugin/$license"
-          fi
-          if [ ! -z "$readme" ]; then
-            zip -r $zipname "$plugin/$readme"
-          fi
+          echo "::endgroup::"
         done
-        popd
 
     - name: Upload Artifacts to Github
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
       with:
         name: plugins
-        path: /tmp/zips/*
+        path: /tmp/output/*.zip
 
     - name: Upload plugins to store
       if: ${{ !env.ACT }}
       id: upload-plugins
       run: |
+        PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_upload }})
         shopt -s dotglob
-        for plugin in /tmp/output/*; do
-          zipname=/tmp/zips/$(basename ${plugin}).zip
-          pushd $plugin
-          donotupload=$(jq -r '.publish | any(.tags[] == "dnu"; .)' ./plugin.json)
-          IFS=' ' read -ra edited_files <<< "${{ env.edited_files_out }}"
-          if [[ "$donotupload" == "false" ]]; then
-            for edited_plugin in $(printf "%s\n" "${edited_files[@]}" | sort -u); do
-              plugin_nodir=$(echo "$plugin" | sed -e "s|^/tmp/output/||")
-              if [[ "$plugin_nodir" =~ "$edited_plugin" ]] || [[ "${{ env.still_upload }}" == "true" ]]; then
-                output=$(curl -X POST -H "Authorization: ${SUBMIT_AUTH_KEY}" -F "name=$(jq -r '.name' ./plugin.json)" -F "author=$(jq -r '.author' ./plugin.json)" -F "description=$(jq -r '.publish.description' ./plugin.json)" -F "tags=$(jq -r '.publish.tags|join(",")' ./plugin.json)" -F "version_name=$(jq -r '.version' ./package.json)" -F "image=$(jq -r '.publish.image' ./plugin.json)" -F "file=@${zipname}" ${STORE_URL}/__submit)
-                if [[ "$output" =~ "Version already exists" ]]; then
-                  echo "Version of $plugin being pushed already exists, moving to next plugin."
-                  echo "::warning title=Could not upload $plugin::Version of plugin being pushed already exists, moving to next plugin."
-                elif [[ "$output" =~ "INVALID AUTH KEY" ]]; then
-                  echo "Authentication Key used is invalid, exiting."
-                  exit 1
-                else
-                  echo "$output"
-                fi
-              else
-                echo "Plugin $plugin could not be uploaded as it was built only to test CI changes."
-                break
-              fi
-            done
-          else
-            echo "Plugin $plugin is designated as 'do not upload', likely a template or CI demonstration."
+        for plugin in "${PLUGINS[@]}"; do
+          echo "::group::Processing plugin $plugin"
+          artifact=/tmp/output/$plugin.zip
+
+          if [[ -z $artifact ]]; then
+            echo "::error::Could not find artifact for $plugin in $artifact"
+            continue
           fi
-          unset $IFS
-          popd
+
+          query_package_json () {
+            local result=$(unzip -p $artifact $plugin/package.json | jq -r "$1")
+            echo $result
+          }
+
+          query_plugin_json () {
+            local result=$(unzip -p $artifact $plugin/plugin.json | jq -r "$1")
+            echo $result
+          }
+
+          PLUGIN_NAME=$(query_plugin_json '.name')
+          PLUGIN_AUTHOR=$(query_plugin_json '.author')
+          PLUGIN_DESCRIPTION=$(query_plugin_json '.publish.description')
+          PLUGIN_VERSION=$(query_package_json '.version')
+          PLUGIN_IMAGE=$(query_plugin_json '.publish.image')
+          PLUGIN_TAGS=$(query_plugin_json '.publish.tags|join(",")')
+
+          echo "::notice::Processing plugin $PLUGIN_NAME v$PLUGIN_VERSION (by $PLUGIN_AUTHOR)"
+
+          upload_plugin () {
+            curl -X POST \
+                 -H "Authorization: ${SUBMIT_AUTH_KEY}" \
+                 -F "name=$PLUGIN_NAME" \
+                 -F "author=$PLUGIN_AUTHOR" \
+                 -F "description=$PLUGIN_DESCRIPTION" \
+                 -F "tags=$PLUGIN_TAGS" \
+                 -F "version_name=$PLUGIN_VERSION" \
+                 -F "image=$PLUGIN_IMAGE" \
+                 -F "file=@$artifact" ${STORE_URL}/__submit
+          }
+
+          shouldUpload=$(query_plugin_json '.publish | any(.tags[] == "dnu"; .) | not')
+
+          if [[ "$shouldUpload" == "true" ]]; then
+            echo "::notice::Uploading"
+            upload_response=$(upload_plugin)
+            if [[ "$upload_response" =~ "Version already exists" ]]; then
+              echo "::warning title=Could not upload $plugin::Version of plugin being pushed already exists, moving to next plugin."
+            elif [[ "$upload_response" =~ "INVALID AUTH KEY" ]]; then
+              echo "::error::Authentication Key used is invalid, exiting."
+              exit 1
+            elif [[ "$upload_response" =~ "invalid or missing URL scheme" ]]; then
+                  echo "::error::url format in plugin.json is broken, please investigate."
+                  if [[ "$upload_response" =~ "image" ]]; then
+                    echo "::error::Submitted screenshot URL does not exist or is broken."
+                    exit 1
+                  else
+                    echo "::error::Unknown URL is broken, please see output below"
+                    echo "::error::$upload_response"
+                    exit 1
+                  fi
+              exit 1
+            else
+              echo "::notice::$upload_response"
+            fi
+          else
+            echo "::warning::Plugin $PLUGIN_NAME is marked as 'do not upload'. Consider removing the 'dnu' tag if this is an accident."
+          fi
+          echo "::endgroup::"
         done
       env:
         SUBMIT_AUTH_KEY: ${{ secrets.SUBMIT_AUTH_KEY }}
