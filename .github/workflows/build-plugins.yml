@@ -88,6 +88,7 @@ jobs:
         if [[ "${{ env.testing }}" == "true" ]]; then
           echo "::notice::Testing is enabled, using limited plugin set for build testing."
           PLUGINS_PENDING_BUILD=(${{ env.testing_plugins }})
+          PLUGINS_PENDING_BUILD=$(IFS=$'\n'; echo "${PLUGINS_PENDING_BUILD[*]}")
           PLUGINS_PENDING_UPLOAD=""
         fi
 
