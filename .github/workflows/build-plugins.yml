@@ -123,6 +123,36 @@ jobs:
 
        echo "plugins=$PLUGINS" >> $GITHUB_OUTPUT
 
+    - name: Generate job summary
+      id: generate-summary
+      run: |
+       PLUGINS_PENDING_BUILD=(${{ steps.changed-files.outputs.plugins_pending_build }})
+       PLUGINS_PENDING_UPLOAD=(${{ steps.changed-files.outputs.plugins_pending_upload }})
+
+       echo "| Plugin | Build | Upload |" >> "$GITHUB_STEP_SUMMARY"
+       echo "| ------ | ----- | ------ |" >> "$GITHUB_STEP_SUMMARY"
+
+       yes="✔️"
+       no="🚫"
+
+       for plugin in "${PLUGINS_PENDING_BUILD[@]}"; do
+
+         # Find whether plugin needs to be uploaded
+         upload="$no"
+         for uploadPlugin in "${PLUGINS_PENDING_UPLOAD[@]}"; do
+           if [[ "$uploadPlugin" == "$plugin" ]]; then
+             upload=1
+             break
+           fi
+         done
+
+         if [[ "$upload" == 1 ]]; then
+          upload="$yes"
+         fi
+
+         echo "| $plugin | $yes | $upload |" >> "$GITHUB_STEP_SUMMARY"
+       done
+
 
     # ------------------------------------------------------------------
 
