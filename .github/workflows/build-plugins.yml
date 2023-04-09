@@ -179,7 +179,7 @@ jobs:
 
     - name: Checkout relevant plugin submodule
       run: |
-        git submodule update --init -- plugins/$plugin
+        git submodule update --recursive --init -- plugins/$plugin
 
     - name: Append hash to plugin version
       if: ${{ github.event_name == 'pull_request_target' }}
