@@ -14,12 +14,12 @@ on:
   workflow_dispatch:
     inputs:
       plugin_override:
-        description: Whitespace-separated list of plugin names to be built and uploaded. Enter "#all" to build and upload all plugins.
+        description: Whitespace-separated list of plugin names to be built and uploaded. Enter "#all" to build and upload all plugins. Leave blank to use the default behavior.
         type: string
         required: false
       test_build:
         type: boolean
-        description: Enable to build a limited set of plugins
+        description: Build pre-selected list of plugins for testing. They will not be uploaded.
 
 env:
   still_upload: ${{ inputs.upload }}
