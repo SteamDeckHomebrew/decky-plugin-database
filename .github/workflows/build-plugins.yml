@@ -13,9 +13,10 @@ on:
     branches: ['*']
   workflow_dispatch:
     inputs:
-      upload_all:
-        type: boolean
-        description: Upload plugins to production if CI has previously failed
+      plugin_override:
+        description: Whitespace-separated list of plugin names to be built and uploaded. Enter "#all" to build and upload all plugins.
+        type: string
+        required: false
       test_build:
         type: boolean
         description: Enable to build a limited set of plugins
@@ -46,7 +47,7 @@ jobs:
       id: changed-files
       env:
         isPr: ${{ github.event_name == 'pull_request_target' }}
-        uploadAll: ${{ inputs.upload_all }}
+        pluginOverride: ${{ inputs.plugin_override }}
       run: |
         # Returns a list of paths relative to the git repository of the files that changed
         # In pull requests, it diffs files between the last commit in the pull request and main
@@ -79,8 +80,8 @@ jobs:
           PLUGINS_PENDING_BUILD=$ALL_PLUGINS
         fi
 
-        if [[ $uploadAll == "true" ]]; then
-          echo "::notice::Workflow run set to upload_all. Setting all plugins as pending build and upload."
+        if [[ $pluginOverride == "#all" ]]; then
+          echo "::notice::Workflow run set to upload all. Setting all plugins as pending build and upload."
           PLUGINS_PENDING_BUILD=$ALL_PLUGINS
           PLUGINS_PENDING_UPLOAD=$ALL_PLUGINS
         fi
@@ -90,6 +91,13 @@ jobs:
           PLUGINS_PENDING_BUILD=(${{ env.testing_plugins }})
           PLUGINS_PENDING_BUILD=$(IFS=$'\n'; echo "${PLUGINS_PENDING_BUILD[*]}")
           PLUGINS_PENDING_UPLOAD=""
+        fi
+
+        if [[ $pluginOverride ]]; then
+          echo "::notice::Plugin override is set. Disregard previous notices. Building $pluginOverride"
+          plugins=$(tr " " "\n" <<< "$pluginOverride")
+          PLUGINS_PENDING_BUILD=$plugins
+          PLUGINS_PENDING_UPLOAD=$plugins
         fi
 
         echo "all_changed_plugins<<EOF" >> $GITHUB_OUTPUT
