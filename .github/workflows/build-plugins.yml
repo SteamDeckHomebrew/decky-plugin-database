@@ -13,12 +13,13 @@ on:
     branches: ['*']
   workflow_dispatch:
     inputs:
-      upload_all:
-        type: boolean
-        description: Upload plugins to production if CI has previously failed
+      plugin_override:
+        description: Whitespace-separated list of plugin names to be built and uploaded. Enter "#all" to build and upload all plugins. Leave blank to use the default behavior.
+        type: string
+        required: false
       test_build:
         type: boolean
-        description: Enable to build a limited set of plugins
+        description: Build pre-selected list of plugins for testing. They will not be uploaded.
 
 env:
   still_upload: ${{ inputs.upload }}
@@ -26,11 +27,11 @@ env:
   testing_plugins: "Bluetooth ControllerTools SDH-AudioLoader SDH-CssLoader moondeck memory-deck Fantastic"
 
 jobs:
-  build:
-    name: Build updated plugins
+  find:
+    name: Find plugins to be built
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.upload))) && 'env' || 'testing_env' }}
+    outputs:
+      plugins: ${{ steps.generate-matrix.outputs.plugins }}
 
     steps:
     - name: Checkout
@@ -46,7 +47,7 @@ jobs:
       id: changed-files
       env:
         isPr: ${{ github.event_name == 'pull_request_target' }}
-        uploadAll: ${{ inputs.upload_all }}
+        pluginOverride: ${{ inputs.plugin_override }}
       run: |
         # Returns a list of paths relative to the git repository of the files that changed
         # In pull requests, it diffs files between the last commit in the pull request and main
@@ -79,16 +80,24 @@ jobs:
           PLUGINS_PENDING_BUILD=$ALL_PLUGINS
         fi
 
-        if [[ $uploadAll == "true" ]]; then
-          echo "::notice::Workflow run set to upload_all. Setting all plugins as pending build and upload."
+        if [[ $pluginOverride == "#all" ]]; then
+          echo "::notice::Workflow run set to upload all. Setting all plugins as pending build and upload."
           PLUGINS_PENDING_BUILD=$ALL_PLUGINS
           PLUGINS_PENDING_UPLOAD=$ALL_PLUGINS
         fi
 
         if [[ "${{ env.testing }}" == "true" ]]; then
           echo "::notice::Testing is enabled, using limited plugin set for build testing."
-          PLUGINS_PENDING_BUILD=${{ env.testing_plugins }}
+          PLUGINS_PENDING_BUILD=(${{ env.testing_plugins }})
+          PLUGINS_PENDING_BUILD=$(IFS=$'\n'; echo "${PLUGINS_PENDING_BUILD[*]}")
           PLUGINS_PENDING_UPLOAD=""
+        fi
+
+        if [[ $pluginOverride ]]; then
+          echo "::notice::Plugin override is set. Disregard previous notices. Building $pluginOverride"
+          plugins=$(tr " " "\n" <<< "$pluginOverride")
+          PLUGINS_PENDING_BUILD=$plugins
+          PLUGINS_PENDING_UPLOAD=$plugins
         fi
 
         echo "all_changed_plugins<<EOF" >> $GITHUB_OUTPUT
@@ -103,138 +112,206 @@ jobs:
         echo "$PLUGINS_PENDING_UPLOAD" >> $GITHUB_OUTPUT
         echo "EOF" >> $GITHUB_OUTPUT
 
-    - name: Wait for other runs to complete
+    - name: Generate plugin matrix
+      id: generate-matrix
+      run: |
+       PLUGINS_PENDING_BUILD=(${{ steps.changed-files.outputs.plugins_pending_build }})
+       PLUGINS_PENDING_UPLOAD=(${{ steps.changed-files.outputs.plugins_pending_upload }})
+
+       # Outputs an array of plugins to be built, specifying if they should be uploaded or not
+       # [{ "name": "Bluetooth", "upload": false }, { "name": "PowerTools", "upload": "true" }]
+       PLUGINS=$(
+           jq --null-input \
+               --join-output \
+               --compact-output \
+               --arg build "${PLUGINS_PENDING_BUILD[*]}" \
+               --arg upload "${PLUGINS_PENDING_UPLOAD[*]}" \
+               '($upload | split(" ")) as $upload | $build | split(" ") | map(. as $plugin | { name: $plugin, upload: ($upload | any(contains($plugin))) })'
+       )
+
+       echo "plugins=$PLUGINS" >> $GITHUB_OUTPUT
+
+    - name: Generate job summary
+      id: generate-summary
+      run: |
+       PLUGINS_PENDING_BUILD=(${{ steps.changed-files.outputs.plugins_pending_build }})
+       PLUGINS_PENDING_UPLOAD=(${{ steps.changed-files.outputs.plugins_pending_upload }})
+
+       echo "| Plugin | Build | Upload |" >> "$GITHUB_STEP_SUMMARY"
+       echo "| ------ | ----- | ------ |" >> "$GITHUB_STEP_SUMMARY"
+
+       yes="✔️"
+       no="🚫"
+
+       for plugin in "${PLUGINS_PENDING_BUILD[@]}"; do
+
+         # Find whether plugin needs to be uploaded
+         upload="$no"
+         for uploadPlugin in "${PLUGINS_PENDING_UPLOAD[@]}"; do
+           if [[ "$uploadPlugin" == "$plugin" ]]; then
+             upload=1
+             break
+           fi
+         done
+
+         if [[ "$upload" == 1 ]]; then
+          upload="$yes"
+         fi
+
+         echo "| $plugin | $yes | $upload |" >> "$GITHUB_STEP_SUMMARY"
+       done
+
+
+    # ------------------------------------------------------------------
+
+  build:
+    name: Build plugin
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.plugin_override))) && 'env' || 'testing_env' }}
+    needs:
+      - find
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.find.outputs.plugins) }}
+    env:
+      plugin: ${{ matrix.name }}
+    steps:
+    - name: Checkout
       if: ${{ !env.ACT }}
-      uses: pau1ocampos/turnstyle@17e7c2e349edeb2fc92d15e99f389c6011e02956
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: actions/checkout@8230315d06ad95c617244d2f265d237a1682d445
+      with:
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Checkout relevant plugin submodule
+      run: |
+        # Default to HTTPS always
+        git config --global url."https://github.com/".insteadOf git@github.com:
+        git config --global url."https://".insteadOf git://
+
+        git submodule update --recursive --init -- plugins/$plugin
 
     - name: Append hash to plugin version
       if: ${{ github.event_name == 'pull_request_target' }}
       run: |
         echo "::notice::This run was triggered by a pull request. Appending the commit hash to the plugin version."
-        PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_build }})
-        for plugin in "${PLUGINS[@]}"; do
-          echo "::group::Appending hash to plugin $plugin"
+        echo "::group::Appending hash to plugin $plugin"
 
-          PACKAGE_FILE="plugins/$plugin/package.json"
+        PACKAGE_FILE="plugins/$plugin/package.json"
 
-          SHA=$(cut -c1-7 <<< "${{ github.event.pull_request.head.sha || github.sha }}")
-          VERSION=$(jq -r '.version' $PACKAGE_FILE)
-          NEW_VERSION="$VERSION-$SHA"
+        SHA=$(cut -c1-7 <<< "${{ github.event.pull_request.head.sha || github.sha }}")
+        VERSION=$(jq -r '.version' $PACKAGE_FILE)
+        NEW_VERSION="$VERSION-$SHA"
 
-          echo "::notice::Going from $VERSION to $NEW_VERSION"
+        echo "::notice::Going from $VERSION to $NEW_VERSION"
 
-          tmp=$(mktemp)
-          jq --arg newversion "$NEW_VERSION" '.version = $newversion' $PACKAGE_FILE > $tmp
-          mv $tmp $PACKAGE_FILE
+        tmp=$(mktemp)
+        jq --arg newversion "$NEW_VERSION" '.version = $newversion' $PACKAGE_FILE > $tmp
+        mv $tmp $PACKAGE_FILE
 
-          echo "::endgroup::"
-        done
+        echo "::endgroup::"
 
     - name: Download Decky CLI
       run: |
         mkdir /tmp/decky-cli
-        curl -L -o /tmp/decky-cli/decky "https://github.com/SteamDeckHomebrew/cli/releases/download/0.0.1-alpha.9/decky"
+        curl -L -o /tmp/decky-cli/decky "https://github.com/SteamDeckHomebrew/cli/releases/download/0.0.1-alpha.10/decky"
         chmod +x /tmp/decky-cli/decky
 
         echo "/tmp/decky-cli" >> $GITHUB_PATH
 
     - name: Build plugins
       run: |
-        PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_build }})
-        for plugin in "${PLUGINS[@]}"; do
-          echo "::group::Building plugin $plugin"
+        echo "::group::Building plugin $plugin"
 
-          # Run the CLI as root to get around Docker's weird permissions
-          sudo $(which decky) plugin build -b -o /tmp/output -s directory plugins/$plugin
-          sudo chown -R $(whoami) plugins/$plugin
+        # Run the CLI as root to get around Docker's weird permissions
+        sudo $(which decky) plugin build -b -o /tmp/output -s directory plugins/$plugin
+        sudo chown -R $(whoami) plugins/$plugin
 
-          echo "::endgroup::"
-        done
+        echo "::endgroup::"
 
     - name: Upload Artifacts to Github
       if: ${{ !env.ACT }}
       uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
       with:
-        name: plugins
+        name: ${{ matrix.name }}
         path: /tmp/output/*.zip
 
     - name: Upload plugins to store
-      if: ${{ !env.ACT }}
+      if: ${{ matrix.upload == true }}
       id: upload-plugins
-      run: |
-        PLUGINS=(${{ steps.changed-files.outputs.plugins_pending_upload }})
-        shopt -s dotglob
-        for plugin in "${PLUGINS[@]}"; do
-          echo "::group::Processing plugin $plugin"
-          artifact=/tmp/output/$plugin.zip
-
-          if [[ -z $artifact ]]; then
-            echo "::error::Could not find artifact for $plugin in $artifact"
-            continue
-          fi
-
-          query_package_json () {
-            local result=$(unzip -p $artifact $plugin/package.json | jq -r "$1")
-            echo $result
-          }
-
-          query_plugin_json () {
-            local result=$(unzip -p $artifact $plugin/plugin.json | jq -r "$1")
-            echo $result
-          }
-
-          PLUGIN_NAME=$(query_plugin_json '.name')
-          PLUGIN_AUTHOR=$(query_plugin_json '.author')
-          PLUGIN_DESCRIPTION=$(query_plugin_json '.publish.description')
-          PLUGIN_VERSION=$(query_package_json '.version')
-          PLUGIN_IMAGE=$(query_plugin_json '.publish.image')
-          PLUGIN_TAGS=$(query_plugin_json '.publish.tags|join(",")')
-
-          echo "::notice::Processing plugin $PLUGIN_NAME v$PLUGIN_VERSION (by $PLUGIN_AUTHOR)"
-
-          upload_plugin () {
-            curl -X POST \
-                 -H "Authorization: ${SUBMIT_AUTH_KEY}" \
-                 -F "name=$PLUGIN_NAME" \
-                 -F "author=$PLUGIN_AUTHOR" \
-                 -F "description=$PLUGIN_DESCRIPTION" \
-                 -F "tags=$PLUGIN_TAGS" \
-                 -F "version_name=$PLUGIN_VERSION" \
-                 -F "image=$PLUGIN_IMAGE" \
-                 -F "file=@$artifact" ${STORE_URL}/__submit
-          }
-
-          shouldUpload=$(query_plugin_json '.publish | any(.tags[] == "dnu"; .) | not')
-
-          if [[ "$shouldUpload" == "true" ]]; then
-            echo "::notice::Uploading"
-            upload_response=$(upload_plugin)
-            if [[ "$upload_response" =~ "Version already exists" ]]; then
-              echo "::warning title=Could not upload $plugin::Version of plugin being pushed already exists, moving to next plugin."
-            elif [[ "$upload_response" =~ "INVALID AUTH KEY" ]]; then
-              echo "::error::Authentication Key used is invalid, exiting."
-              exit 1
-            elif [[ "$upload_response" =~ "invalid or missing URL scheme" ]]; then
-                  echo "::error::url format in plugin.json is broken, please investigate."
-                  if [[ "$upload_response" =~ "image" ]]; then
-                    echo "::error::Submitted screenshot URL does not exist or is broken."
-                    exit 1
-                  else
-                    echo "::error::Unknown URL is broken, please see output below"
-                    echo "::error::$upload_response"
-                    exit 1
-                  fi
-              exit 1
-            else
-              echo "::notice::$upload_response"
-            fi
-          else
-            echo "::warning::Plugin $PLUGIN_NAME is marked as 'do not upload'. Consider removing the 'dnu' tag if this is an accident."
-          fi
-          echo "::endgroup::"
-        done
       env:
         SUBMIT_AUTH_KEY: ${{ secrets.SUBMIT_AUTH_KEY }}
         STORE_URL: ${{ secrets.STORE_URL }}
+        upload: ${{ matrix.upload }}
+      run: |
+        shopt -s dotglob
+
+        echo "::group::Processing plugin $plugin"
+        artifact=/tmp/output/$plugin.zip
+
+        if [[ -z $artifact ]]; then
+          echo "::error::Could not find artifact for $plugin in $artifact"
+          continue
+        fi
+
+        query_package_json () {
+          local result=$(unzip -p $artifact $plugin/package.json | jq -r "$1")
+          echo $result
+        }
+
+        query_plugin_json () {
+          local result=$(unzip -p $artifact $plugin/plugin.json | jq -r "$1")
+          echo $result
+        }
+
+        PLUGIN_NAME=$(query_plugin_json '.name')
+        PLUGIN_AUTHOR=$(query_plugin_json '.author')
+        PLUGIN_DESCRIPTION=$(query_plugin_json '.publish.description')
+        PLUGIN_VERSION=$(query_package_json '.version')
+        PLUGIN_IMAGE=$(query_plugin_json '.publish.image')
+        PLUGIN_TAGS=$(query_plugin_json '.publish.tags|join(",")')
+
+        echo "::notice::Processing plugin $PLUGIN_NAME v$PLUGIN_VERSION (by $PLUGIN_AUTHOR)"
+
+        upload_plugin () {
+          curl -X POST \
+                -H "Authorization: ${SUBMIT_AUTH_KEY}" \
+                -F "name=$PLUGIN_NAME" \
+                -F "author=$PLUGIN_AUTHOR" \
+                -F "description=$PLUGIN_DESCRIPTION" \
+                -F "tags=$PLUGIN_TAGS" \
+                -F "version_name=$PLUGIN_VERSION" \
+                -F "image=$PLUGIN_IMAGE" \
+                -F "file=@$artifact" ${STORE_URL}/__submit
+        }
+
+        shouldUpload=$(query_plugin_json '.publish | any(.tags[] == "dnu"; .) | not')
+
+        if [[ "$shouldUpload" == "true" ]]; then
+          echo "::notice::Uploading"
+          upload_response=$(upload_plugin)
+          if [[ "$upload_response" =~ "Version already exists" ]]; then
+            echo "::warning title=Could not upload $plugin::Version of plugin being pushed already exists, moving to next plugin."
+          elif [[ "$upload_response" =~ "INVALID AUTH KEY" ]]; then
+            echo "::error::Authentication Key used is invalid, exiting."
+            exit 1
+          elif [[ "$upload_response" =~ "invalid or missing URL scheme" ]]; then
+                echo "::error::url format in plugin.json is broken, please investigate."
+                if [[ "$upload_response" =~ "image" ]]; then
+                  echo "::error::Submitted screenshot URL does not exist or is broken."
+                  exit 1
+                else
+                  echo "::error::Unknown URL is broken, please see output below"
+                  echo "::error::$upload_response"
+                  exit 1
+                fi
+            exit 1
+          else
+            echo "::notice::$upload_response"
+          fi
+        else
+          echo "::warning::Plugin $PLUGIN_NAME is marked as 'do not upload'. Consider removing the 'dnu' tag if this is an accident."
+        fi
+        echo "::endgroup::"
