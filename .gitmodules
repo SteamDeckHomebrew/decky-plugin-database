@@ -98,7 +98,8 @@
 	url = https://github.com/dafta/DeckMTP
 [submodule "plugins/decky-recorder"]
 	path = plugins/decky-recorder
-	url = git@github.com:marissa999/decky-recorder.git
+	url = https://github.com/marissa999/decky-recorder.git
+	branch = main-0.2.1
 [submodule "plugins/Steamback"]
 	path = plugins/Steamback
 	url = https://github.com/geeksville/steamback.git
@@ -117,6 +118,9 @@
 [submodule "plugins/decky-networkinfo"]
 	path = plugins/decky-networkinfo
 	url = https://github.com/kimar/decky-networkinfo
+[submodule "plugins/SDH-GameThemeMusic"]
+	path = plugins/SDH-GameThemeMusic
+	url = git@github.com:OMGDuke/SDH-GameThemeMusic.git
 [submodule "plugins/SDH-PlayTime"]
 	path = plugins/SDH-PlayTime
 	url = https://github.com/ma3a/SDH-PlayTime.git
