@@ -17,12 +17,16 @@ on:
         description: Whitespace-separated list of plugin names to be built and uploaded. Enter "#all" to build and upload all plugins. Leave blank to use the default behavior.
         type: string
         required: false
+      force_revision:
+        type: boolean
+        description: Force a revision for for a plugin upload (used to fix issues caused by CI.)
       test_build:
         type: boolean
         description: Build pre-selected list of plugins for testing. They will not be uploaded.
 
 env:
   still_upload: ${{ inputs.upload }}
+  revision_force: ${{ inputs.force_revision }}
   testing: ${{ inputs.test_build }}
   testing_plugins: "Bluetooth ControllerTools SDH-AudioLoader SDH-CssLoader moondeck memory-deck Fantastic"
 
@@ -205,6 +209,36 @@ jobs:
         VERSION=$(jq -r '.version' $PACKAGE_FILE)
         NEW_VERSION="$VERSION-$SHA"
 
+        echo "::notice::Going from $VERSION to $NEW_VERSION"
+
+        tmp=$(mktemp)
+        jq --arg newversion "$NEW_VERSION" '.version = $newversion' $PACKAGE_FILE > $tmp
+        mv $tmp $PACKAGE_FILE
+
+        echo "::endgroup::"
+
+    - name: Append revision to force update
+      if: ${{ env.revision_force == 'true' }}
+      run: |
+        echo "::notice::This run was manually to force an appended revision. Appending a revision to the plugin version."
+        echo "::group::Appending revision to plugin $plugin"
+
+        PACKAGE_FILE="plugins/$plugin/package.json"
+
+        VERSION=$(jq -r '.version' $PACKAGE_FILE)
+        echo "Version: $VERSION"
+        VERSION_WO_REVISION=$(echo $VERSION | sed -e 's|-[^-]*$||')
+        PREV_REVISION=$(echo $VERSION | sed -e 's|[0-9][0-9.]*[0-9]-||')
+        echo "Current Revision: $PREV_REVISION"
+        if [[ -z "$PREV_REVISION" ]]; then
+          REVISION="1"
+        else
+          REVISION=$(($PREV_REVISION + 1))
+        fi
+        echo "Revision: $REVISION"
+        NEW_VERSION="$VERSION_WO_REVISION-$REVISION"
+        echo "New version: $NEW_VERISION"
+        
         echo "::notice::Going from $VERSION to $NEW_VERSION"
 
         tmp=$(mktemp)
