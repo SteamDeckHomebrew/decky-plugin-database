@@ -121,3 +121,6 @@
 [submodule "plugins/SDH-GameThemeMusic"]
 	path = plugins/SDH-GameThemeMusic
 	url = git@github.com:OMGDuke/SDH-GameThemeMusic.git
+[submodule "plugins/Shotty"]
+	path = plugins/Shotty
+	url = https://github.com/safijari/Shotty
