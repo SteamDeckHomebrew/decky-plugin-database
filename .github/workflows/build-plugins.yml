@@ -228,9 +228,15 @@ jobs:
         VERSION=$(jq -r '.version' $PACKAGE_FILE)
         echo "Version: $VERSION"
         VERSION_WO_REVISION=$(echo $VERSION | sed -e 's|-[^-]*$||')
+        echo "Version without revisions: $VERSION"
         PREV_REVISION=$(echo $VERSION | sed -e 's|[0-9][0-9.]*[0-9]-||')
+        if [[ $PREV_REVISION ~= "-" ]]; then
+          IS_REVISED=false
+        else
+          IS_REVISED=true
+        fi
         echo "Current Revision: $PREV_REVISION"
-        if [[ -z "$PREV_REVISION" ]]; then
+        if [[ "$IS_REVISED" == "false" ]]; then
           REVISION="1"
         else
           REVISION=$(($PREV_REVISION + 1))
