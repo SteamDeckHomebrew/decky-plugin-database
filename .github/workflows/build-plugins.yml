@@ -232,11 +232,11 @@ jobs:
         PREV_REVISION=$(echo $VERSION | sed -e 's|[0-9][0-9.]*[0-9]-||')
         echo "Current revision: $PREV_REVISION"
         if [[ "$PREV_REVISION" =~ "-" ]]; then
-          IS_REVISED=false
-          echo "Is not revised"
-        else
           IS_REVISED=true
           echo "Is revised"
+        else
+          IS_REVISED=false
+          echo "Is not revised"
         fi
         if [[ "$IS_REVISED" == "false" ]]; then
           echo "Plugin is not revised, setting to revision 1."
