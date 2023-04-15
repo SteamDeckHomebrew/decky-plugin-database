@@ -230,7 +230,7 @@ jobs:
         VERSION_WO_REVISION=$(echo $VERSION | sed -e 's|-[^-]*$||')
         echo "Version without revisions: $VERSION"
         PREV_REVISION=$(echo $VERSION | sed -e 's|[0-9][0-9.]*[0-9]-||')
-        if [[ $PREV_REVISION ~= "-" ]]; then
+        if [[ $PREV_REVISION =~ "-" ]]; then
           IS_REVISED=false
         else
           IS_REVISED=true
