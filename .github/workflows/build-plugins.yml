@@ -230,21 +230,26 @@ jobs:
         VERSION_WO_REVISION=$(echo $VERSION | sed -e 's|-[^-]*$||')
         echo "Version without revisions: $VERSION"
         PREV_REVISION=$(echo $VERSION | sed -e 's|[0-9][0-9.]*[0-9]-||')
-        if [[ $PREV_REVISION =~ "-" ]]; then
+        echo "Current revision: $PREV_REVISION"
+        if [[ "$PREV_REVISION" =~ "-" ]]; then
           IS_REVISED=false
+          echo "Is not revised"
         else
           IS_REVISED=true
+          echo "Is revised"
         fi
-        echo "Current Revision: $PREV_REVISION"
         if [[ "$IS_REVISED" == "false" ]]; then
+          echo "Plugin is not revised, setting to revision 1."
           REVISION="1"
+          echo "Revision: $REVISION"
+          NEW_VERSION="$VERSION-$REVISION"
         else
           REVISION=$(($PREV_REVISION + 1))
+          echo "Revision: $REVISION"
+          NEW_VERSION="$VERSION_WO_REVISION-$REVISION"
         fi
-        echo "Revision: $REVISION"
-        NEW_VERSION="$VERSION_WO_REVISION-$REVISION"
-        echo "New version: $NEW_VERISION"
         
+        echo "New version: $NEW_VERISION"
         echo "::notice::Going from $VERSION to $NEW_VERSION"
 
         tmp=$(mktemp)
