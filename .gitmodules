@@ -124,3 +124,6 @@
 [submodule "plugins/Shotty"]
 	path = plugins/Shotty
 	url = https://github.com/safijari/Shotty
+[submodule "plugins/decky-dictation"]
+	path = plugins/decky-dictation
+	url = git@github.com:cboiangiu/decky-dictation.git
