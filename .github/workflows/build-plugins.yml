@@ -268,16 +268,19 @@ jobs:
 
         echo "::endgroup::"
     
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8
     - name: Force update pnpm lockfile and/or DFL
       if: ${{ env.pnpm_force != 'none' }}
       run: |
         if [[ "${{ env.pnpm_force }}" == "pnpm" ]]; then
-            pnpm -C plugins/$plugin install --lockfile-only
+            $(which pnpm) -C plugins/$plugin install --lockfile-only
         elif [[ "${{ env.pnpm_force }}" == "dfl" ]]; then
-            pnpm -C plugins/$plugin update --latest decky-frontend-lib
+            $(which pnpm) -C plugins/$plugin update --latest decky-frontend-lib
         elif [[ "${{ env.pnpm_force }}" == "pnpm-dfl" ]]; then
-            pnpm -C plugins/$plugin install --lockfile-only
-            pnpm -C plugins/$plugin update --latest decky-frontend-lib
+            $(which pnpm) -C plugins/$plugin install --lockfile-only
+            $(which pnpm) -C plugins/$plugin update --latest decky-frontend-lib
         fi
 
     - name: Download Decky CLI
