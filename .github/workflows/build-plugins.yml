@@ -20,6 +20,15 @@ on:
       force_revision:
         type: boolean
         description: Force a revision for for a plugin upload (used to fix issues caused by CI.)
+      force_pnpm:
+        type: choice
+        default: 'none'
+        options:
+          - none
+          - pnpm
+          - dfl
+          - pnpm-dfl
+        description: Forces an update to pnpm lockfile version and or Decky Frontend Library.
       test_build:
         type: boolean
         description: Build pre-selected list of plugins for testing. They will not be uploaded.
@@ -27,6 +36,7 @@ on:
 env:
   still_upload: ${{ inputs.upload }}
   revision_force: ${{ inputs.force_revision }}
+  pnpm_force: ${{ inputs.force_pnpm }}
   testing: ${{ inputs.test_build }}
   testing_plugins: "Bluetooth ControllerTools SDH-AudioLoader SDH-CssLoader moondeck memory-deck Fantastic"
 
@@ -257,6 +267,18 @@ jobs:
         mv $tmp $PACKAGE_FILE
 
         echo "::endgroup::"
+    
+    - name: Force update pnpm lockfile and/or DFL
+      if: ${{ env.pnpm_force != 'none' }}
+      run: |
+        if [[ "${{ env.pnpm_force }}" == "pnpm" ]]; then
+            pnpm -C plugins/$plugin install --lockfile-only
+        elif [[ "${{ env.pnpm_force }}" == "dfl" ]]; then
+            pnpm -C plugins/$plugin update --latest decky-frontend-lib
+        elif [[ "${{ env.pnpm_force }}" == "pnpm-dfl" ]]; then
+            pnpm -C plugins/$plugin install --lockfile-only
+            pnpm -C plugins/$plugin update --latest decky-frontend-lib
+        fi
 
     - name: Download Decky CLI
       run: |
