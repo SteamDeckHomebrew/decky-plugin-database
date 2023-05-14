@@ -22,19 +22,19 @@ on:
         description: Force a revision for for a plugin upload (used to fix issues caused by CI.)
       force_pnpm:
         type: choice
+        description: Forces an update to pnpm lockfile version and or Decky Frontend Library. This is only to be used in "oh shit" situations. Otherwise defer to the plugin developer so that they can submit a fix/update.
         default: 'none'
         options:
           - none
           - pnpm
           - dfl
           - pnpm-dfl
-        description: Forces an update to pnpm lockfile version and or Decky Frontend Library.
+        
       test_build:
         type: boolean
         description: Build pre-selected list of plugins for testing. They will not be uploaded.
 
 env:
-  still_upload: ${{ inputs.upload }}
   revision_force: ${{ inputs.force_revision }}
   pnpm_force: ${{ inputs.force_pnpm }}
   testing: ${{ inputs.test_build }}
