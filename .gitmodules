@@ -121,9 +121,6 @@
 [submodule "plugins/SDH-GameThemeMusic"]
 	path = plugins/SDH-GameThemeMusic
 	url = git@github.com:OMGDuke/SDH-GameThemeMusic.git
-[submodule "plugins/Shotty"]
-	path = plugins/Shotty
-	url = https://github.com/safijari/Shotty
 [submodule "plugins/decky-dictation"]
 	path = plugins/decky-dictation
 	url = git@github.com:cboiangiu/decky-dictation.git
