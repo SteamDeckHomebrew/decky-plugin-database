@@ -356,12 +356,26 @@ jobs:
                 -F "image=$PLUGIN_IMAGE" \
                 -F "file=@$artifact" ${STORE_URL}/__submit
         }
+        
+        # Temporarily upload to both the old and new store, for benchmarking purposes
+        upload_plugin_pilot_store () {
+          curl -X POST \
+                -H "Authorization: ${SUBMIT_AUTH_KEY}" \
+                -F "name=$PLUGIN_NAME" \
+                -F "author=$PLUGIN_AUTHOR" \
+                -F "description=$PLUGIN_DESCRIPTION" \
+                -F "tags=$PLUGIN_TAGS" \
+                -F "version_name=$PLUGIN_VERSION" \
+                -F "image=$PLUGIN_IMAGE" \
+                -F "file=@$artifact" https://pilot.decky.xyz/__submit
+        }
 
         shouldUpload=$(query_plugin_json '.publish | any(.tags[] == "dnu"; .) | not')
 
         if [[ "$shouldUpload" == "true" ]]; then
           echo "::notice::Uploading"
           upload_response=$(upload_plugin)
+          upload_plugin_pilot_store
           if [[ "$upload_response" =~ "Version already exists" ]]; then
             echo "::warning title=Could not upload $plugin::Version of plugin being pushed already exists, moving to next plugin."
           elif [[ "$upload_response" =~ "INVALID AUTH KEY" ]]; then
