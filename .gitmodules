@@ -124,3 +124,6 @@
 [submodule "plugins/decky-dictation"]
 	path = plugins/decky-dictation
 	url = git@github.com:cboiangiu/decky-dictation.git
+[submodule "plugins/decky-bookmarks"]
+	path = plugins/decky-bookmarks
+	url = https://codeberg.org/bleonard252/decky-bookmarks.git
