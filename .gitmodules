@@ -127,3 +127,6 @@
 [submodule "plugins/decky-bookmarks"]
 	path = plugins/decky-bookmarks
 	url = https://codeberg.org/bleonard252/decky-bookmarks.git
+[submodule "plugins/MangoPeel"]
+	path = plugins/MangoPeel
+	url = https://github.com/Gawah/MangoPeel
