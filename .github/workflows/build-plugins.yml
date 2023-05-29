@@ -29,7 +29,6 @@ on:
           - pnpm
           - dfl
           - pnpm-dfl
-        
       test_build:
         type: boolean
         description: Build pre-selected list of plugins for testing. They will not be uploaded.
@@ -270,9 +269,9 @@ jobs:
     
     - uses: pnpm/action-setup@v2
       with:
-        version: 8
+        version: 8.5.1
     - name: Force update pnpm lockfile and/or DFL
-      if: ${{ env.pnpm_force != 'none' }}
+      if: ${{ inputs.force_pnpm != 'none' }}
       run: |
         if [[ "${{ env.pnpm_force }}" == "pnpm" ]]; then
             $(which pnpm) -C plugins/$plugin install --lockfile-only
