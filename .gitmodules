@@ -130,3 +130,6 @@
 [submodule "plugins/MangoPeel"]
 	path = plugins/MangoPeel
 	url = https://github.com/Gawah/MangoPeel
+[submodule "plugins/volume-boost"]
+	path = plugins/volume-boost
+	url = https://github.com/saumya-banthia/volume-boost
