@@ -121,12 +121,15 @@
 [submodule "plugins/SDH-GameThemeMusic"]
 	path = plugins/SDH-GameThemeMusic
 	url = git@github.com:OMGDuke/SDH-GameThemeMusic.git
-[submodule "plugins/Shotty"]
-	path = plugins/Shotty
-	url = https://github.com/safijari/Shotty
 [submodule "plugins/decky-dictation"]
 	path = plugins/decky-dictation
 	url = git@github.com:cboiangiu/decky-dictation.git
 [submodule "plugins/gameview-music-deck"]
 	path = plugins/gameview-music-deck
 	url = https://github.com/lcd1232/gameview-music-deck
+[submodule "plugins/decky-bookmarks"]
+	path = plugins/decky-bookmarks
+	url = https://codeberg.org/bleonard252/decky-bookmarks.git
+[submodule "plugins/MangoPeel"]
+	path = plugins/MangoPeel
+	url = https://github.com/Gawah/MangoPeel

@@ -20,13 +20,22 @@ on:
       force_revision:
         type: boolean
         description: Force a revision for for a plugin upload (used to fix issues caused by CI.)
+      force_pnpm:
+        type: choice
+        description: Forces an update to pnpm lockfile version and or Decky Frontend Library. This is only to be used in "oh shit" situations. Otherwise defer to the plugin developer so that they can submit a fix/update.
+        default: 'none'
+        options:
+          - none
+          - pnpm
+          - dfl
+          - pnpm-dfl
       test_build:
         type: boolean
         description: Build pre-selected list of plugins for testing. They will not be uploaded.
 
 env:
-  still_upload: ${{ inputs.upload }}
   revision_force: ${{ inputs.force_revision }}
+  pnpm_force: ${{ inputs.force_pnpm }}
   testing: ${{ inputs.test_build }}
   testing_plugins: "Bluetooth ControllerTools SDH-AudioLoader SDH-CssLoader moondeck memory-deck Fantastic"
 
@@ -257,6 +266,21 @@ jobs:
         mv $tmp $PACKAGE_FILE
 
         echo "::endgroup::"
+    
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8.5.1
+    - name: Force update pnpm lockfile and/or DFL
+      if: ${{ inputs.force_pnpm != 'none' }}
+      run: |
+        if [[ "${{ env.pnpm_force }}" == "pnpm" ]]; then
+            $(which pnpm) -C plugins/$plugin install --lockfile-only
+        elif [[ "${{ env.pnpm_force }}" == "dfl" ]]; then
+            $(which pnpm) -C plugins/$plugin update --latest decky-frontend-lib
+        elif [[ "${{ env.pnpm_force }}" == "pnpm-dfl" ]]; then
+            $(which pnpm) -C plugins/$plugin install --lockfile-only
+            $(which pnpm) -C plugins/$plugin update --latest decky-frontend-lib
+        fi
 
     - name: Download Decky CLI
       run: |
@@ -331,12 +355,26 @@ jobs:
                 -F "image=$PLUGIN_IMAGE" \
                 -F "file=@$artifact" ${STORE_URL}/__submit
         }
+        
+        # Temporarily upload to both the old and new store, for benchmarking purposes
+        upload_plugin_pilot_store () {
+          curl -X POST \
+                -H "Authorization: ${SUBMIT_AUTH_KEY}" \
+                -F "name=$PLUGIN_NAME" \
+                -F "author=$PLUGIN_AUTHOR" \
+                -F "description=$PLUGIN_DESCRIPTION" \
+                -F "tags=$PLUGIN_TAGS" \
+                -F "version_name=$PLUGIN_VERSION" \
+                -F "image=$PLUGIN_IMAGE" \
+                -F "file=@$artifact" https://pilot.decky.xyz/__submit
+        }
 
         shouldUpload=$(query_plugin_json '.publish | any(.tags[] == "dnu"; .) | not')
 
         if [[ "$shouldUpload" == "true" ]]; then
           echo "::notice::Uploading"
           upload_response=$(upload_plugin)
+          upload_plugin_pilot_store
           if [[ "$upload_response" =~ "Version already exists" ]]; then
             echo "::warning title=Could not upload $plugin::Version of plugin being pushed already exists, moving to next plugin."
           elif [[ "$upload_response" =~ "INVALID AUTH KEY" ]]; then
