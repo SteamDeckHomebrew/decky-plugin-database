@@ -133,6 +133,9 @@
 [submodule "plugins/MangoPeel"]
 	path = plugins/MangoPeel
 	url = https://github.com/Gawah/MangoPeel
+[submodule "plugins/volume-boost"]
+	path = plugins/volume-boost
+	url = https://github.com/saumya-banthia/volume-boost
 [submodule "plugins/SteamDeck-VolumeMixer"]
 	path = plugins/SteamDeck-VolumeMixer
 	url = git@github.com:jacklu97/SteamDeck-VolumeMixer.git
