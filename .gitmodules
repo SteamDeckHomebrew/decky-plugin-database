@@ -136,3 +136,6 @@
 [submodule "plugins/volume-boost"]
 	path = plugins/volume-boost
 	url = https://github.com/saumya-banthia/volume-boost
+[submodule "plugins/DeckWebBrowser"]
+	path = plugins/DeckWebBrowser
+	url = https://github.com/jessebofill/DeckWebBrowser.git
