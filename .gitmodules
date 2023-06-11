@@ -139,3 +139,6 @@
 [submodule "plugins/DeckWebBrowser"]
 	path = plugins/DeckWebBrowser
 	url = https://github.com/jessebofill/DeckWebBrowser.git
+[submodule "plugins/free-loader"]
+	path = plugins/free-loader
+	url = https://github.com/jwhitlow45/free-loader
