@@ -139,3 +139,6 @@
 [submodule "plugins/VolumeMixer-decky"]
 	path = plugins/VolumeMixer-decky
 	url = https://github.com/isiah-lloyd/VolumeMixer-decky
+[submodule "plugins/DeckWebBrowser"]
+	path = plugins/DeckWebBrowser
+	url = https://github.com/jessebofill/DeckWebBrowser.git
