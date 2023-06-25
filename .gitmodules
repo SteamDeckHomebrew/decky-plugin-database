@@ -142,3 +142,6 @@
 [submodule "plugins/DeckWebBrowser"]
 	path = plugins/DeckWebBrowser
 	url = https://github.com/jessebofill/DeckWebBrowser.git
+[submodule "plugins/DeckyFileServer"]
+	path = plugins/DeckyFileServer
+	url = https://github.com/grimkor/DeckyFileServer
