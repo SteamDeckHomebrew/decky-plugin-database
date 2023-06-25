@@ -145,3 +145,6 @@
 [submodule "plugins/DeckyFileServer"]
 	path = plugins/DeckyFileServer
 	url = https://github.com/grimkor/DeckyFileServer
+[submodule "plugins/TabMaster"]
+	path = plugins/TabMaster
+	url = https://github.com/Tormak9970/TabMaster
