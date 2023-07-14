@@ -148,3 +148,6 @@
 [submodule "plugins/TabMaster"]
 	path = plugins/TabMaster
 	url = https://github.com/Tormak9970/TabMaster
+[submodule "plugins/sharedeck-y"]
+	path = plugins/sharedeck-y
+	url = git@github.com:davocarli/sharedeck-y.git
