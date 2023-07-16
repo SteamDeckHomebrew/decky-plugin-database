@@ -148,3 +148,6 @@
 [submodule "plugins/TabMaster"]
 	path = plugins/TabMaster
 	url = https://github.com/Tormak9970/TabMaster
+[submodule "plugins/radiyo-steam-deck"]
+	path = plugins/radiyo-steam-deck
+	url = https://github.com/isiah-lloyd/radiyo-steam-deck
