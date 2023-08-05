@@ -6,7 +6,7 @@ Please include a summary of what the plugin does.
 
 If this is an update, please include a summary of what changes you made.
 
-[If you have not already, please read the review and testing page on the [wiki](https://deckbrew.xyz/en/plugin-dev/review-and-testing). Remove this line before submitting your plugin.]
+[If you have not already, please read the review and testing page on the [wiki](https://wiki.deckbrew.xyz/en/plugin-dev/review-and-testing). Remove this line before submitting your plugin.]
 
 ## Checklist:
 
