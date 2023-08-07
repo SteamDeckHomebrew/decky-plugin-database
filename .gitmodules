@@ -142,9 +142,21 @@
 [submodule "plugins/DeckWebBrowser"]
 	path = plugins/DeckWebBrowser
 	url = https://github.com/jessebofill/DeckWebBrowser.git
+[submodule "plugins/free-loader"]
+	path = plugins/free-loader
+	url = https://github.com/jwhitlow45/free-loader
 [submodule "plugins/DeckyFileServer"]
 	path = plugins/DeckyFileServer
 	url = https://github.com/grimkor/DeckyFileServer
 [submodule "plugins/TabMaster"]
 	path = plugins/TabMaster
 	url = https://github.com/Tormak9970/TabMaster
+[submodule "plugins/radiyo-steam-deck"]
+	path = plugins/radiyo-steam-deck
+	url = https://github.com/isiah-lloyd/radiyo-steam-deck
+[submodule "plugins/ts3-qs4sd"]
+	path = plugins/ts3-qs4sd
+	url = https://github.com/ILadis/ts3-qs4sd
+[submodule "plugins/sharedeck-y"]
+	path = plugins/sharedeck-y
+	url = git@github.com:davocarli/sharedeck-y.git
