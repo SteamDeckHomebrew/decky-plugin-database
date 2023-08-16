@@ -157,6 +157,9 @@
 [submodule "plugins/ts3-qs4sd"]
 	path = plugins/ts3-qs4sd
 	url = https://github.com/ILadis/ts3-qs4sd
+[submodule "plugins/decky-syncthing"]
+	path = plugins/decky-syncthing
+	url = https://github.com/theCapypara/steamdeck-decky-syncthing.git
 [submodule "plugins/sharedeck-y"]
 	path = plugins/sharedeck-y
 	url = git@github.com:davocarli/sharedeck-y.git
