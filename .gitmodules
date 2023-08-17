@@ -163,3 +163,6 @@
 [submodule "plugins/sharedeck-y"]
 	path = plugins/sharedeck-y
 	url = git@github.com:davocarli/sharedeck-y.git
+[submodule "plugins/decky-terminal"]
+	path = plugins/decky-terminal
+	url = https://github.com/Alex4386/decky-terminal
