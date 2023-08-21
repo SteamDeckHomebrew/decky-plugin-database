@@ -166,3 +166,6 @@
 [submodule "plugins/decky-terminal"]
 	path = plugins/decky-terminal
 	url = https://github.com/Alex4386/decky-terminal
+[submodule "plugins/SDH-PlayTime"]
+	path = plugins/SDH-PlayTime
+	url = https://github.com/ma3a/SDH-PlayTime.git
