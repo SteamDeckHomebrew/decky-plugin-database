@@ -308,12 +308,12 @@ jobs:
         path: /tmp/output/*.zip
 
     - name: Upload plugins to store
-      if: ${{ matrix.upload == true }}
       id: upload-plugins
       env:
         SUBMIT_AUTH_KEY: ${{ secrets.SUBMIT_AUTH_KEY }}
         STORE_URL: ${{ secrets.STORE_URL }}
         upload: ${{ matrix.upload }}
+      if: ${{ matrix.upload == true && env.SUBMIT_AUTH_KEY != '' }}
       run: |
         shopt -s dotglob
 
