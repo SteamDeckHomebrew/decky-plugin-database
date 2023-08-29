@@ -98,8 +98,7 @@
 	url = https://github.com/dafta/DeckMTP
 [submodule "plugins/decky-recorder"]
 	path = plugins/decky-recorder
-	url = https://github.com/marissa999/decky-recorder.git
-	branch = main-0.2.1
+	url = https://github.com/safijari/decky-recorder-fork.git
 [submodule "plugins/Steamback"]
 	path = plugins/Steamback
 	url = https://github.com/geeksville/steamback.git
