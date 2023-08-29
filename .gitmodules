@@ -175,3 +175,6 @@
 [submodule "plugins/steam-deck-battery-tracker"]
 	path = plugins/steam-deck-battery-tracker
 	url = https://github.com/safijari/steam-deck-battery-tracker
+[submodule "plugins/decky-wine-cellar"]
+	path = plugins/decky-wine-cellar
+	url = https://github.com/FlashyReese/decky-wine-cellar.git
