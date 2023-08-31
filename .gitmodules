@@ -168,6 +168,9 @@
 [submodule "plugins/SDH-PlayTime"]
 	path = plugins/SDH-PlayTime
 	url = https://github.com/ma3a/SDH-PlayTime.git
+[submodule "plugins/Shotty"]
+	path = plugins/Shotty
+	url = https://github.com/safijari/Shotty
 [submodule "plugins/steam-deck-battery-tracker"]
 	path = plugins/steam-deck-battery-tracker
 	url = https://github.com/safijari/steam-deck-battery-tracker
