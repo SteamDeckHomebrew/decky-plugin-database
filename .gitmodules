@@ -177,3 +177,6 @@
 [submodule "plugins/decky-wine-cellar"]
 	path = plugins/decky-wine-cellar
 	url = https://github.com/FlashyReese/decky-wine-cellar.git
+[submodule "plugins/decky-xrealAir"]
+	path = plugins/decky-xrealAir
+	url = https://github.com/wheaney/decky-xrealAir.git
