@@ -180,3 +180,6 @@
 [submodule "plugins/decky-xrealAir"]
 	path = plugins/decky-xrealAir
 	url = https://github.com/wheaney/decky-xrealAir.git
+[submodule "plugins/NonSteamLaunchersDecky"]
+	path = plugins/NonSteamLaunchersDecky
+	url = https://github.com/moraroy/NonSteamLaunchersDecky
