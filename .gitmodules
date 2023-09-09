@@ -180,3 +180,6 @@
 [submodule "plugins/decky-xrealAir"]
 	path = plugins/decky-xrealAir
 	url = https://github.com/wheaney/decky-xrealAir.git
+[submodule "plugins/decky-save-manager"]
+	path = plugins/decky-save-manager
+	url = https://github.com/metehankutlu/decky-save-manager
