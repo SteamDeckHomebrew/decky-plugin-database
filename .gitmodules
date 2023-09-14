@@ -10,7 +10,7 @@
 	url = https://github.com/hulkrelax/deckfaqs
 [submodule "plugins/PowerTools"]
 	path = plugins/PowerTools
-	url = https://github.com/NGnius/PowerTools
+	url = https://git.ngni.us/NG-SD-Plugins/PowerTools
 [submodule "plugins/SDH-CssLoader"]
 	path = plugins/SDH-CssLoader
 	url = https://github.com/suchmememanyskill/SDH-CssLoader
@@ -98,8 +98,7 @@
 	url = https://github.com/dafta/DeckMTP
 [submodule "plugins/decky-recorder"]
 	path = plugins/decky-recorder
-	url = https://github.com/marissa999/decky-recorder.git
-	branch = main-0.2.1
+	url = https://github.com/safijari/decky-recorder-fork.git
 [submodule "plugins/Steamback"]
 	path = plugins/Steamback
 	url = https://github.com/geeksville/steamback.git
@@ -169,6 +168,15 @@
 [submodule "plugins/SDH-PlayTime"]
 	path = plugins/SDH-PlayTime
 	url = https://github.com/ma3a/SDH-PlayTime.git
+[submodule "plugins/Shotty"]
+	path = plugins/Shotty
+	url = https://github.com/safijari/Shotty
 [submodule "plugins/steam-deck-battery-tracker"]
 	path = plugins/steam-deck-battery-tracker
 	url = https://github.com/safijari/steam-deck-battery-tracker
+[submodule "plugins/decky-wine-cellar"]
+	path = plugins/decky-wine-cellar
+	url = https://github.com/FlashyReese/decky-wine-cellar.git
+[submodule "plugins/decky-xrealAir"]
+	path = plugins/decky-xrealAir
+	url = https://github.com/wheaney/decky-xrealAir.git
