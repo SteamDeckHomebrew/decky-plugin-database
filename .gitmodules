@@ -180,3 +180,6 @@
 [submodule "plugins/decky-xrealAir"]
 	path = plugins/decky-xrealAir
 	url = https://github.com/wheaney/decky-xrealAir.git
+[submodule "plugins/Deckcord"]
+	path = plugins/Deckcord
+	url = https://github.com/marios8543/Deckcord.git
