@@ -180,3 +180,6 @@
 [submodule "plugins/decky-xrealAir"]
 	path = plugins/decky-xrealAir
 	url = https://github.com/wheaney/decky-xrealAir.git
+[submodule "plugins/DeckSCP"]
+	path = plugins/DeckSCP
+	url = https://github.com/ArnonGuttel/decky-filetransfer-plugin
