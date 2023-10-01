@@ -180,3 +180,6 @@
 [submodule "plugins/decky-xrealAir"]
 	path = plugins/decky-xrealAir
 	url = https://github.com/wheaney/decky-xrealAir.git
+[submodule "plugins/DeckSettingsEX"]
+	path = plugins/DeckSettingsEX
+	url = https://github.com/JoshSchreuder/DeckSettingsEX.git
