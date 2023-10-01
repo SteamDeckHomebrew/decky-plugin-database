@@ -189,3 +189,6 @@
 [submodule "plugins/decky-save-manager"]
 	path = plugins/decky-save-manager
 	url = https://github.com/metehankutlu/decky-save-manager
+[submodule "plugins/DeckSCP"]
+	path = plugins/DeckSCP
+	url = https://github.com/ArnonGuttel/decky-filetransfer-plugin
