@@ -183,3 +183,6 @@
 [submodule "plugins/Deckcord"]
 	path = plugins/Deckcord
 	url = https://github.com/marios8543/Deckcord.git
+[submodule "plugins/DeckCalc"]
+	path = plugins/DeckCalc
+	url = https://github.com/marios8543/DeckCalc
