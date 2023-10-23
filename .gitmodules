@@ -183,3 +183,6 @@
 [submodule "plugins/MicroSDeck"]
 	path = plugins/MicroSDeck
 	url = https://github.com/CEbbinghaus/MicroSDeck
+[submodule "plugins/OpenDeckStream"]
+	path = plugins/OpenDeckStream
+	url = https://github.com/Epictek/OpenDeckStream
