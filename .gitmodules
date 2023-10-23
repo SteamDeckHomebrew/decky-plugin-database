@@ -183,3 +183,6 @@
 [submodule "plugins/DeckScreenshotManager"]
 	path = plugins/DeckScreenshotManager
 	url = https://github.com/codehz/DeckScreenshotManager
+[submodule "plugins/MicroSDeck"]
+	path = plugins/MicroSDeck
+	url = https://github.com/CEbbinghaus/MicroSDeck
