@@ -10,7 +10,7 @@
 	url = https://github.com/hulkrelax/deckfaqs
 [submodule "plugins/PowerTools"]
 	path = plugins/PowerTools
-	url = https://github.com/NGnius/PowerTools
+	url = https://git.ngni.us/NG-SD-Plugins/PowerTools
 [submodule "plugins/SDH-CssLoader"]
 	path = plugins/SDH-CssLoader
 	url = https://github.com/suchmememanyskill/SDH-CssLoader
@@ -98,8 +98,7 @@
 	url = https://github.com/dafta/DeckMTP
 [submodule "plugins/decky-recorder"]
 	path = plugins/decky-recorder
-	url = https://github.com/marissa999/decky-recorder.git
-	branch = main-0.2.1
+	url = https://github.com/safijari/decky-recorder-fork.git
 [submodule "plugins/Steamback"]
 	path = plugins/Steamback
 	url = https://github.com/geeksville/steamback.git
@@ -142,9 +141,45 @@
 [submodule "plugins/DeckWebBrowser"]
 	path = plugins/DeckWebBrowser
 	url = https://github.com/jessebofill/DeckWebBrowser.git
+[submodule "plugins/free-loader"]
+	path = plugins/free-loader
+	url = https://github.com/jwhitlow45/free-loader
 [submodule "plugins/DeckyFileServer"]
 	path = plugins/DeckyFileServer
 	url = https://github.com/grimkor/DeckyFileServer
 [submodule "plugins/TabMaster"]
 	path = plugins/TabMaster
 	url = https://github.com/Tormak9970/TabMaster
+[submodule "plugins/radiyo-steam-deck"]
+	path = plugins/radiyo-steam-deck
+	url = https://github.com/isiah-lloyd/radiyo-steam-deck
+[submodule "plugins/ts3-qs4sd"]
+	path = plugins/ts3-qs4sd
+	url = https://github.com/ILadis/ts3-qs4sd
+[submodule "plugins/decky-syncthing"]
+	path = plugins/decky-syncthing
+	url = https://github.com/theCapypara/steamdeck-decky-syncthing.git
+[submodule "plugins/sharedeck-y"]
+	path = plugins/sharedeck-y
+	url = git@github.com:davocarli/sharedeck-y.git
+[submodule "plugins/decky-terminal"]
+	path = plugins/decky-terminal
+	url = https://github.com/Alex4386/decky-terminal
+[submodule "plugins/SDH-PlayTime"]
+	path = plugins/SDH-PlayTime
+	url = https://github.com/ma3a/SDH-PlayTime.git
+[submodule "plugins/Shotty"]
+	path = plugins/Shotty
+	url = https://github.com/safijari/Shotty
+[submodule "plugins/steam-deck-battery-tracker"]
+	path = plugins/steam-deck-battery-tracker
+	url = https://github.com/safijari/steam-deck-battery-tracker
+[submodule "plugins/decky-wine-cellar"]
+	path = plugins/decky-wine-cellar
+	url = https://github.com/FlashyReese/decky-wine-cellar.git
+[submodule "plugins/decky-xrealAir"]
+	path = plugins/decky-xrealAir
+	url = https://github.com/wheaney/decky-xrealAir.git
+[submodule "plugins/MicroSDeck"]
+	path = plugins/MicroSDeck
+	url = https://github.com/CEbbinghaus/MicroSDeck
