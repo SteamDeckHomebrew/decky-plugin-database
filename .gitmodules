@@ -183,3 +183,6 @@
 [submodule "plugins/MicroSDeck"]
 	path = plugins/MicroSDeck
 	url = https://github.com/CEbbinghaus/MicroSDeck
+[submodule "plugins/decky-save-manager"]
+	path = plugins/decky-save-manager
+	url = https://github.com/metehankutlu/decky-save-manager
