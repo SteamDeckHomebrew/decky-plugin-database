@@ -189,3 +189,6 @@
 [submodule "plugins/decky-save-manager"]
 	path = plugins/decky-save-manager
 	url = https://github.com/metehankutlu/decky-save-manager
+[submodule "plugins/decky-notifications"]
+	path = plugins/decky-notifications
+	url = https://github.com/Firemoon777/decky-notifications
