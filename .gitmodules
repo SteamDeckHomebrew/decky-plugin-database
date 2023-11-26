@@ -189,3 +189,6 @@
 [submodule "plugins/decky-save-manager"]
 	path = plugins/decky-save-manager
 	url = https://github.com/metehankutlu/decky-save-manager
+[submodule "plugins/decky-custom-runner"]
+	path = plugins/decky-custom-runner
+	url = https://github.com/Alex4386/decky-custom-runner
