@@ -189,3 +189,6 @@
 [submodule "plugins/decky-save-manager"]
 	path = plugins/decky-save-manager
 	url = https://github.com/metehankutlu/decky-save-manager
+[submodule "plugins/Junk-Store"]
+	path = plugins/Junk-Store
+	url = https://github.com/ebenbruyns/junkstore
