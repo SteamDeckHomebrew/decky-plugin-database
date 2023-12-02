@@ -13,7 +13,7 @@
 	url = https://git.ngni.us/NG-SD-Plugins/PowerTools
 [submodule "plugins/SDH-CssLoader"]
 	path = plugins/SDH-CssLoader
-	url = https://github.com/suchmememanyskill/SDH-CssLoader
+	url = https://github.com/DeckThemes/SDH-CssLoader
 [submodule "plugins/vibrantDeck"]
 	path = plugins/vibrantDeck
 	url = https://github.com/libvibrant/vibrantDeck.git
