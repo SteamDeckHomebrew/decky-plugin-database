@@ -13,7 +13,7 @@
 	url = https://git.ngni.us/NG-SD-Plugins/PowerTools
 [submodule "plugins/SDH-CssLoader"]
 	path = plugins/SDH-CssLoader
-	url = https://github.com/suchmememanyskill/SDH-CssLoader
+	url = https://github.com/DeckThemes/SDH-CssLoader
 [submodule "plugins/vibrantDeck"]
 	path = plugins/vibrantDeck
 	url = https://github.com/libvibrant/vibrantDeck.git
@@ -180,6 +180,15 @@
 [submodule "plugins/decky-xrealAir"]
 	path = plugins/decky-xrealAir
 	url = https://github.com/wheaney/decky-xrealAir.git
-[submodule "plugins/Deckcord"]
+[submodule "plugins/DeckScreenshotManager"]
+	path = plugins/DeckScreenshotManager
+	url = https://github.com/codehz/DeckScreenshotManager
+[submodule "plugins/MicroSDeck"]
+	path = plugins/MicroSDeck
+	url = https://github.com/CEbbinghaus/MicroSDeck
+[submodule "plugins/decky-save-manager"]
+	path = plugins/decky-save-manager
+	url = https://github.com/metehankutlu/decky-save-manager
+  [submodule "plugins/Deckcord"]
 	path = plugins/Deckcord
 	url = https://github.com/marios8543/Deckcord.git
