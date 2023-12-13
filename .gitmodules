@@ -192,3 +192,6 @@
 [submodule "plugins/decky-save-manager"]
 	path = plugins/decky-save-manager
 	url = https://github.com/metehankutlu/decky-save-manager
+[submodule "plugins/CheatDeck"]
+	path = plugins/CheatDeck
+	url = https://github.com/SheffeyG/CheatDeck
