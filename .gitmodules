@@ -195,3 +195,6 @@
 [submodule "plugins/CheatDeck"]
 	path = plugins/CheatDeck
 	url = https://github.com/SheffeyG/CheatDeck
+[submodule "plugins/reshadeck"]
+	path = plugins/reshadeck
+	url = https://github.com/safijari/reshadeck
