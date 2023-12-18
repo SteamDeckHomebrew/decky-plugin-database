@@ -198,3 +198,6 @@
 [submodule "plugins/reshadeck"]
 	path = plugins/reshadeck
 	url = https://github.com/safijari/reshadeck
+[submodule "plugins/kdeconnect"]
+	path = plugins/kdeconnect
+	url = https://github.com/safijari/Decky-KDE-Connect.git
