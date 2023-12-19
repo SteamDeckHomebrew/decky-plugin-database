@@ -195,6 +195,9 @@
 [submodule "plugins/CheatDeck"]
 	path = plugins/CheatDeck
 	url = https://github.com/SheffeyG/CheatDeck
+[submodule "plugins/reshadeck"]
+	path = plugins/reshadeck
+	url = https://github.com/safijari/reshadeck
 [submodule "plugins/kdeconnect"]
 	path = plugins/kdeconnect
 	url = https://github.com/safijari/Decky-KDE-Connect.git
