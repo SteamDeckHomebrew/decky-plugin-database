@@ -201,3 +201,6 @@
 [submodule "plugins/kdeconnect"]
 	path = plugins/kdeconnect
 	url = https://github.com/safijari/Decky-KDE-Connect.git
+[submodule "plugins/decky-trophies"]
+	path = plugins/decky-trophies
+	url = https://github.com/ifantom/decky-trophies.git
