@@ -183,6 +183,7 @@
 [submodule "plugins/decky-xrealAir"]
 	path = plugins/decky-xrealAir
 	url = https://github.com/wheaney/decky-xrealAir.git
+	branch = xrealAir
 [submodule "plugins/DeckScreenshotManager"]
 	path = plugins/DeckScreenshotManager
 	url = https://github.com/codehz/DeckScreenshotManager
