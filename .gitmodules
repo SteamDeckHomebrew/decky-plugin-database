@@ -40,7 +40,7 @@
 	url = https://github.com/popsUlfr/SDH-Notebook.git
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
-	url = https://github.com/NGnius/Fantastic
+	url = https://git.ngni.us/NG-SD-Plugins/Fantastic
 [submodule "plugins/memory-deck"]
 	path = plugins/memory-deck
 	url = https://github.com/CameronRedmore/memory-deck.git
