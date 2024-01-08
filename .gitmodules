@@ -183,6 +183,7 @@
 [submodule "plugins/decky-xrealAir"]
 	path = plugins/decky-xrealAir
 	url = https://github.com/wheaney/decky-xrealAir.git
+	branch = xrealAir
 [submodule "plugins/DeckScreenshotManager"]
 	path = plugins/DeckScreenshotManager
 	url = https://github.com/codehz/DeckScreenshotManager
@@ -201,3 +202,6 @@
 [submodule "plugins/kdeconnect"]
 	path = plugins/kdeconnect
 	url = https://github.com/safijari/Decky-KDE-Connect.git
+[submodule "plugins/decky-XRGaming"]
+	path = plugins/decky-XRGaming
+	url = git@github.com:wheaney/decky-XRGaming.git
