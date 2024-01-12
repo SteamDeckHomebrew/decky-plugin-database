@@ -40,7 +40,7 @@
 	url = https://github.com/popsUlfr/SDH-Notebook.git
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
-	url = https://github.com/NGnius/Fantastic
+	url = https://git.ngni.us/NG-SD-Plugins/Fantastic
 [submodule "plugins/memory-deck"]
 	path = plugins/memory-deck
 	url = https://github.com/CameronRedmore/memory-deck.git
@@ -183,6 +183,7 @@
 [submodule "plugins/decky-xrealAir"]
 	path = plugins/decky-xrealAir
 	url = https://github.com/wheaney/decky-xrealAir.git
+	branch = xrealAir
 [submodule "plugins/DeckScreenshotManager"]
 	path = plugins/DeckScreenshotManager
 	url = https://github.com/codehz/DeckScreenshotManager
@@ -201,6 +202,9 @@
 [submodule "plugins/kdeconnect"]
 	path = plugins/kdeconnect
 	url = https://github.com/safijari/Decky-KDE-Connect.git
+[submodule "plugins/decky-XRGaming"]
+	path = plugins/decky-XRGaming
+	url = git@github.com:wheaney/decky-XRGaming.git
 [submodule "plugins/decky-trophies"]
 	path = plugins/decky-trophies
 	url = https://github.com/ifantom/decky-trophies.git
