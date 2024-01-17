@@ -17,12 +17,25 @@ on:
         description: Whitespace-separated list of plugin names to be built and uploaded. Enter "#all" to build and upload all plugins. Leave blank to use the default behavior.
         type: string
         required: false
+      force_revision:
+        type: boolean
+        description: Force a revision for for a plugin upload (used to fix issues caused by CI.)
+      force_pnpm:
+        type: choice
+        description: Forces an update to pnpm lockfile version and or Decky Frontend Library. This is only to be used in "oh shit" situations. Otherwise defer to the plugin developer so that they can submit a fix/update.
+        default: 'none'
+        options:
+          - none
+          - pnpm
+          - dfl
+          - pnpm-dfl
       test_build:
         type: boolean
         description: Build pre-selected list of plugins for testing. They will not be uploaded.
 
 env:
-  still_upload: ${{ inputs.upload }}
+  revision_force: ${{ inputs.force_revision }}
+  pnpm_force: ${{ inputs.force_pnpm }}
   testing: ${{ inputs.test_build }}
   testing_plugins: "Bluetooth ControllerTools SDH-AudioLoader SDH-CssLoader moondeck memory-deck Fantastic"
 
@@ -213,10 +226,66 @@ jobs:
 
         echo "::endgroup::"
 
+    - name: Append revision to force update
+      if: ${{ env.revision_force == 'true' }}
+      run: |
+        echo "::notice::This run was manually to force an appended revision. Appending a revision to the plugin version."
+        echo "::group::Appending revision to plugin $plugin"
+
+        PACKAGE_FILE="plugins/$plugin/package.json"
+
+        VERSION=$(jq -r '.version' $PACKAGE_FILE)
+        echo "Version: $VERSION"
+        VERSION_WO_REVISION=$(echo $VERSION | sed -e 's|-[^-]*$||')
+        echo "Version without revisions: $VERSION"
+        PREV_REVISION=$(echo $VERSION | sed -e 's|[0-9][0-9.]*[0-9]-||')
+        echo "Current revision: $PREV_REVISION"
+        if [[ "$PREV_REVISION" =~ "-" ]]; then
+          IS_REVISED=true
+          echo "Is revised"
+        else
+          IS_REVISED=false
+          echo "Is not revised"
+        fi
+        if [[ "$IS_REVISED" == "false" ]]; then
+          echo "Plugin is not revised, setting to revision 1."
+          REVISION="1"
+          echo "Revision: $REVISION"
+          NEW_VERSION="$VERSION-$REVISION"
+        else
+          REVISION=$(($PREV_REVISION + 1))
+          echo "Revision: $REVISION"
+          NEW_VERSION="$VERSION_WO_REVISION-$REVISION"
+        fi
+        
+        echo "New version: $NEW_VERISION"
+        echo "::notice::Going from $VERSION to $NEW_VERSION"
+
+        tmp=$(mktemp)
+        jq --arg newversion "$NEW_VERSION" '.version = $newversion' $PACKAGE_FILE > $tmp
+        mv $tmp $PACKAGE_FILE
+
+        echo "::endgroup::"
+    
+    - uses: pnpm/action-setup@v2
+      with:
+        version: 8.5.1
+    - name: Force update pnpm lockfile and/or DFL
+      if: ${{ inputs.force_pnpm != 'none' }}
+      run: |
+        if [[ "${{ env.pnpm_force }}" == "pnpm" ]]; then
+            $(which pnpm) -C plugins/$plugin install --lockfile-only
+        elif [[ "${{ env.pnpm_force }}" == "dfl" ]]; then
+            $(which pnpm) -C plugins/$plugin update --latest decky-frontend-lib
+        elif [[ "${{ env.pnpm_force }}" == "pnpm-dfl" ]]; then
+            $(which pnpm) -C plugins/$plugin install --lockfile-only
+            $(which pnpm) -C plugins/$plugin update --latest decky-frontend-lib
+        fi
+
     - name: Download Decky CLI
       run: |
         mkdir /tmp/decky-cli
-        curl -L -o /tmp/decky-cli/decky "https://github.com/SteamDeckHomebrew/cli/releases/download/0.0.1-alpha.10/decky"
+        curl -L -o /tmp/decky-cli/decky "https://github.com/SteamDeckHomebrew/cli/releases/download/0.0.1-alpha.14/decky"
         chmod +x /tmp/decky-cli/decky
 
         echo "/tmp/decky-cli" >> $GITHUB_PATH
@@ -239,12 +308,12 @@ jobs:
         path: /tmp/output/*.zip
 
     - name: Upload plugins to store
-      if: ${{ matrix.upload == true }}
       id: upload-plugins
       env:
         SUBMIT_AUTH_KEY: ${{ secrets.SUBMIT_AUTH_KEY }}
         STORE_URL: ${{ secrets.STORE_URL }}
         upload: ${{ matrix.upload }}
+      if: ${{ matrix.upload == true && env.SUBMIT_AUTH_KEY != '' }}
       run: |
         shopt -s dotglob
 
