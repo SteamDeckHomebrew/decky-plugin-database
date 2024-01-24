@@ -205,3 +205,6 @@
 [submodule "plugins/decky-XRGaming"]
 	path = plugins/decky-XRGaming
 	url = git@github.com:wheaney/decky-XRGaming.git
+[submodule "plugins/NonSteamLaunchers"]
+	path = plugins/NonSteamLaunchers
+	url = https://github.com/moraroy/NonSteamLaunchersDecky
