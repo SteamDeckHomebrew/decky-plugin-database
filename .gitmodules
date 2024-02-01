@@ -208,3 +208,6 @@
 [submodule "plugins/NonSteamLaunchers"]
 	path = plugins/NonSteamLaunchers
 	url = https://github.com/moraroy/NonSteamLaunchersDecky
+[submodule "plugins/decky-bluetooth-wake-control"]
+	path = plugins/decky-bluetooth-wake-control
+	url = https://gitlab.com/finewolf-projects/decky-plugin-bluetooth-wake-control.git
