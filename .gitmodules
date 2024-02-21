@@ -200,7 +200,7 @@
 	url = https://github.com/safijari/Decky-KDE-Connect.git
 [submodule "plugins/decky-XRGaming"]
 	path = plugins/decky-XRGaming
-	url = git@github.com:wheaney/decky-XRGaming.git
+	url = https://github.com/wheaney/decky-XRGaming.git
 [submodule "plugins/decky-bluetooth-wake-control"]
 	path = plugins/decky-bluetooth-wake-control
 	url = https://gitlab.com/finewolf-projects/decky-plugin-bluetooth-wake-control.git
