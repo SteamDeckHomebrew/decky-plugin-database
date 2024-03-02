@@ -204,3 +204,6 @@
 [submodule "plugins/decky-bluetooth-wake-control"]
 	path = plugins/decky-bluetooth-wake-control
 	url = https://gitlab.com/finewolf-projects/decky-plugin-bluetooth-wake-control.git
+[submodule "plugins/GameAssistSteamOS"]
+	path = plugins/GameAssistSteamOS
+	url = https://github.com/TeslaKang/GameAssistSteamOS.git
