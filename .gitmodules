@@ -204,3 +204,6 @@
 [submodule "plugins/decky-bluetooth-wake-control"]
 	path = plugins/decky-bluetooth-wake-control
 	url = https://gitlab.com/finewolf-projects/decky-plugin-bluetooth-wake-control.git
+[submodule "plugins/MagicBlackDecky"]
+	path = plugins/MagicBlackDecky
+	url = https://github.com/steam3d/MagicBlackDecky.git
