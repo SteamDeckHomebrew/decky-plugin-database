@@ -40,7 +40,7 @@
 	url = https://github.com/popsUlfr/SDH-Notebook.git
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
-	url = https://github.com/NGnius/Fantastic
+	url = https://git.ngni.us/NG-SD-Plugins/Fantastic
 [submodule "plugins/memory-deck"]
 	path = plugins/memory-deck
 	url = https://github.com/CameronRedmore/memory-deck.git
@@ -177,9 +177,9 @@
 [submodule "plugins/decky-wine-cellar"]
 	path = plugins/decky-wine-cellar
 	url = https://github.com/FlashyReese/decky-wine-cellar.git
-[submodule "plugins/decky-xrealAir"]
-	path = plugins/decky-xrealAir
-	url = https://github.com/wheaney/decky-xrealAir.git
+[submodule "plugins/EmuDecky"]
+	path = plugins/EmuDecky
+	url = https://github.com/EmuDeck/EmuDecky.git
 [submodule "plugins/DeckScreenshotManager"]
 	path = plugins/DeckScreenshotManager
 	url = https://github.com/codehz/DeckScreenshotManager
@@ -192,3 +192,18 @@
 [submodule "plugins/Junk-Store"]
 	path = plugins/Junk-Store
 	url = https://github.com/ebenbruyns/junkstore
+[submodule "plugins/CheatDeck"]
+	path = plugins/CheatDeck
+	url = https://github.com/SheffeyG/CheatDeck
+[submodule "plugins/reshadeck"]
+	path = plugins/reshadeck
+	url = https://github.com/safijari/reshadeck
+[submodule "plugins/kdeconnect"]
+	path = plugins/kdeconnect
+	url = https://github.com/safijari/Decky-KDE-Connect.git
+[submodule "plugins/decky-XRGaming"]
+	path = plugins/decky-XRGaming
+	url = https://github.com/wheaney/decky-XRGaming.git
+[submodule "plugins/decky-bluetooth-wake-control"]
+	path = plugins/decky-bluetooth-wake-control
+	url = https://gitlab.com/finewolf-projects/decky-plugin-bluetooth-wake-control.git
