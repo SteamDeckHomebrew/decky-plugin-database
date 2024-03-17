@@ -207,3 +207,6 @@
 [submodule "plugins/decky-brightness-bar"]
 	path = plugins/decky-brightness-bar
 	url = https://github.com/rasitayaz/decky-brightness-bar
+[submodule "plugins/decky-notifications"]
+	path = plugins/decky-notifications
+	url = https://github.com/Firemoon777/decky-notifications
