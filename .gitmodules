@@ -213,3 +213,7 @@
 [submodule "plugins/MagicBlackDecky"]
 	path = plugins/MagicBlackDecky
 	url = https://github.com/steam3d/MagicBlackDecky.git
+[submodule "decky-filebrowser-plugin"]
+	path = plugins/decky-filebrowser-plugin
+	url = https://github.com/heydemoura/decky-filebrowser-plugin.git
+	branch = release-0.0.1
