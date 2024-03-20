@@ -204,12 +204,12 @@
 [submodule "plugins/decky-bluetooth-wake-control"]
 	path = plugins/decky-bluetooth-wake-control
 	url = https://gitlab.com/finewolf-projects/decky-plugin-bluetooth-wake-control.git
-[submodule "plugins/MagicBlackDecky"]
-	path = plugins/MagicBlackDecky
-	url = https://github.com/steam3d/MagicBlackDecky.git
 [submodule "plugins/decky-brightness-bar"]
 	path = plugins/decky-brightness-bar
 	url = https://github.com/rasitayaz/decky-brightness-bar
 [submodule "plugins/decky-notifications"]
 	path = plugins/decky-notifications
 	url = https://github.com/Firemoon777/decky-notifications
+[submodule "plugins/MagicBlackDecky"]
+	path = plugins/MagicBlackDecky
+	url = https://github.com/steam3d/MagicBlackDecky.git
