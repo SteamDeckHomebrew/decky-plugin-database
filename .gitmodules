@@ -210,3 +210,6 @@
 [submodule "plugins/decky-notifications"]
 	path = plugins/decky-notifications
 	url = https://github.com/Firemoon777/decky-notifications
+[submodule "plugins/MagicBlackDecky"]
+	path = plugins/MagicBlackDecky
+	url = https://github.com/steam3d/MagicBlackDecky.git
