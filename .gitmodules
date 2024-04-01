@@ -206,7 +206,7 @@
 	url = https://gitlab.com/finewolf-projects/decky-plugin-bluetooth-wake-control.git
 [submodule "plugins/decky-controller-dock"]
 	path = plugins/decky-controller-dock
-	url = git@github.com:TacticalLaptopBag/decky-controller-dock.git
+	url = https://github.com/TacticalLaptopBag/decky-controller-dock.git
 [submodule "plugins/decky-brightness-bar"]
 	path = plugins/decky-brightness-bar
 	url = https://github.com/rasitayaz/decky-brightness-bar
