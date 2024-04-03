@@ -213,3 +213,6 @@
 [submodule "plugins/MagicBlackDecky"]
 	path = plugins/MagicBlackDecky
 	url = https://github.com/steam3d/MagicBlackDecky.git
+[submodule "plugins/decky-sunshine"]
+	path = plugins/decky-sunshine
+	url = https://github.com/s0t7x/decky-sunshine.git
