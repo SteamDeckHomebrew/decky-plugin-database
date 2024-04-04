@@ -7,7 +7,7 @@
 	url = https://github.com/WerWolv/SDH-SystemToolbox
 [submodule "plugins/deckfaqs"]
 	path = plugins/deckfaqs
-	url = https://github.com/hulkrelax/deckfaqs
+	url = https://github.com/SDH-Stewardship/deckfaqs
 [submodule "plugins/PowerTools"]
 	path = plugins/PowerTools
 	url = https://git.ngni.us/NG-SD-Plugins/PowerTools
