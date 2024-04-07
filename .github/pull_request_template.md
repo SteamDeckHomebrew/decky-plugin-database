@@ -1,10 +1,12 @@
+<!-- Make sure to include your plugin name below! -->
+
 # Plugin Name
 
 Please include a summary of what the plugin does.
 
 If this is an update, please include a summary of what changes you made.
 
-[If you have not already, please read the review and testing page on the [wiki](https://deckbrew.xyz/en/plugin-dev/review-and-testing). Remove this line before submitting your plugin.]
+[If you have not already, please read the review and testing page on the [wiki](https://wiki.deckbrew.xyz/plugin-dev/review-and-testing). Remove this line before submitting your plugin.]
 
 ## Checklist:
 
@@ -28,12 +30,12 @@ If this is an update, please include a summary of what changes you made.
 - **Yes/No**: I am using a tool or software from a 3rd party FOSS project that does not have it's dependencies [statically linked](https://en.wikipedia.org/wiki/Static_library).
 - **Yes/No**: I am using a custom binary that has all of it's dependencies statically linked.
 
-<!-- The following section is for testers and maintainers, please do not modify it unless you don't meet the criteria for testing on the preview channel. -->
+<!-- The following section is should be modified to fit the conditions for plugin testing found here: https://wiki.deckbrew.xyz/en/plugin-dev/review-and-testing -->
 
 ## Testing
 
-- [ ] Tested on SteamOS Stable Update Channel.
-<!-- Leave me be unless you don't need preview testing, I just make the buttons look nice -->
-- [ ] Tested on SteamOS Beta Update Channel.
-<!-- If you answered "No" to all of the Plugin Backend Checklist then you may remove the below line for testing on preview channel. -->
+<!-- Remove this box for SteamOS Stable/Beta testing if you use a custom or remote binary, for more info follow the URL in the comment above the testing section. -->
+- [ ] Tested on SteamOS Stable/Beta Update Channel.
+
+<!-- Remove this box for SteamOS Preview testing if you do not use a custom or remote binary, for more info follow the URL in the comment above the testing section. -->
 - [ ] Tested on SteamOS Preview Update Channel.
