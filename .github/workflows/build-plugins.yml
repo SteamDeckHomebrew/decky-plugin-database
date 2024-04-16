@@ -357,30 +357,36 @@ jobs:
         }
 
         shouldUpload=$(query_plugin_json '.publish | any(.tags[] == "dnu"; .) | not')
-
-        if [[ "$shouldUpload" == "true" ]]; then
-          echo "::notice::Uploading"
-          upload_response=$(upload_plugin)
-          if [[ "$upload_response" =~ "Version already exists" ]]; then
-            echo "::warning title=Could not upload $plugin::Version of plugin being pushed already exists, moving to next plugin."
-          elif [[ "$upload_response" =~ "INVALID AUTH KEY" ]]; then
-            echo "::error::Authentication Key used is invalid, exiting."
-            exit 1
-          elif [[ "$upload_response" =~ "invalid or missing URL scheme" ]]; then
-                echo "::error::url format in plugin.json is broken, please investigate."
-                if [[ "$upload_response" =~ "image" ]]; then
-                  echo "::error::Submitted screenshot URL does not exist or is broken."
-                  exit 1
-                else
-                  echo "::error::Unknown URL is broken, please see output below"
-                  echo "::error::$upload_response"
-                  exit 1
-                fi
-            exit 1
+        for i in {1..3}; do
+          if [[ "$shouldUpload" == "true" ]]; then
+            echo "::notice::Uploading"
+            upload_response=$(upload_plugin)
+            if [[ "$upload_response" =~ "Version already exists" ]]; then
+              echo "::warning title=Could not upload $plugin::Version of plugin being pushed already exists, moving to next plugin."
+              exit 1
+            elif [[ "$upload_response" =~ "INVALID AUTH KEY" ]]; then
+              echo "::error::Authentication Key used is invalid, exiting."
+              exit 1
+            elif [[ "$upload_response" =~ "invalid or missing URL scheme" ]]; then
+              echo "::error::url format in plugin.json is broken, please investigate."
+              if [[ "$upload_response" =~ "image" ]]; then
+                echo "::error::Submitted screenshot URL does not exist or is broken."
+                exit 1
+              else
+                echo "::error::Unknown URL is broken, please see output below"
+                echo "::error::$upload_response"
+                exit 1
+              fi
+              exit 1
+            elif [[ "$upload_response" =~ "Internal Server Error" ]]; then
+              echo "::error::Internal Server Error."
+              exit 1
+            else
+              echo "::notice::$upload_response"
+              break
+            fi
           else
-            echo "::notice::$upload_response"
+            echo "::warning::Plugin $PLUGIN_NAME is marked as 'do not upload'. Consider removing the 'dnu' tag if this is an accident."
           fi
-        else
-          echo "::warning::Plugin $PLUGIN_NAME is marked as 'do not upload'. Consider removing the 'dnu' tag if this is an accident."
-        fi
+        done
         echo "::endgroup::"
