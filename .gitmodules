@@ -216,3 +216,6 @@
 [submodule "plugins/isthereanydeal-for-deck"]
 	path = plugins/isthereanydeal-for-deck
 	url = https://github.com/JtdeGraaf/IsThereAnyDeal-DeckyPlugin
+[submodule "plugins/MagicPodsDecky"]
+	path = plugins/MagicPodsDecky
+	url = https://github.com/steam3d/MagicPodsDecky.git
