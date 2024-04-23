@@ -7,7 +7,7 @@
 	url = https://github.com/WerWolv/SDH-SystemToolbox
 [submodule "plugins/deckfaqs"]
 	path = plugins/deckfaqs
-	url = https://github.com/hulkrelax/deckfaqs
+	url = https://github.com/SDH-Stewardship/deckfaqs
 [submodule "plugins/PowerTools"]
 	path = plugins/PowerTools
 	url = https://git.ngni.us/NG-SD-Plugins/PowerTools
@@ -188,7 +188,7 @@
 	url = https://github.com/CEbbinghaus/MicroSDeck
 [submodule "plugins/decky-save-manager"]
 	path = plugins/decky-save-manager
-	url = https://github.com/metehankutlu/decky-save-manager
+	url = https://github.com/SDH-Stewardship/decky-save-manager
 [submodule "plugins/CheatDeck"]
 	path = plugins/CheatDeck
 	url = https://github.com/SheffeyG/CheatDeck
@@ -216,3 +216,9 @@
 [submodule "plugins/decky-sunshine"]
 	path = plugins/decky-sunshine
 	url = https://github.com/s0t7x/decky-sunshine.git
+[submodule "plugins/isthereanydeal-for-deck"]
+	path = plugins/isthereanydeal-for-deck
+	url = https://github.com/JtdeGraaf/IsThereAnyDeal-DeckyPlugin
+[submodule "plugins/MagicPodsDecky"]
+	path = plugins/MagicPodsDecky
+	url = https://github.com/steam3d/MagicPodsDecky.git
