@@ -216,6 +216,9 @@
 [submodule "plugins/NonSteamLaunchers"]
 	path = plugins/NonSteamLaunchers
 	url = https://github.com/moraroy/NonSteamLaunchersDecky
+[submodule "plugins/decky-sunshine"]
+	path = plugins/decky-sunshine
+	url = https://github.com/s0t7x/decky-sunshine.git
 [submodule "plugins/isthereanydeal-for-deck"]
 	path = plugins/isthereanydeal-for-deck
 	url = https://github.com/JtdeGraaf/IsThereAnyDeal-DeckyPlugin
