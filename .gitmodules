@@ -188,7 +188,10 @@
 	url = https://github.com/CEbbinghaus/MicroSDeck
 [submodule "plugins/decky-save-manager"]
 	path = plugins/decky-save-manager
-	url = https://github.com/SDH-Stewardship/decky-save-manager
+  url = https://github.com/SDH-Stewardship/decky-save-manager
+[submodule "plugins/Junk-Store"]
+	path = plugins/Junk-Store
+	url = https://github.com/ebenbruyns/junkstore
 [submodule "plugins/CheatDeck"]
 	path = plugins/CheatDeck
 	url = https://github.com/SheffeyG/CheatDeck
