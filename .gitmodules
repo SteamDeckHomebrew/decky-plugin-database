@@ -7,7 +7,7 @@
 	url = https://github.com/WerWolv/SDH-SystemToolbox
 [submodule "plugins/deckfaqs"]
 	path = plugins/deckfaqs
-	url = https://github.com/hulkrelax/deckfaqs
+	url = https://github.com/SDH-Stewardship/deckfaqs
 [submodule "plugins/PowerTools"]
 	path = plugins/PowerTools
 	url = https://git.ngni.us/NG-SD-Plugins/PowerTools
@@ -52,7 +52,7 @@
 	url = https://github.com/Tormak9970/bash-shortcuts.git
 [submodule "plugins/hltb-for-deck"]
 	path = plugins/hltb-for-deck
-	url = https://github.com/hulkrelax/hltb-for-deck
+	url = https://github.com/safijari/hltb-for-deck
 [submodule "plugins/decky-autosuspend"]
 	path = plugins/decky-autosuspend
 	url = https://github.com/jurassicplayer/decky-autosuspend.git
@@ -188,7 +188,10 @@
 	url = https://github.com/CEbbinghaus/MicroSDeck
 [submodule "plugins/decky-save-manager"]
 	path = plugins/decky-save-manager
-	url = https://github.com/metehankutlu/decky-save-manager
+  url = https://github.com/SDH-Stewardship/decky-save-manager
+[submodule "plugins/Junk-Store"]
+	path = plugins/Junk-Store
+	url = https://github.com/ebenbruyns/junkstore
 [submodule "plugins/CheatDeck"]
 	path = plugins/CheatDeck
 	url = https://github.com/SheffeyG/CheatDeck
@@ -204,3 +207,21 @@
 [submodule "plugins/decky-bluetooth-wake-control"]
 	path = plugins/decky-bluetooth-wake-control
 	url = https://gitlab.com/finewolf-projects/decky-plugin-bluetooth-wake-control.git
+[submodule "plugins/decky-brightness-bar"]
+	path = plugins/decky-brightness-bar
+	url = https://github.com/rasitayaz/decky-brightness-bar
+[submodule "plugins/decky-notifications"]
+	path = plugins/decky-notifications
+	url = https://github.com/Firemoon777/decky-notifications
+[submodule "plugins/MagicBlackDecky"]
+	path = plugins/MagicBlackDecky
+	url = https://github.com/steam3d/MagicBlackDecky.git
+[submodule "plugins/decky-sunshine"]
+	path = plugins/decky-sunshine
+	url = https://github.com/s0t7x/decky-sunshine.git
+[submodule "plugins/isthereanydeal-for-deck"]
+	path = plugins/isthereanydeal-for-deck
+	url = https://github.com/JtdeGraaf/IsThereAnyDeal-DeckyPlugin
+[submodule "plugins/MagicPodsDecky"]
+	path = plugins/MagicPodsDecky
+	url = https://github.com/steam3d/MagicPodsDecky.git
