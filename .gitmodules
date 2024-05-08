@@ -61,7 +61,7 @@
 	url = https://github.com/EmuDeck/Emuchievements
 [submodule "plugins/TunnelDeck"]
 	path = plugins/TunnelDeck
-	url = https://github.com/steve228uk/TunnelDeck
+	url = https://github.com/bkohler616/TunnelDeck
 [submodule "plugins/FkatpakUpdater"]
 	path = plugins/FlatpakUpdater
 	url = https://github.com/0xD34D/FlatpakUpdater
