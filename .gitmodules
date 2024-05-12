@@ -20,9 +20,6 @@
 [submodule "plugins/MusicControl"]
 	path = plugins/MusicControl
 	url = https://github.com/mirobouma/MusicControl.git
-[submodule "plugins/SDH-PauseGames"]
-	path = plugins/SDH-PauseGames
-	url = https://github.com/popsUlfr/SDH-PauseGames.git
 [submodule "plugins/protondb-decky"]
 	path = plugins/protondb-decky
 	url = https://github.com/OMGDuke/protondb-decky
@@ -225,3 +222,6 @@
 [submodule "plugins/MagicPodsDecky"]
 	path = plugins/MagicPodsDecky
 	url = https://github.com/steam3d/MagicPodsDecky.git
+[submodule "plugins/SDH-PauseGames"]
+	path = plugins/SDH-PauseGames
+	url = https://github.com/wynn1212/SDH-PauseGames.git
