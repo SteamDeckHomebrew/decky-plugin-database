@@ -225,3 +225,6 @@
 [submodule "plugins/MagicPodsDecky"]
 	path = plugins/MagicPodsDecky
 	url = https://github.com/steam3d/MagicPodsDecky.git
+[submodule "plugins/decky-spy"]
+	path = plugins/decky-spy
+	url = https://github.com/Seraphli/decky-spy.git
