@@ -1,0 +1,10 @@
+{
+  "name": "NordVPNdeck",
+  "author": "Werwolf2303",
+  "flags": ["root"],
+  "publish": {
+    "tags": ["vpn"],
+    "description": "NordVPN client for decky",
+    "image": "https://raw.githubusercontent.com/werwolf2303/decky-NordVPN/main/logo.png"
+  }
+}
