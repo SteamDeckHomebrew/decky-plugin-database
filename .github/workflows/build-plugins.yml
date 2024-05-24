@@ -377,10 +377,10 @@ jobs:
                 echo "::error::$upload_response"
                 exit 1
               fi
-              exit 1
             elif [[ "$upload_response" =~ "Internal Server Error" ]]; then
               echo "::error::Internal Server Error."
-              exit 1
+              sleep 5
+              continue
             else
               echo "::notice::$upload_response"
               break
