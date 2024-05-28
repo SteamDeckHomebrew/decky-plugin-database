@@ -7,22 +7,19 @@
 	url = https://github.com/WerWolv/SDH-SystemToolbox
 [submodule "plugins/deckfaqs"]
 	path = plugins/deckfaqs
-	url = https://github.com/hulkrelax/deckfaqs
+	url = https://github.com/SDH-Stewardship/deckfaqs
 [submodule "plugins/PowerTools"]
 	path = plugins/PowerTools
-	url = https://github.com/NGnius/PowerTools
+	url = https://git.ngni.us/NG-SD-Plugins/PowerTools
 [submodule "plugins/SDH-CssLoader"]
 	path = plugins/SDH-CssLoader
-	url = https://github.com/suchmememanyskill/SDH-CssLoader
+	url = https://github.com/DeckThemes/SDH-CssLoader
 [submodule "plugins/vibrantDeck"]
 	path = plugins/vibrantDeck
 	url = https://github.com/libvibrant/vibrantDeck.git
 [submodule "plugins/MusicControl"]
 	path = plugins/MusicControl
 	url = https://github.com/mirobouma/MusicControl.git
-[submodule "plugins/SDH-PauseGames"]
-	path = plugins/SDH-PauseGames
-	url = https://github.com/popsUlfr/SDH-PauseGames.git
 [submodule "plugins/protondb-decky"]
 	path = plugins/protondb-decky
 	url = https://github.com/OMGDuke/protondb-decky
@@ -40,7 +37,7 @@
 	url = https://github.com/popsUlfr/SDH-Notebook.git
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
-	url = https://github.com/NGnius/Fantastic
+	url = https://git.ngni.us/NG-SD-Plugins/Fantastic
 [submodule "plugins/memory-deck"]
 	path = plugins/memory-deck
 	url = https://github.com/CameronRedmore/memory-deck.git
@@ -52,7 +49,7 @@
 	url = https://github.com/Tormak9970/bash-shortcuts.git
 [submodule "plugins/hltb-for-deck"]
 	path = plugins/hltb-for-deck
-	url = https://github.com/hulkrelax/hltb-for-deck
+	url = https://github.com/safijari/hltb-for-deck
 [submodule "plugins/decky-autosuspend"]
 	path = plugins/decky-autosuspend
 	url = https://github.com/jurassicplayer/decky-autosuspend.git
@@ -61,7 +58,7 @@
 	url = https://github.com/EmuDeck/Emuchievements
 [submodule "plugins/TunnelDeck"]
 	path = plugins/TunnelDeck
-	url = https://github.com/steve228uk/TunnelDeck
+	url = https://github.com/bkohler616/TunnelDeck
 [submodule "plugins/FkatpakUpdater"]
 	path = plugins/FlatpakUpdater
 	url = https://github.com/0xD34D/FlatpakUpdater
@@ -98,8 +95,7 @@
 	url = https://github.com/dafta/DeckMTP
 [submodule "plugins/decky-recorder"]
 	path = plugins/decky-recorder
-	url = https://github.com/marissa999/decky-recorder.git
-	branch = main-0.2.1
+	url = https://github.com/safijari/decky-recorder-fork.git
 [submodule "plugins/Steamback"]
 	path = plugins/Steamback
 	url = https://github.com/geeksville/steamback.git
@@ -124,6 +120,108 @@
 [submodule "plugins/decky-dictation"]
 	path = plugins/decky-dictation
 	url = git@github.com:cboiangiu/decky-dictation.git
+[submodule "plugins/gameview-music-deck"]
+	path = plugins/gameview-music-deck
+	url = https://github.com/lcd1232/gameview-music-deck
 [submodule "plugins/decky-bookmarks"]
 	path = plugins/decky-bookmarks
 	url = https://codeberg.org/bleonard252/decky-bookmarks.git
+[submodule "plugins/MangoPeel"]
+	path = plugins/MangoPeel
+	url = https://github.com/Gawah/MangoPeel
+[submodule "plugins/volume-boost"]
+	path = plugins/volume-boost
+	url = https://github.com/saumya-banthia/volume-boost
+[submodule "plugins/VolumeMixer-decky"]
+	path = plugins/VolumeMixer-decky
+	url = https://github.com/isiah-lloyd/VolumeMixer-decky
+[submodule "plugins/DeckWebBrowser"]
+	path = plugins/DeckWebBrowser
+	url = https://github.com/jessebofill/DeckWebBrowser.git
+[submodule "plugins/free-loader"]
+	path = plugins/free-loader
+	url = https://github.com/jwhitlow45/free-loader
+[submodule "plugins/DeckyFileServer"]
+	path = plugins/DeckyFileServer
+	url = https://github.com/grimkor/DeckyFileServer
+[submodule "plugins/TabMaster"]
+	path = plugins/TabMaster
+	url = https://github.com/Tormak9970/TabMaster
+[submodule "plugins/radiyo-steam-deck"]
+	path = plugins/radiyo-steam-deck
+	url = https://github.com/isiah-lloyd/radiyo-steam-deck
+[submodule "plugins/ts3-qs4sd"]
+	path = plugins/ts3-qs4sd
+	url = https://github.com/ILadis/ts3-qs4sd
+[submodule "plugins/decky-syncthing"]
+	path = plugins/decky-syncthing
+	url = https://github.com/theCapypara/steamdeck-decky-syncthing.git
+[submodule "plugins/sharedeck-y"]
+	path = plugins/sharedeck-y
+	url = git@github.com:davocarli/sharedeck-y.git
+[submodule "plugins/decky-terminal"]
+	path = plugins/decky-terminal
+	url = https://github.com/Alex4386/decky-terminal
+[submodule "plugins/SDH-PlayTime"]
+	path = plugins/SDH-PlayTime
+	url = https://github.com/ma3a/SDH-PlayTime.git
+[submodule "plugins/Shotty"]
+	path = plugins/Shotty
+	url = https://github.com/safijari/Shotty
+[submodule "plugins/steam-deck-battery-tracker"]
+	path = plugins/steam-deck-battery-tracker
+	url = https://github.com/safijari/steam-deck-battery-tracker
+[submodule "plugins/decky-wine-cellar"]
+	path = plugins/decky-wine-cellar
+	url = https://github.com/FlashyReese/decky-wine-cellar.git
+[submodule "plugins/EmuDecky"]
+	path = plugins/EmuDecky
+	url = https://github.com/EmuDeck/EmuDecky.git
+[submodule "plugins/DeckScreenshotManager"]
+	path = plugins/DeckScreenshotManager
+	url = https://github.com/codehz/DeckScreenshotManager
+[submodule "plugins/MicroSDeck"]
+	path = plugins/MicroSDeck
+	url = https://github.com/CEbbinghaus/MicroSDeck
+[submodule "plugins/decky-save-manager"]
+	path = plugins/decky-save-manager
+  url = https://github.com/SDH-Stewardship/decky-save-manager
+[submodule "plugins/Junk-Store"]
+	path = plugins/Junk-Store
+	url = https://github.com/ebenbruyns/junkstore
+[submodule "plugins/CheatDeck"]
+	path = plugins/CheatDeck
+	url = https://github.com/SheffeyG/CheatDeck
+[submodule "plugins/reshadeck"]
+	path = plugins/reshadeck
+	url = https://github.com/safijari/reshadeck
+[submodule "plugins/kdeconnect"]
+	path = plugins/kdeconnect
+	url = https://github.com/safijari/Decky-KDE-Connect.git
+[submodule "plugins/decky-XRGaming"]
+	path = plugins/decky-XRGaming
+	url = https://github.com/wheaney/decky-XRGaming.git
+[submodule "plugins/decky-bluetooth-wake-control"]
+	path = plugins/decky-bluetooth-wake-control
+	url = https://gitlab.com/finewolf-projects/decky-plugin-bluetooth-wake-control.git
+[submodule "plugins/decky-brightness-bar"]
+	path = plugins/decky-brightness-bar
+	url = https://github.com/rasitayaz/decky-brightness-bar
+[submodule "plugins/decky-notifications"]
+	path = plugins/decky-notifications
+	url = https://github.com/Firemoon777/decky-notifications
+[submodule "plugins/MagicBlackDecky"]
+	path = plugins/MagicBlackDecky
+	url = https://github.com/steam3d/MagicBlackDecky.git
+[submodule "plugins/decky-sunshine"]
+	path = plugins/decky-sunshine
+	url = https://github.com/s0t7x/decky-sunshine.git
+[submodule "plugins/isthereanydeal-for-deck"]
+	path = plugins/isthereanydeal-for-deck
+	url = https://github.com/JtdeGraaf/IsThereAnyDeal-DeckyPlugin
+[submodule "plugins/MagicPodsDecky"]
+	path = plugins/MagicPodsDecky
+	url = https://github.com/steam3d/MagicPodsDecky.git
+[submodule "plugins/SDH-PauseGames"]
+	path = plugins/SDH-PauseGames
+	url = https://github.com/wynn1212/SDH-PauseGames.git
