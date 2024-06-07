@@ -225,3 +225,6 @@
 [submodule "plugins/SDH-PauseGames"]
 	path = plugins/SDH-PauseGames
 	url = https://github.com/wynn1212/SDH-PauseGames.git
+[submodule "plugins/DeckyInhibitScreenSaver"]
+	path = plugins/DeckyInhibitScreenSaver
+	url = https://github.com/xfangfang/DeckyInhibitScreenSaver
