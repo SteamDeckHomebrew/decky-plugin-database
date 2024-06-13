@@ -86,7 +86,7 @@
 	url = https://github.com/WerWolv/SDH-FreeGames
 [submodule "plugins/ControllerTools"]
 	path = plugins/ControllerTools
-	url = https://github.com/alphamercury/ControllerTools
+	url = https://github.com/jfernandez/ControllerTools
 [submodule "plugins/tailscale-control"]
 	path = plugins/tailscale-control
 	url = https://github.com/saumya-banthia/tailscale-control
