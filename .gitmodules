@@ -7,7 +7,7 @@
 	url = https://github.com/WerWolv/SDH-SystemToolbox
 [submodule "plugins/deckfaqs"]
 	path = plugins/deckfaqs
-	url = https://github.com/hulkrelax/deckfaqs
+	url = https://github.com/SDH-Stewardship/deckfaqs
 [submodule "plugins/PowerTools"]
 	path = plugins/PowerTools
 	url = https://git.ngni.us/NG-SD-Plugins/PowerTools
@@ -20,9 +20,6 @@
 [submodule "plugins/MusicControl"]
 	path = plugins/MusicControl
 	url = https://github.com/mirobouma/MusicControl.git
-[submodule "plugins/SDH-PauseGames"]
-	path = plugins/SDH-PauseGames
-	url = https://github.com/popsUlfr/SDH-PauseGames.git
 [submodule "plugins/protondb-decky"]
 	path = plugins/protondb-decky
 	url = https://github.com/OMGDuke/protondb-decky
@@ -61,7 +58,7 @@
 	url = https://github.com/EmuDeck/Emuchievements
 [submodule "plugins/TunnelDeck"]
 	path = plugins/TunnelDeck
-	url = https://github.com/steve228uk/TunnelDeck
+	url = https://github.com/bkohler616/TunnelDeck
 [submodule "plugins/FkatpakUpdater"]
 	path = plugins/FlatpakUpdater
 	url = https://github.com/0xD34D/FlatpakUpdater
@@ -188,7 +185,10 @@
 	url = https://github.com/CEbbinghaus/MicroSDeck
 [submodule "plugins/decky-save-manager"]
 	path = plugins/decky-save-manager
-	url = https://github.com/metehankutlu/decky-save-manager
+  url = https://github.com/SDH-Stewardship/decky-save-manager
+[submodule "plugins/Junk-Store"]
+	path = plugins/Junk-Store
+	url = https://github.com/ebenbruyns/junkstore
 [submodule "plugins/CheatDeck"]
 	path = plugins/CheatDeck
 	url = https://github.com/SheffeyG/CheatDeck
@@ -213,3 +213,15 @@
 [submodule "plugins/MagicBlackDecky"]
 	path = plugins/MagicBlackDecky
 	url = https://github.com/steam3d/MagicBlackDecky.git
+[submodule "plugins/decky-sunshine"]
+	path = plugins/decky-sunshine
+	url = https://github.com/s0t7x/decky-sunshine.git
+[submodule "plugins/isthereanydeal-for-deck"]
+	path = plugins/isthereanydeal-for-deck
+	url = https://github.com/JtdeGraaf/IsThereAnyDeal-DeckyPlugin
+[submodule "plugins/MagicPodsDecky"]
+	path = plugins/MagicPodsDecky
+	url = https://github.com/steam3d/MagicPodsDecky.git
+[submodule "plugins/SDH-PauseGames"]
+	path = plugins/SDH-PauseGames
+	url = https://github.com/wynn1212/SDH-PauseGames.git
