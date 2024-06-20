@@ -204,6 +204,9 @@
 [submodule "plugins/decky-bluetooth-wake-control"]
 	path = plugins/decky-bluetooth-wake-control
 	url = https://gitlab.com/finewolf-projects/decky-plugin-bluetooth-wake-control.git
+[submodule "plugins/decky-jsaux-rgb"]
+	path = plugins/decky-jsaux-rgb
+	url = https://github.com/gadgetoid/decky-jsaux-rgb
 [submodule "plugins/decky-brightness-bar"]
 	path = plugins/decky-brightness-bar
 	url = https://github.com/rasitayaz/decky-brightness-bar
