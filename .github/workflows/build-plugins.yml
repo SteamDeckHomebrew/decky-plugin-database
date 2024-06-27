@@ -49,7 +49,7 @@ jobs:
     steps:
     - name: Checkout
       if: ${{ !env.ACT }}
-      uses: actions/checkout@8230315d06ad95c617244d2f265d237a1682d445
+      uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.sha || github.sha }}
         fetch-depth: 0
@@ -93,12 +93,6 @@ jobs:
           PLUGINS_PENDING_BUILD=$ALL_PLUGINS
         fi
 
-        if [[ $pluginOverride == "#all" ]]; then
-          echo "::notice::Workflow run set to upload all. Setting all plugins as pending build and upload."
-          PLUGINS_PENDING_BUILD=$ALL_PLUGINS
-          PLUGINS_PENDING_UPLOAD=$ALL_PLUGINS
-        fi
-
         if [[ "${{ env.testing }}" == "true" ]]; then
           echo "::notice::Testing is enabled, using limited plugin set for build testing."
           PLUGINS_PENDING_BUILD=(${{ env.testing_plugins }})
@@ -111,6 +105,12 @@ jobs:
           plugins=$(tr " " "\n" <<< "$pluginOverride")
           PLUGINS_PENDING_BUILD=$plugins
           PLUGINS_PENDING_UPLOAD=$plugins
+        fi
+
+        if [[ $pluginOverride == "#all" ]]; then
+          echo "::notice::Workflow run set to upload all. Setting all plugins as pending build and upload."
+          PLUGINS_PENDING_BUILD=$ALL_PLUGINS
+          PLUGINS_PENDING_UPLOAD=$ALL_PLUGINS
         fi
 
         echo "all_changed_plugins<<EOF" >> $GITHUB_OUTPUT
@@ -193,7 +193,7 @@ jobs:
     steps:
     - name: Checkout
       if: ${{ !env.ACT }}
-      uses: actions/checkout@8230315d06ad95c617244d2f265d237a1682d445
+      uses: actions/checkout@v4
       with:
         ref: ${{ github.event.pull_request.head.sha || github.sha }}
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -267,9 +267,9 @@ jobs:
 
         echo "::endgroup::"
     
-    - uses: pnpm/action-setup@v2
+    - uses: pnpm/action-setup@v3
       with:
-        version: 8.5.1
+        version: 9.0.5
     - name: Force update pnpm lockfile and/or DFL
       if: ${{ inputs.force_pnpm != 'none' }}
       run: |
@@ -285,7 +285,7 @@ jobs:
     - name: Download Decky CLI
       run: |
         mkdir /tmp/decky-cli
-        curl -L -o /tmp/decky-cli/decky "https://github.com/SteamDeckHomebrew/cli/releases/download/0.0.1-alpha.14/decky"
+        curl -L -o /tmp/decky-cli/decky "https://github.com/SteamDeckHomebrew/cli/releases/download/0.0.2/decky-linux-x86_64"
         chmod +x /tmp/decky-cli/decky
 
         echo "/tmp/decky-cli" >> $GITHUB_PATH
@@ -302,7 +302,7 @@ jobs:
 
     - name: Upload Artifacts to Github
       if: ${{ !env.ACT }}
-      uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.name }}
         path: /tmp/output/*.zip
