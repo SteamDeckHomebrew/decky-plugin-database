@@ -225,6 +225,7 @@
 [submodule "plugins/SDH-PauseGames"]
 	path = plugins/SDH-PauseGames
 	url = https://github.com/wynn1212/SDH-PauseGames.git
+
 [submodule "plugins/decky-NordVPN"]
 	path = plugins/decky-NordVPN
 	url = https://github.com/werwolf2303/decky-NordVPN
