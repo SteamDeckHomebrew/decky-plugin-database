@@ -222,6 +222,9 @@
 [submodule "plugins/MagicPodsDecky"]
 	path = plugins/MagicPodsDecky
 	url = https://github.com/steam3d/MagicPodsDecky.git
+[submodule "plugins/decky-just-juice"]
+	path = plugins/decky-just-juice
+	url = git@github.com:bass3l/decky-just-juice.git
 [submodule "plugins/SDH-PauseGames"]
 	path = plugins/SDH-PauseGames
 	url = https://github.com/wynn1212/SDH-PauseGames.git
