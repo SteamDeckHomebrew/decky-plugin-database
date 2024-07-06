@@ -1,8 +1,8 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 RUN apk add --no-cache rsync
 
-RUN npm i --location=global pnpm@8.5.1
+RUN npm i --location=global pnpm@9
 
 COPY ./entrypoint.sh /entrypoint.sh
 
