@@ -225,3 +225,6 @@
 [submodule "plugins/SDH-PauseGames"]
 	path = plugins/SDH-PauseGames
 	url = https://github.com/wynn1212/SDH-PauseGames.git
+[submodule "plugins/decky-just-juice"]
+	path = plugins/decky-just-juice
+	url = git@github.com:bass3l/decky-just-juice.git
