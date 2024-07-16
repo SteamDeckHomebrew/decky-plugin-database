@@ -3,8 +3,6 @@ name: Build Builder Docker image
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
     paths:
       - "builder/**"
       - ".github/workflows/build-builder.yml"
@@ -16,11 +14,12 @@ jobs:
     
     steps:
     - name: Checkout
-      uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
     
     - name: Login to GitHub Container Registry
+      if: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')) }}
       run: |
         echo $GITHUB_TOKEN | docker login ghcr.io -u SteamDeckHomebrew --password-stdin
       env:
@@ -32,11 +31,12 @@ jobs:
         docker build -t ghcr.io/steamdeckhomebrew/builder:latest .
 
     - name: Wait for other runs to complete
-      uses: softprops/turnstyle@8db075d65b19bf94e6e8687b504db69938dc3c65
+      uses: softprops/turnstyle@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Push
+      if: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')) }}
       run: |
         docker push ghcr.io/steamdeckhomebrew/builder:latest
 
