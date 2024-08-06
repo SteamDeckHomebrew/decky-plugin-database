@@ -225,3 +225,6 @@
 [submodule "plugins/SDH-Notebook"]
 	path = plugins/SDH-Notebook
 	url = https://github.com/wynn1212/SDH-Notebook.git
+[submodule "plugins/decky-zerotier"]
+	path = plugins/decky-zerotier
+	url = https://github.com/hyacz/decky-zerotier
