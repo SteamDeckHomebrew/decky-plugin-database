@@ -269,7 +269,7 @@ jobs:
     
     - uses: pnpm/action-setup@v3
       with:
-        version: 9.0.5
+        version: 9.4.0
     - name: Force update pnpm lockfile and/or DFL
       if: ${{ inputs.force_pnpm != 'none' }}
       run: |
@@ -313,7 +313,7 @@ jobs:
         SUBMIT_AUTH_KEY: ${{ secrets.SUBMIT_AUTH_KEY }}
         STORE_URL: ${{ secrets.STORE_URL }}
         upload: ${{ matrix.upload }}
-      if: ${{ matrix.upload == true && env.SUBMIT_AUTH_KEY != '' }}
+      if: ${{ matrix.upload == true && inputs.test_build != true && env.SUBMIT_AUTH_KEY != '' }}
       run: |
         shopt -s dotglob
 

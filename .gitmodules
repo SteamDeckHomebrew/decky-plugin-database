@@ -32,9 +32,6 @@
 [submodule "plugins/Bluetooth"]
 	path = plugins/Bluetooth
 	url = https://github.com/Outpox/Bluetooth.git
-[submodule "plugins/SDH-Notebook"]
-	path = plugins/SDH-Notebook
-	url = https://github.com/popsUlfr/SDH-Notebook.git
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
 	url = https://git.ngni.us/NG-SD-Plugins/Fantastic
@@ -86,7 +83,7 @@
 	url = https://github.com/WerWolv/SDH-FreeGames
 [submodule "plugins/ControllerTools"]
 	path = plugins/ControllerTools
-	url = https://github.com/alphamercury/ControllerTools
+	url = https://github.com/jfernandez/ControllerTools
 [submodule "plugins/tailscale-control"]
 	path = plugins/tailscale-control
 	url = https://github.com/saumya-banthia/tailscale-control
@@ -228,3 +225,6 @@
 [submodule "plugins/docked-steamdeck-input-disabler"]
 	path = plugins/docked-steamdeck-input-disabler
 	url = https://gitlab.burritospray.com/BurritoSpray/docked-steamdeck-input-disabler.git
+[submodule "plugins/SDH-Notebook"]
+	path = plugins/SDH-Notebook
+	url = https://github.com/wynn1212/SDH-Notebook.git
