@@ -228,3 +228,6 @@
 [submodule "plugins/Decky-Undervolt"]
 	path = plugins/Decky-Undervolt
 	url = https://github.com/totallynotbakadestroyer/Decky-Undervolt
+[submodule "plugins/NonSteamLaunchers"]
+	path = plugins/NonSteamLaunchers
+	url = https://github.com/moraroy/NonSteamLaunchersDecky
