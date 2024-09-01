@@ -231,3 +231,7 @@
 [submodule "plugins/NonSteamLaunchers"]
 	path = plugins/NonSteamLaunchers
 	url = https://github.com/moraroy/NonSteamLaunchersDecky
+[submodule "plugins/change-ttl"]
+	path = plugins/change-ttl
+	url = git@github.com:JuanJoseGonGi/decky-plugin-change-ttl.git
+    branch = main
