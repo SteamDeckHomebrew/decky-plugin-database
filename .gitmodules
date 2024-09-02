@@ -231,3 +231,6 @@
 [submodule "plugins/NonSteamLaunchers"]
 	path = plugins/NonSteamLaunchers
 	url = https://github.com/moraroy/NonSteamLaunchersDecky
+[submodule "plugins/Chrono-Deck"]
+	path = plugins/Chrono-Deck
+	url = git@github.com:0u73r-h34v3n/chrono-deck.git
