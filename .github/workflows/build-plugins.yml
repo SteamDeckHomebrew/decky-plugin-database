@@ -182,7 +182,6 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.plugin_override))) && 'env' || 'testing_env' }}
-      url: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.plugin_override))) && ('https://plugins.deckbrew.xyz#'${{ matrix.name }}) || ('https://testing.deckbrew.xyz#'${{ matrix.name }}) }}
     needs:
       - find
     strategy:
