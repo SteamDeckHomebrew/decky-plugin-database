@@ -233,5 +233,5 @@
 	url = https://github.com/moraroy/NonSteamLaunchersDecky
 [submodule "plugins/change-ttl"]
 	path = plugins/change-ttl
-	url = git@github.com:JuanJoseGonGi/decky-plugin-change-ttl.git
+	url = https://github.com/JuanJoseGonGi/decky-plugin-change-ttl.git
     branch = main
