@@ -234,4 +234,4 @@
 [submodule "plugins/change-ttl"]
 	path = plugins/change-ttl
 	url = https://github.com/JuanJoseGonGi/decky-plugin-change-ttl.git
-    branch = main
+	branch = main
