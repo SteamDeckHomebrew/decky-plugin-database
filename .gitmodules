@@ -20,9 +20,6 @@
 [submodule "plugins/MusicControl"]
 	path = plugins/MusicControl
 	url = https://github.com/mirobouma/MusicControl.git
-[submodule "plugins/SDH-PauseGames"]
-	path = plugins/SDH-PauseGames
-	url = https://github.com/popsUlfr/SDH-PauseGames.git
 [submodule "plugins/protondb-decky"]
 	path = plugins/protondb-decky
 	url = https://github.com/OMGDuke/protondb-decky
@@ -35,9 +32,6 @@
 [submodule "plugins/Bluetooth"]
 	path = plugins/Bluetooth
 	url = https://github.com/Outpox/Bluetooth.git
-[submodule "plugins/SDH-Notebook"]
-	path = plugins/SDH-Notebook
-	url = https://github.com/popsUlfr/SDH-Notebook.git
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
 	url = https://git.ngni.us/NG-SD-Plugins/Fantastic
@@ -89,7 +83,7 @@
 	url = https://github.com/WerWolv/SDH-FreeGames
 [submodule "plugins/ControllerTools"]
 	path = plugins/ControllerTools
-	url = https://github.com/alphamercury/ControllerTools
+	url = https://github.com/jfernandez/ControllerTools
 [submodule "plugins/tailscale-control"]
 	path = plugins/tailscale-control
 	url = https://github.com/saumya-banthia/tailscale-control
@@ -225,3 +219,15 @@
 [submodule "plugins/MagicPodsDecky"]
 	path = plugins/MagicPodsDecky
 	url = https://github.com/steam3d/MagicPodsDecky.git
+[submodule "plugins/SDH-PauseGames"]
+	path = plugins/SDH-PauseGames
+	url = https://github.com/wynn1212/SDH-PauseGames.git
+[submodule "plugins/SDH-Notebook"]
+	path = plugins/SDH-Notebook
+	url = https://github.com/wynn1212/SDH-Notebook.git
+[submodule "plugins/Decky-Undervolt"]
+	path = plugins/Decky-Undervolt
+	url = https://github.com/totallynotbakadestroyer/Decky-Undervolt
+[submodule "plugins/NonSteamLaunchers"]
+	path = plugins/NonSteamLaunchers
+	url = https://github.com/moraroy/NonSteamLaunchersDecky
