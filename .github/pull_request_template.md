@@ -34,8 +34,6 @@ If this is an update, please include a summary of what changes you made.
 
 ## Testing
 
-<!-- Remove this box for SteamOS Stable/Beta testing if you use a custom or remote binary, for more info follow the URL in the comment above the testing section. -->
 - [ ] Tested on SteamOS Stable/Beta Update Channel.
 
-<!-- Remove this box for SteamOS Preview testing if you do not use a custom or remote binary, for more info follow the URL in the comment above the testing section. -->
 - [ ] Tested on SteamOS Preview Update Channel.
