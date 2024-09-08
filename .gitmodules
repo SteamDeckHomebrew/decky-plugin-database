@@ -32,9 +32,6 @@
 [submodule "plugins/Bluetooth"]
 	path = plugins/Bluetooth
 	url = https://github.com/Outpox/Bluetooth.git
-[submodule "plugins/SDH-Notebook"]
-	path = plugins/SDH-Notebook
-	url = https://github.com/popsUlfr/SDH-Notebook.git
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
 	url = https://git.ngni.us/NG-SD-Plugins/Fantastic
@@ -225,3 +222,12 @@
 [submodule "plugins/SDH-PauseGames"]
 	path = plugins/SDH-PauseGames
 	url = https://github.com/wynn1212/SDH-PauseGames.git
+[submodule "plugins/SDH-Notebook"]
+	path = plugins/SDH-Notebook
+	url = https://github.com/wynn1212/SDH-Notebook.git
+[submodule "plugins/Decky-Undervolt"]
+	path = plugins/Decky-Undervolt
+	url = https://github.com/totallynotbakadestroyer/Decky-Undervolt
+[submodule "plugins/NonSteamLaunchers"]
+	path = plugins/NonSteamLaunchers
+	url = https://github.com/moraroy/NonSteamLaunchersDecky
