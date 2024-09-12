@@ -222,9 +222,9 @@
 [submodule "plugins/SDH-PauseGames"]
 	path = plugins/SDH-PauseGames
 	url = https://github.com/wynn1212/SDH-PauseGames.git
-[submodule "plugins/docked-steamdeck-input-disabler"]
-	path = plugins/docked-steamdeck-input-disabler
-	url = https://gitlab.burritospray.com/BurritoSpray/docked-steamdeck-input-disabler.git
 [submodule "plugins/SDH-Notebook"]
 	path = plugins/SDH-Notebook
 	url = https://github.com/wynn1212/SDH-Notebook.git
+[submodule "plugins/steamdeck-input-disabler"]
+	path = plugins/steamdeck-input-disabler
+	url = https://gitlab.burritospray.com/BurritoSpray/steamdeck-input-disabler.git
