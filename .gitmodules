@@ -231,3 +231,6 @@
 [submodule "plugins/NonSteamLaunchers"]
 	path = plugins/NonSteamLaunchers
 	url = https://github.com/moraroy/NonSteamLaunchersDecky
+[submodule "plugins/DeckyInhibitScreenSaver"]
+	path = plugins/DeckyInhibitScreenSaver
+	url = https://github.com/xfangfang/DeckyInhibitScreenSaver
