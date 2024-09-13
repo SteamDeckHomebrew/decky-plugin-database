@@ -231,3 +231,6 @@
 [submodule "plugins/NonSteamLaunchers"]
 	path = plugins/NonSteamLaunchers
 	url = https://github.com/moraroy/NonSteamLaunchersDecky
+[submodule "plugins/Deck-Auto-Update"]
+	path = plugins/Deck-Auto-Update
+	url = https://github.com/AkazaRenn/Deck-Auto-Update.git
