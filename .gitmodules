@@ -225,6 +225,9 @@
 [submodule "plugins/SDH-Notebook"]
 	path = plugins/SDH-Notebook
 	url = https://github.com/wynn1212/SDH-Notebook.git
+[submodule "plugins/steamdeck-input-disabler"]
+	path = plugins/steamdeck-input-disabler
+	url = https://gitlab.burritospray.com/BurritoSpray/steamdeck-input-disabler.git
 [submodule "plugins/Decky-Undervolt"]
 	path = plugins/Decky-Undervolt
 	url = https://github.com/totallynotbakadestroyer/Decky-Undervolt
