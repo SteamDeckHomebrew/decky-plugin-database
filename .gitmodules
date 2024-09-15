@@ -10,7 +10,7 @@
 	url = https://github.com/SDH-Stewardship/deckfaqs
 [submodule "plugins/PowerTools"]
 	path = plugins/PowerTools
-	url = https://git.ngni.us/NG-SD-Plugins/PowerTools
+	url = https://gitlab.com/NGnius/PowerTools
 [submodule "plugins/SDH-CssLoader"]
 	path = plugins/SDH-CssLoader
 	url = https://github.com/DeckThemes/SDH-CssLoader
@@ -34,7 +34,7 @@
 	url = https://github.com/Outpox/Bluetooth.git
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
-	url = https://git.ngni.us/NG-SD-Plugins/Fantastic
+	url = https://gitlab.com/NGnius/Fantastic
 [submodule "plugins/memory-deck"]
 	path = plugins/memory-deck
 	url = https://github.com/CameronRedmore/memory-deck.git
@@ -225,6 +225,9 @@
 [submodule "plugins/SDH-Notebook"]
 	path = plugins/SDH-Notebook
 	url = https://github.com/wynn1212/SDH-Notebook.git
+[submodule "plugins/steamdeck-input-disabler"]
+	path = plugins/steamdeck-input-disabler
+	url = https://gitlab.burritospray.com/BurritoSpray/steamdeck-input-disabler.git
 [submodule "plugins/Decky-Undervolt"]
 	path = plugins/Decky-Undervolt
 	url = https://github.com/totallynotbakadestroyer/Decky-Undervolt
@@ -235,3 +238,6 @@
 	path = plugins/change-ttl
 	url = https://github.com/JuanJoseGonGi/decky-plugin-change-ttl.git
 	branch = main
+[submodule "plugins/DeckyInhibitScreenSaver"]
+	path = plugins/DeckyInhibitScreenSaver
+	url = https://github.com/xfangfang/DeckyInhibitScreenSaver
