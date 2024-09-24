@@ -237,3 +237,6 @@
 [submodule "plugins/DeckyInhibitScreenSaver"]
 	path = plugins/DeckyInhibitScreenSaver
 	url = https://github.com/xfangfang/DeckyInhibitScreenSaver
+[submodule "plugins/XIVOmega"]
+	path = plugins/XIVOmega
+	url = https://github.com/shingonati0n/xivomega-decky
