@@ -237,3 +237,6 @@
 [submodule "plugins/DeckyInhibitScreenSaver"]
 	path = plugins/DeckyInhibitScreenSaver
 	url = https://github.com/xfangfang/DeckyInhibitScreenSaver
+[submodule "plugins/network-manager"]
+	path = plugins/network-manager
+	url = https://github.com/erik-hasse/network-manager.git
