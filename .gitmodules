@@ -2,15 +2,12 @@
 	path = plugins/decky-plugin-template
 	url = https://github.com/SteamDeckHomebrew/decky-plugin-template
 	branch = ci-testing
-[submodule "plugins/SDH-SystemToolbox"]
-	path = plugins/SDH-SystemToolbox
-	url = https://github.com/WerWolv/SDH-SystemToolbox
 [submodule "plugins/deckfaqs"]
 	path = plugins/deckfaqs
 	url = https://github.com/SDH-Stewardship/deckfaqs
 [submodule "plugins/PowerTools"]
 	path = plugins/PowerTools
-	url = https://git.ngni.us/NG-SD-Plugins/PowerTools
+	url = https://gitlab.com/NGnius/PowerTools
 [submodule "plugins/SDH-CssLoader"]
 	path = plugins/SDH-CssLoader
 	url = https://github.com/DeckThemes/SDH-CssLoader
@@ -34,7 +31,7 @@
 	url = https://github.com/Outpox/Bluetooth.git
 [submodule "plugins/Fantastic"]
 	path = plugins/Fantastic
-	url = https://git.ngni.us/NG-SD-Plugins/Fantastic
+	url = https://gitlab.com/NGnius/Fantastic
 [submodule "plugins/memory-deck"]
 	path = plugins/memory-deck
 	url = https://github.com/CameronRedmore/memory-deck.git
@@ -56,18 +53,9 @@
 [submodule "plugins/TunnelDeck"]
 	path = plugins/TunnelDeck
 	url = https://github.com/bkohler616/TunnelDeck
-[submodule "plugins/FkatpakUpdater"]
-	path = plugins/FlatpakUpdater
-	url = https://github.com/0xD34D/FlatpakUpdater
-[submodule "plugins/MetaDeck"]
-	path = plugins/MetaDeck
-	url = https://github.com/EmuDeck/MetaDeck
 [submodule "plugins/decky-autoflatpaks"]
 	path = plugins/decky-autoflatpaks
 	url = https://github.com/jurassicplayer/decky-autoflatpaks.git
-[submodule "plugins/SDH-KLang"]
-	path = plugins/SDH-KLang
-	url = git@github.com:Loidbae/SDH-KLang.git
 [submodule "plugins/moondeck"]
 	path = plugins/moondeck
 	url = https://github.com/FrogTheFrog/moondeck
@@ -78,9 +66,6 @@
 [submodule "plugins/DiscordStatus"]
 	path = plugins/DiscordStatus
 	url = https://github.com/andrewburgess/steamdeck-discord-status
-[submodule "plugins/SDH-FreeGames"]
-	path = plugins/SDH-FreeGames
-	url = https://github.com/WerWolv/SDH-FreeGames
 [submodule "plugins/ControllerTools"]
 	path = plugins/ControllerTools
 	url = https://github.com/jfernandez/ControllerTools
@@ -120,9 +105,6 @@
 [submodule "plugins/gameview-music-deck"]
 	path = plugins/gameview-music-deck
 	url = https://github.com/lcd1232/gameview-music-deck
-[submodule "plugins/decky-bookmarks"]
-	path = plugins/decky-bookmarks
-	url = https://codeberg.org/bleonard252/decky-bookmarks.git
 [submodule "plugins/MangoPeel"]
 	path = plugins/MangoPeel
 	url = https://github.com/Gawah/MangoPeel
@@ -225,6 +207,18 @@
 [submodule "plugins/SDH-Notebook"]
 	path = plugins/SDH-Notebook
 	url = https://github.com/wynn1212/SDH-Notebook.git
+[submodule "plugins/steamdeck-input-disabler"]
+	path = plugins/steamdeck-input-disabler
+	url = https://gitlab.burritospray.com/BurritoSpray/steamdeck-input-disabler.git
+[submodule "plugins/Decky-Undervolt"]
+	path = plugins/Decky-Undervolt
+	url = https://github.com/totallynotbakadestroyer/Decky-Undervolt
+[submodule "plugins/NonSteamLaunchers"]
+	path = plugins/NonSteamLaunchers
+	url = https://github.com/moraroy/NonSteamLaunchersDecky
+[submodule "plugins/DeckyInhibitScreenSaver"]
+	path = plugins/DeckyInhibitScreenSaver
+	url = https://github.com/xfangfang/DeckyInhibitScreenSaver
 [submodule "plugins/decky-spy"]
 	path = plugins/decky-spy
 	url = https://github.com/Seraphli/decky-spy.git
