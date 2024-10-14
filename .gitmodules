@@ -219,3 +219,6 @@
 [submodule "plugins/DeckyInhibitScreenSaver"]
 	path = plugins/DeckyInhibitScreenSaver
 	url = https://github.com/xfangfang/DeckyInhibitScreenSaver
+[submodule "plugins/decky-spy"]
+	path = plugins/decky-spy
+	url = https://github.com/Seraphli/decky-spy.git
