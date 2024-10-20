@@ -219,3 +219,6 @@
 [submodule "plugins/DeckyInhibitScreenSaver"]
 	path = plugins/DeckyInhibitScreenSaver
 	url = https://github.com/xfangfang/DeckyInhibitScreenSaver
+[submodule "plugins/MetaDeck"]
+	path = plugins/MetaDeck
+	url = https://github.com/EmuDeck/MetaDeck
