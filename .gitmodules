@@ -219,3 +219,6 @@
 [submodule "plugins/DeckyInhibitScreenSaver"]
 	path = plugins/DeckyInhibitScreenSaver
 	url = https://github.com/xfangfang/DeckyInhibitScreenSaver
+[submodule "plugins/Chrono-Deck"]
+	path = plugins/Chrono-Deck
+	url = git@github.com:0u73r-h34v3n/chrono-deck.git
