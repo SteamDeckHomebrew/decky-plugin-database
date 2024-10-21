@@ -216,6 +216,10 @@
 [submodule "plugins/NonSteamLaunchers"]
 	path = plugins/NonSteamLaunchers
 	url = https://github.com/moraroy/NonSteamLaunchersDecky
+[submodule "plugins/change-ttl"]
+	path = plugins/change-ttl
+	url = https://github.com/JuanJoseGonGi/decky-plugin-change-ttl.git
+	branch = main
 [submodule "plugins/DeckyInhibitScreenSaver"]
 	path = plugins/DeckyInhibitScreenSaver
 	url = https://github.com/xfangfang/DeckyInhibitScreenSaver
