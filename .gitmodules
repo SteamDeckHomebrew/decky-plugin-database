@@ -219,3 +219,6 @@
 [submodule "plugins/DeckyInhibitScreenSaver"]
 	path = plugins/DeckyInhibitScreenSaver
 	url = https://github.com/xfangfang/DeckyInhibitScreenSaver
+[submodule "plugins/decky-zerotier"]
+	path = plugins/decky-zerotier
+	url = https://github.com/hyacz/decky-zerotier
