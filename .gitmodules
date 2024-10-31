@@ -222,3 +222,6 @@
 [submodule "plugins/decky-spy"]
 	path = plugins/decky-spy
 	url = https://github.com/Seraphli/decky-spy.git
+[submodule "plugins/MetaDeck"]
+	path = plugins/MetaDeck
+	url = https://github.com/EmuDeck/MetaDeck
