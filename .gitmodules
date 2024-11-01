@@ -222,3 +222,6 @@
 [submodule "plugins/decky-spy"]
 	path = plugins/decky-spy
 	url = https://github.com/Seraphli/decky-spy.git
+[submodule "plugins/deck-roulette"]
+	path = plugins/deck-roulette
+	url = https://github.com/Chrisae9/deck-roulette.git
