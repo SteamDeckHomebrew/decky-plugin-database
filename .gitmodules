@@ -222,3 +222,6 @@
 [submodule "plugins/decky-spy"]
 	path = plugins/decky-spy
 	url = https://github.com/Seraphli/decky-spy.git
+[submodule "plugins/DeckAchievementsManager"]
+	path = plugins/DeckAchievementsManager
+	url = https://github.com/ifantom/DeckAchievementsManager
