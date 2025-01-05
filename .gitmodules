@@ -43,7 +43,7 @@
 	url = https://github.com/Tormak9970/bash-shortcuts.git
 [submodule "plugins/hltb-for-deck"]
 	path = plugins/hltb-for-deck
-	url = https://github.com/safijari/hltb-for-deck
+	url = https://github.com/morwy/hltb-for-deck
 [submodule "plugins/decky-autosuspend"]
 	path = plugins/decky-autosuspend
 	url = https://github.com/jurassicplayer/decky-autosuspend.git
