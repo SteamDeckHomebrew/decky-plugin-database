@@ -143,7 +143,7 @@
 	url = https://github.com/Alex4386/decky-terminal
 [submodule "plugins/SDH-PlayTime"]
 	path = plugins/SDH-PlayTime
-	url = https://github.com/ma3a/SDH-PlayTime.git
+	url = git@github.com:0u73r-h34v3n/SDH-PlayTime.git
 [submodule "plugins/Shotty"]
 	path = plugins/Shotty
 	url = https://github.com/safijari/Shotty
