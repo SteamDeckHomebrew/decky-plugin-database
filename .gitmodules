@@ -225,4 +225,4 @@
 [submodule "plugins/decky-spoof-dpi"]
 	path = plugins/decky-spoof-dpi
 	url = https://github.com/ohaiibuzzle/decky-spoof-dpi.git
-	branch = tags/v0.12.0-1
+	branch = tags/v0.12.0-2
