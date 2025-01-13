@@ -222,6 +222,3 @@
 [submodule "plugins/steamdeck-input-disabler"]
 	path = plugins/steamdeck-input-disabler
 	url = https://github.com/BurritoSpray/steamdeck-input-disabler.git
-[submodule "plugins/Crosshair"]
-	path = plugins/Crosshair
-	url = https://github.com/xXJSONDeruloXx/crosshair-plugin.git
