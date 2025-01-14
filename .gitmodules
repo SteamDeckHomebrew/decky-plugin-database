@@ -225,3 +225,6 @@
 [submodule "plugins/decky-pip"]
 	path = plugins/decky-pip
 	url = https://github.com/rossimo/decky-pip
+[submodule "plugins/playcount-decky"]
+	path = plugins/playcount-decky
+	url = https://github.com/itsOwen/playcount-decky.git
