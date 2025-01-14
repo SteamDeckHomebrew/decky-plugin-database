@@ -43,7 +43,7 @@
 	url = https://github.com/Tormak9970/bash-shortcuts.git
 [submodule "plugins/hltb-for-deck"]
 	path = plugins/hltb-for-deck
-	url = https://github.com/safijari/hltb-for-deck
+	url = https://github.com/morwy/hltb-for-deck
 [submodule "plugins/decky-autosuspend"]
 	path = plugins/decky-autosuspend
 	url = https://github.com/jurassicplayer/decky-autosuspend.git
@@ -222,6 +222,12 @@
 [submodule "plugins/steamdeck-input-disabler"]
 	path = plugins/steamdeck-input-disabler
 	url = https://github.com/BurritoSpray/steamdeck-input-disabler.git
+[submodule "plugins/decky-pip"]
+	path = plugins/decky-pip
+	url = https://github.com/rossimo/decky-pip
+[submodule "plugins/playcount-decky"]
+	path = plugins/playcount-decky
+	url = https://github.com/itsOwen/playcount-decky.git
 [submodule "plugins/decky-spoof-dpi"]
 	path = plugins/decky-spoof-dpi
 	url = https://github.com/ohaiibuzzle/decky-spoof-dpi.git
