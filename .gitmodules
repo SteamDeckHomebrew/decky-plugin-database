@@ -222,6 +222,9 @@
 [submodule "plugins/steamdeck-input-disabler"]
 	path = plugins/steamdeck-input-disabler
 	url = https://github.com/BurritoSpray/steamdeck-input-disabler.git
+[submodule "plugins/decky-pip"]
+	path = plugins/decky-pip
+	url = https://github.com/rossimo/decky-pip
 [submodule "plugins/playcount-decky"]
 	path = plugins/playcount-decky
 	url = https://github.com/itsOwen/playcount-decky.git
