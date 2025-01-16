@@ -228,3 +228,6 @@
 [submodule "plugins/playcount-decky"]
 	path = plugins/playcount-decky
 	url = https://github.com/itsOwen/playcount-decky.git
+[submodule "plugins/Crosshair"]
+	path = plugins/Crosshair
+	url = https://github.com/xXJSONDeruloXx/crosshair-plugin.git
