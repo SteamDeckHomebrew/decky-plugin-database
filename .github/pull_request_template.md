@@ -1,4 +1,4 @@
-<!-- Make sure to include your plugin name below! -->
+<!-- Make sure to include your plugin name below and remove the reference to the testing page after visting the link! -->
 
 # Plugin Name
 
@@ -7,6 +7,14 @@ Please include a summary of what the plugin does.
 If this is an update, please include a summary of what changes you made.
 
 [If you have not already, please read the review and testing page on the [wiki](https://wiki.deckbrew.xyz/plugin-dev/review-and-testing). Remove this line before submitting your plugin.]
+
+## Plugin Repo
+
+<!-- Please submit both of your testing reports for the two plugins with you link to your comments on the respective PRs before filing your PR. -->
+[Please note that if no plugins/plugin updates are ready for testing at this time then you may state as much in this section but you will be asked to test any new plugins as soon as they are submitted.]
+- [ ] I agree to and have already tested at least two plugins that are newly submitted or having a pending update to help ensure the health of the plugin testing process for all contributors.
+- [ ] Plugin A: [Plugin Name (and version if being updated)]([https://github.com/](https://github.com/SteamDeckHomebrew/decky-plugin-database/pull/XYZ))
+- [ ] Plugin B: [Plugin Name (and version if being updated)]([https://github.com/](https://github.com/SteamDeckHomebrew/decky-plugin-database/pull/XYZ))
 
 ## Checklist:
 
