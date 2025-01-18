@@ -27,7 +27,7 @@ REPLACE_WITH_REMOVAL_REASONS
 ## Task Checklist
 
 <!--
-    For checkboxes, change [ ] to [x] or use the Preview tab to check the box.
+    For checkboxes, change [ ] to [x] to check the box.
     For Yes/No questions, replace "Yes/No" with "Yes" or "No".
 -->
 
