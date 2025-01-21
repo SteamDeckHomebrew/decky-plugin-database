@@ -231,3 +231,7 @@
 [submodule "plugins/Crosshair"]
 	path = plugins/Crosshair
 	url = https://github.com/xXJSONDeruloXx/crosshair-plugin.git
+[submodule "plugins/decky-dot-dns"]
+	path = plugins/decky-dot-dns
+	url = https://github.com/ohaiibuzzle/decky-dot-dns.git
+	branch = tags/v0.0.2
