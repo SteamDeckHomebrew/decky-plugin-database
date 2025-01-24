@@ -231,3 +231,6 @@
 [submodule "plugins/Crosshair"]
 	path = plugins/Crosshair
 	url = https://github.com/xXJSONDeruloXx/crosshair-plugin.git
+[submodule "plugins/simple-timer"]
+	path = plugins/simple-timer
+	url = https://github.com/decktools-xyz/simple-timer.git
