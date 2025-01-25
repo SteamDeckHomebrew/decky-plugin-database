@@ -231,3 +231,6 @@
 [submodule "plugins/Crosshair"]
 	path = plugins/Crosshair
 	url = https://github.com/xXJSONDeruloXx/crosshair-plugin.git
+[submodule "plugins/Decky-Framegen"]
+	path = plugins/Decky-Framegen
+	url = https://github.com/xXJSONDeruloXx/Decky-Framegen.git
