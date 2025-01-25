@@ -232,3 +232,6 @@
 	path = plugins/decky-spoof-dpi
 	url = https://github.com/ohaiibuzzle/decky-spoof-dpi.git
 	branch = tags/v0.12.0-2
+[submodule "plugins/Crosshair"]
+	path = plugins/Crosshair
+	url = https://github.com/xXJSONDeruloXx/crosshair-plugin.git
