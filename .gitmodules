@@ -234,3 +234,6 @@
 [submodule "plugins/deck-roulette"]
 	path = plugins/deck-roulette
 	url = https://github.com/Chrisae9/deck-roulette.git
+[submodule "plugins/decky-game-settings"]
+	path = plugins/decky-game-settings
+	url = https://github.com/DeckSettings/decky-game-settings.git
