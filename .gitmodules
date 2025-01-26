@@ -231,6 +231,9 @@
 [submodule "plugins/Crosshair"]
 	path = plugins/Crosshair
 	url = https://github.com/xXJSONDeruloXx/crosshair-plugin.git
+[submodule "plugins/decky-game-settings"]
+	path = plugins/decky-game-settings
+	url = https://github.com/DeckSettings/decky-game-settings.git
 [submodule "plugins/decky-dot-dns"]
 	path = plugins/decky-dot-dns
 	url = https://github.com/ohaiibuzzle/decky-dot-dns.git
