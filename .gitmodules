@@ -234,3 +234,6 @@
 [submodule "plugins/Decky-Framegen"]
 	path = plugins/Decky-Framegen
 	url = https://github.com/xXJSONDeruloXx/Decky-Framegen.git
+[submodule "plugins/decky-game-settings"]
+	path = plugins/decky-game-settings
+	url = https://github.com/DeckSettings/decky-game-settings.git
