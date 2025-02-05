@@ -1,47 +1,7 @@
-<!-- Make sure to include your plugin name below and remove the reference to the testing page after visting the link! -->
+DO NOT USE THIS TEMPLATE. Select the Preview tab and click the appropriate link to access the correct sub-template.
 
-# Plugin Name
-
-Please include a summary of what the plugin does.
-
-If this is an update, please include a summary of what changes you made.
-
-[If you have not already, please read the review and testing page on the [wiki](https://wiki.deckbrew.xyz/plugin-dev/review-and-testing). Remove this line before submitting your plugin.]
-
-## Plugin Repo
-
-<!-- Please submit both of your testing reports for the two plugins with you link to your comments on the respective PRs before filing your PR. -->
-[Please note that if no plugins/plugin updates are ready for testing at this time then you may state as much in this section but you will be asked to test any new plugins as soon as they are submitted.]
-- [ ] I agree to and have already tested at least two plugins that are newly submitted or having a pending update to help ensure the health of the plugin testing process for all contributors.
-- [ ] Plugin A: [Plugin Name (and version if being updated)]([https://github.com/](https://github.com/SteamDeckHomebrew/decky-plugin-database/pull/XYZ))
-- [ ] Plugin B: [Plugin Name (and version if being updated)]([https://github.com/](https://github.com/SteamDeckHomebrew/decky-plugin-database/pull/XYZ))
-
-## Checklist:
-
-### Developer Checklist
-
-- [ ] I am the original author or an authorized maintainer of this plugin.
-- [ ] I have abided by the licenses of the libraries I am utilizing, including attaching license notices where appropriate.
-
-### Plugin Checklist
-
-- [ ] I have verified that my plugin works properly on the Stable and Beta update channels of SteamOS.
-- [ ] I have verified my plugin is unique or alternatively provides more/alternative functionality to a similar plugin already on the store.
-
-<!-- The following section needs to be modified as yes/no answers by the plugin developer. -->
-
-<!-- Ex: "**Yes/No**: ..." becomes "**Yes**: ..." -->
-
-### Plugin Backend Checklist
-
-- **Yes/No**: I am using a custom backend other than Python.
-- **Yes/No**: I am using a tool or software from a 3rd party FOSS project that does not have it's dependencies [statically linked](https://en.wikipedia.org/wiki/Static_library).
-- **Yes/No**: I am using a custom binary that has all of it's dependencies statically linked.
-
-<!-- The following section is should be modified to fit the conditions for plugin testing found here: https://wiki.deckbrew.xyz/en/plugin-dev/review-and-testing -->
-
-## Testing
-
-- [ ] Tested on SteamOS Stable/Beta Update Channel.
-
-- [ ] Tested on SteamOS Preview Update Channel.
+- [Plugin addition](?expand=1&template=plugin_addition.md) - Plugins that are entirely new to the store.
+- [Plugin update](?expand=1&template=plugin_update.md) - Updating an existing plugin on the store WITHOUT changing the repository it is linked to.
+- [Plugin transfer](?expand=1&template=plugin_transfer.md) - Updating an existing plugin on the store AND changing the repository it is linked to.
+- [Plugin removal](?expand=1&template=plugin_removal.md) - Removing a plugin from the store.
+- [Other system changes](?expand=1&template=other.md) - Changes to the repository or database system that are not plugin-related.
