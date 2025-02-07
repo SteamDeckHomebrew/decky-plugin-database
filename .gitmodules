@@ -238,6 +238,9 @@
 [submodule "plugins/decky-game-settings"]
 	path = plugins/decky-game-settings
 	url = https://github.com/DeckSettings/decky-game-settings.git
+[submodule "plugins/simple-timer"]
+	path = plugins/simple-timer
+	url = https://github.com/decktools-xyz/simple-timer.git
 [submodule "plugins/decky-dot-dns"]
 	path = plugins/decky-dot-dns
 	url = https://github.com/ohaiibuzzle/decky-dot-dns.git
