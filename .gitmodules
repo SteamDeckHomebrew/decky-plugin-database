@@ -245,3 +245,6 @@
 	path = plugins/decky-dot-dns
 	url = https://github.com/ohaiibuzzle/decky-dot-dns.git
 	branch = tags/v0.0.3
+[submodule "plugins/Decky-Lookup"]
+	path = plugins/Decky-Lookup
+	url = https://github.com/xXJSONDeruloXx/Decky-Lookup.git
