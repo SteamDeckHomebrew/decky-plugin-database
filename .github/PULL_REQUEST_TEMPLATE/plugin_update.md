@@ -50,6 +50,8 @@ REPLACE_WITH_SUMMARY
     Please submit both of your testing reports before creating your PR. You will need to link the comments you left in a comment on this PR.
 
     If no plugin additions or updates are ready for testing at this time, then you may ignore this checkbox. You may be asked to test new plugins as they are submitted.
+
+    Your PR will be prioritized lower if you do not test other plugins, but this step is optional.
 -->
 
 - [ ] I have tested and left feedback on two other [pull requests][pulls] for new or updating plugins.
@@ -63,9 +65,11 @@ REPLACE_WITH_SUMMARY
     If your plugin uses the provided Python backend and React frontend, your plugin must be tested on the Stable or Beta update channel of SteamOS. REMOVE the line with the Preview checkbox below.
 
     If your plugin uses a custom backend or pre-build binaries without statically linked dependency (ex. glibc), your plugin must be tested on the SteamOS Preview update channel. REMOVE the line with the Stable or Beta checkbox below.
+
+    DO NOT CHECK THIS BOX YOURSELF UNLESS SOMEONE HAS COMMENTED A TESTING REPORT FOR YOUR PLUGIN! This will lead to delays in the review process.
 -->
 
-- [ ] Tested on SteamOS Stable or Beta update channel.
-- [ ] Tested on SteamOS Preview update channel.
+- [ ] Tested by a third party on SteamOS Stable or Beta update channel.
+- [ ] Tested by a third party on SteamOS Preview update channel.
 
 [pulls]: https://github.com/steamdeckHomebrew/decky-plugin-database/pulls?q=is%3Apr+is%3Aopen+sort%3Acreated-desc+-status%3Afailure+-draft%3Atrue+-author%3A%40me

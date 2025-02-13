@@ -228,15 +228,25 @@
 [submodule "plugins/playcount-decky"]
 	path = plugins/playcount-decky
 	url = https://github.com/itsOwen/playcount-decky.git
+[submodule "plugins/decky-spoof-dpi"]
+	path = plugins/decky-spoof-dpi
+	url = https://github.com/ohaiibuzzle/decky-spoof-dpi.git
+	branch = tags/v0.12.0-2
 [submodule "plugins/Crosshair"]
 	path = plugins/Crosshair
 	url = https://github.com/xXJSONDeruloXx/crosshair-plugin.git
 [submodule "plugins/Decky-Framegen"]
 	path = plugins/Decky-Framegen
 	url = https://github.com/xXJSONDeruloXx/Decky-Framegen.git
+[submodule "plugins/deck-roulette"]
+	path = plugins/deck-roulette
+	url = https://github.com/Chrisae9/deck-roulette.git
 [submodule "plugins/decky-game-settings"]
 	path = plugins/decky-game-settings
 	url = https://github.com/DeckSettings/decky-game-settings.git
+[submodule "plugins/simple-timer"]
+	path = plugins/simple-timer
+	url = https://github.com/decktools-xyz/simple-timer.git
 [submodule "plugins/decky-dot-dns"]
 	path = plugins/decky-dot-dns
 	url = https://github.com/ohaiibuzzle/decky-dot-dns.git
