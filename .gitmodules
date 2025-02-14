@@ -248,3 +248,7 @@
 	path = plugins/decky-dot-dns
 	url = https://github.com/ohaiibuzzle/decky-dot-dns.git
 	branch = tags/v0.0.3
+[submodule "plugins/decky-alarm-plugin"]
+	path = plugins/decky-alarm-plugin
+	url = https://github.com/juansturla/decky-alarm-plugin.git
+	branch = tags/v0.0.1
