@@ -254,6 +254,6 @@
 [submodule "plugins/Decky-Lookup"]
 	path = plugins/Decky-Lookup
 	url = https://github.com/xXJSONDeruloXx/Decky-Lookup.git
-[submodule "plugins/sdhq"]
-	path = plugins/sdhq
-	url = https://github.com/davocarli/sdhq-plugin.git
+[submodule "plugins/sdhq-plugin"]
+	path = plugins/sdhq-plugin
+	url = https://github.com/davocarli/sdhq-plugin
