@@ -254,3 +254,6 @@
 [submodule "plugins/Decky-Lookup"]
 	path = plugins/Decky-Lookup
 	url = https://github.com/xXJSONDeruloXx/Decky-Lookup.git
+[submodule "plugins/DeckSP"]
+	path = plugins/DeckSP
+	url = https://github.com/jessebofill/DeckSP.git
