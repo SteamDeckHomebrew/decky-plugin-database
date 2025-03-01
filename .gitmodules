@@ -235,6 +235,12 @@
 [submodule "plugins/Crosshair"]
 	path = plugins/Crosshair
 	url = https://github.com/xXJSONDeruloXx/crosshair-plugin.git
+[submodule "plugins/Decky-Framegen"]
+	path = plugins/Decky-Framegen
+	url = https://github.com/xXJSONDeruloXx/Decky-Framegen.git
+[submodule "plugins/deck-roulette"]
+	path = plugins/deck-roulette
+	url = https://github.com/Chrisae9/deck-roulette.git
 [submodule "plugins/decky-game-settings"]
 	path = plugins/decky-game-settings
 	url = https://github.com/DeckSettings/decky-game-settings.git
@@ -245,3 +251,6 @@
 	path = plugins/decky-dot-dns
 	url = https://github.com/ohaiibuzzle/decky-dot-dns.git
 	branch = tags/v0.0.3
+[submodule "plugins/Decky-Lookup"]
+	path = plugins/Decky-Lookup
+	url = https://github.com/xXJSONDeruloXx/Decky-Lookup.git
