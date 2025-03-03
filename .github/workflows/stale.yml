@@ -1,0 +1,23 @@
+name: 'Close stale PRs'
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          stale-pr-message: 'This pull request is stale as no updates or testing reports have been posted within the last 7 days. Please ensure you are actively recruiting testers or resolving the issues discussed. If you do not remove the stale label or comment, this will be closed in 7 days. Please close this pull request if you need more time to resolve issues so we can keep our repo healthy.'
+          close-pr-message: 'Your pull request has been closed for being stale. If you want to resubmit a plugin pull request, please ensure you have a tester for your plugin and have resolved all issues discussed.'
+          stale-pr-label: 'stale'
+          days-before-pr-stale: 7
+          days-before-pr-close: 7
+          days-before-issue-stale: -1
+          days-before-issue-close: -1
+          repo-token: ${{ secrets.GITHUB_TOKEN }}

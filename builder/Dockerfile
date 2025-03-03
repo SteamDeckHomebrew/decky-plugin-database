@@ -1,6 +1,6 @@
 FROM node:20-alpine
 
-RUN apk add --no-cache rsync
+RUN apk add --no-cache rsync git
 
 RUN npm i --location=global pnpm@9
 
