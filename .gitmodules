@@ -260,3 +260,6 @@
 [submodule "plugins/decky-virtual-surround-sound"]
 	path = plugins/decky-virtual-surround-sound
 	url = https://github.com/DeckSettings/decky-virtual-surround-sound.git
+[submodule "plugins/Decky-ReadDeckForMe"]
+	path = plugins/Decky-ReadDeckForMe
+	url = https://github.com/szhshp/Decky-ReadDeckForMe
