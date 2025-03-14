@@ -254,6 +254,9 @@
 [submodule "plugins/Decky-Lookup"]
 	path = plugins/Decky-Lookup
 	url = https://github.com/xXJSONDeruloXx/Decky-Lookup.git
+[submodule "plugins/XIVOmega"]
+	path = plugins/XIVOmega
+	url = https://github.com/shingonati0n/xivomega-decky.git
 [submodule "plugins/decky-zerotier"]
 	path = plugins/decky-zerotier
 	url = https://github.com/hyacz/decky-zerotier.git
