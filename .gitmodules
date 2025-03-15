@@ -263,3 +263,6 @@
 [submodule "plugins/decky-virtual-surround-sound"]
 	path = plugins/decky-virtual-surround-sound
 	url = https://github.com/DeckSettings/decky-virtual-surround-sound.git
+[submodule "plugins/decky-ludusavi"]
+	path = plugins/decky-ludusavi
+	url = https://github.com/GedasFX/decky-ludusavi
