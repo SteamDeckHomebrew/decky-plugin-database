@@ -58,6 +58,7 @@ jobs:
 
     - name: Get changed files
       id: changed-files
+      if: ${{ false }}
       env:
         isPr: ${{ github.event_name == 'pull_request_target' }}
         pluginOverride: ${{ inputs.plugin_override }}
