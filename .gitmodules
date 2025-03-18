@@ -266,3 +266,6 @@
 [submodule "plugins/Decky-ReadDeckForMe"]
 	path = plugins/Decky-ReadDeckForMe
 	url = https://github.com/szhshp/Decky-ReadDeckForMe
+[submodule "plugins/DeckSP"]
+	path = plugins/DeckSP
+	url = https://github.com/jessebofill/DeckSP.git
