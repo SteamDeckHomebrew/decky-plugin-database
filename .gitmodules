@@ -43,7 +43,7 @@
 	url = https://github.com/Tormak9970/bash-shortcuts.git
 [submodule "plugins/hltb-for-deck"]
 	path = plugins/hltb-for-deck
-	url = https://github.com/safijari/hltb-for-deck
+	url = https://github.com/morwy/hltb-for-deck
 [submodule "plugins/decky-autosuspend"]
 	path = plugins/decky-autosuspend
 	url = https://github.com/jurassicplayer/decky-autosuspend.git
@@ -143,7 +143,7 @@
 	url = https://github.com/Alex4386/decky-terminal
 [submodule "plugins/SDH-PlayTime"]
 	path = plugins/SDH-PlayTime
-	url = https://github.com/ma3a/SDH-PlayTime.git
+	url = git@github.com:0u73r-h34v3n/SDH-PlayTime.git
 [submodule "plugins/Shotty"]
 	path = plugins/Shotty
 	url = https://github.com/safijari/Shotty
@@ -222,3 +222,50 @@
 [submodule "plugins/steamdeck-input-disabler"]
 	path = plugins/steamdeck-input-disabler
 	url = https://github.com/BurritoSpray/steamdeck-input-disabler.git
+[submodule "plugins/decky-pip"]
+	path = plugins/decky-pip
+	url = https://github.com/rossimo/decky-pip
+[submodule "plugins/playcount-decky"]
+	path = plugins/playcount-decky
+	url = https://github.com/itsOwen/playcount-decky.git
+[submodule "plugins/decky-spoof-dpi"]
+	path = plugins/decky-spoof-dpi
+	url = https://github.com/ohaiibuzzle/decky-spoof-dpi.git
+	branch = tags/v0.12.0-2
+[submodule "plugins/Crosshair"]
+	path = plugins/Crosshair
+	url = https://github.com/xXJSONDeruloXx/crosshair-plugin.git
+[submodule "plugins/Decky-Framegen"]
+	path = plugins/Decky-Framegen
+	url = https://github.com/xXJSONDeruloXx/Decky-Framegen.git
+[submodule "plugins/deck-roulette"]
+	path = plugins/deck-roulette
+	url = https://github.com/Chrisae9/deck-roulette.git
+[submodule "plugins/decky-game-settings"]
+	path = plugins/decky-game-settings
+	url = https://github.com/DeckSettings/decky-game-settings.git
+[submodule "plugins/simple-timer"]
+	path = plugins/simple-timer
+	url = https://github.com/decktools-xyz/simple-timer.git
+[submodule "plugins/decky-dot-dns"]
+	path = plugins/decky-dot-dns
+	url = https://github.com/ohaiibuzzle/decky-dot-dns.git
+	branch = tags/v0.0.3
+[submodule "plugins/Decky-Lookup"]
+	path = plugins/Decky-Lookup
+	url = https://github.com/xXJSONDeruloXx/Decky-Lookup.git
+[submodule "plugins/XIVOmega"]
+	path = plugins/XIVOmega
+	url = https://github.com/shingonati0n/xivomega-decky.git
+[submodule "plugins/decky-zerotier"]
+	path = plugins/decky-zerotier
+	url = https://github.com/hyacz/decky-zerotier.git
+[submodule "plugins/decky-virtual-surround-sound"]
+	path = plugins/decky-virtual-surround-sound
+	url = https://github.com/DeckSettings/decky-virtual-surround-sound.git
+[submodule "plugins/decky-ludusavi"]
+	path = plugins/decky-ludusavi
+	url = https://github.com/GedasFX/decky-ludusavi
+[submodule "plugins/DeckSP"]
+	path = plugins/DeckSP
+	url = https://github.com/jessebofill/DeckSP.git
