@@ -269,3 +269,6 @@
 [submodule "plugins/DeckSP"]
 	path = plugins/DeckSP
 	url = https://github.com/jessebofill/DeckSP.git
+[submodule "plugins/SDH-GameSync"]
+	path = plugins/SDH-GameSync
+	url = https://github.com/AkazaRenn/SDH-GameSync.git
