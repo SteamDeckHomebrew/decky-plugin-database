@@ -269,3 +269,6 @@
 [submodule "plugins/DeckSP"]
 	path = plugins/DeckSP
 	url = https://github.com/jessebofill/DeckSP.git
+[submodule "plugins/sort-by-hltb"]
+	path = plugins/sort-by-hltb
+	url = https://github.com/RedHatter/sort-by-hltb.git
