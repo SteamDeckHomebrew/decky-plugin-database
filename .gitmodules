@@ -272,3 +272,6 @@
 [submodule "plugins/SDH-GameSync"]
 	path = plugins/SDH-GameSync
 	url = https://github.com/AkazaRenn/SDH-GameSync.git
+[submodule "plugins/DeckyBatteryHealth"]
+	path = plugins/DeckyBatteryHealth
+	url = git@github.com:koda-git/DeckyBatteryHealth.git
