@@ -1,0 +1,10 @@
+{
+  "name": "PWMless Brightness",
+  "author": "Daniel Stoynev",
+  "flags": [],
+  "publish": {
+    "tags": ["pwm", "birghtness"],
+    "description": "Adjust Brightness without PWM",
+    "image": "https://raw.githubusercontent.com/jefri931/pwmless-brightness-control/main/assets/Logo.jpg"
+  }
+}
