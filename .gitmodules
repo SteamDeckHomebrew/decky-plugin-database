@@ -272,3 +272,6 @@
 [submodule "plugins/SDH-GameSync"]
 	path = plugins/SDH-GameSync
 	url = https://github.com/AkazaRenn/SDH-GameSync.git
+[submodule "plugins/pwmless-brightness-control"]
+	path = plugins/pwmless-brightness-control
+	url = https://github.com/jefri931/pwmless-brightness-control.git
