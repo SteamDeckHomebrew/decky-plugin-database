@@ -278,3 +278,6 @@
 [submodule "plugins/LetMeReShade"]
 	path = plugins/LetMeReShade
 	url = https://github.com/itsOwen/LetMeReShade.git
+[submodule "plugins/SimpleDeckyTDP"]
+	path = plugins/SimpleDeckyTDP
+	url = https://github.com/aarron-lee/SimpleDeckyTDP.git
