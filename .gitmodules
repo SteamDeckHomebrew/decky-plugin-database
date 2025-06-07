@@ -275,3 +275,6 @@
 [submodule "plugins/decky-wifi-locker"]
 	path = plugins/decky-wifi-locker
 	url = git@github.com:felipejfc/decky-wifi-locker.git
+[submodule "plugins/LetMeReShade"]
+	path = plugins/LetMeReShade
+	url = https://github.com/itsOwen/LetMeReShade.git
