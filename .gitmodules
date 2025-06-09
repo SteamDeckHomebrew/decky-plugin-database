@@ -279,3 +279,6 @@
 	path = plugins/HueSync
 	url = https://github.com/honjow/HueSync.git
 	branch = store
+[submodule "plugins/LetMeReShade"]
+	path = plugins/LetMeReShade
+	url = https://github.com/itsOwen/LetMeReShade.git
