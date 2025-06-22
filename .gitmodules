@@ -278,3 +278,6 @@
 [submodule "plugins/LetMeReShade"]
 	path = plugins/LetMeReShade
 	url = https://github.com/itsOwen/LetMeReShade.git
+[submodule "plugins/pwmless-brightness-control"]
+	path = plugins/pwmless-brightness-control
+	url = https://github.com/jefri931/pwmless-brightness-control.git
