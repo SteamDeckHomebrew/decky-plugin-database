@@ -1,0 +1,10 @@
+{
+  "name": "Sailor Jupiter Boot Animation",
+  "repo": "theredwoman08/sailor-jupiter-boot-animation",
+  "description": "A magical Sailor Jupiter transformation boot animation for Steam Deck. Designed for use with the AnimDeck plugin.",
+  "author": "Stephanie Riscile",
+  "main": "dist/index.js",
+  "tags": ["boot", "animation", "sailor moon", "anime", "magical girl"],
+  "icon": "",
+  "backend": false
+}
