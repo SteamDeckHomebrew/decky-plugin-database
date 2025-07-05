@@ -282,3 +282,6 @@
 [submodule "plugins/LetMeReShade"]
 	path = plugins/LetMeReShade
 	url = https://github.com/itsOwen/LetMeReShade.git
+[submodule "plugins/Muon"]
+	path = plugins/Muon
+	url = https://github.com/WTLNetwork/muon
