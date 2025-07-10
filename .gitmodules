@@ -254,3 +254,31 @@
 [submodule "plugins/Decky-Lookup"]
 	path = plugins/Decky-Lookup
 	url = https://github.com/xXJSONDeruloXx/Decky-Lookup.git
+[submodule "plugins/XIVOmega"]
+	path = plugins/XIVOmega
+	url = https://github.com/shingonati0n/xivomega-decky.git
+[submodule "plugins/decky-zerotier"]
+	path = plugins/decky-zerotier
+	url = https://github.com/hyacz/decky-zerotier.git
+[submodule "plugins/decky-virtual-surround-sound"]
+	path = plugins/decky-virtual-surround-sound
+	url = https://github.com/DeckSettings/decky-virtual-surround-sound.git
+[submodule "plugins/decky-ludusavi"]
+	path = plugins/decky-ludusavi
+	url = https://github.com/GedasFX/decky-ludusavi
+[submodule "plugins/DeckSP"]
+	path = plugins/DeckSP
+	url = https://github.com/jessebofill/DeckSP.git
+[submodule "plugins/SDH-GameSync"]
+	path = plugins/SDH-GameSync
+	url = https://github.com/AkazaRenn/SDH-GameSync.git
+[submodule "plugins/decky-wifi-locker"]
+	path = plugins/decky-wifi-locker
+	url = git@github.com:felipejfc/decky-wifi-locker.git
+[submodule "plugins/HueSync"]
+	path = plugins/HueSync
+	url = https://github.com/honjow/HueSync.git
+	branch = store
+[submodule "plugins/LetMeReShade"]
+	path = plugins/LetMeReShade
+	url = https://github.com/itsOwen/LetMeReShade.git
