@@ -282,3 +282,6 @@
 [submodule "plugins/LetMeReShade"]
 	path = plugins/LetMeReShade
 	url = https://github.com/itsOwen/LetMeReShade.git
+[submodule "plugins/decky-lossless-scaling-vk"]
+	path = plugins/decky-lossless-scaling-vk
+	url = https://github.com/xXJSONDeruloXx/decky-lossless-scaling-vk
