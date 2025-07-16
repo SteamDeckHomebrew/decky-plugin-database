@@ -282,6 +282,7 @@
 [submodule "plugins/LetMeReShade"]
 	path = plugins/LetMeReShade
 	url = https://github.com/itsOwen/LetMeReShade.git
-[submodule "plugins/plugins/DeckyClash"]
-	path = plugins/plugins/DeckyClash
+[submodule "plugins/DeckyClash"]
+	path = plugins/DeckyClash
 	url = https://github.com/chenx-dust/DeckyClash.git
+	branch = store
