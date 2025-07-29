@@ -269,3 +269,16 @@
 [submodule "plugins/DeckSP"]
 	path = plugins/DeckSP
 	url = https://github.com/jessebofill/DeckSP.git
+[submodule "plugins/SDH-GameSync"]
+	path = plugins/SDH-GameSync
+	url = https://github.com/AkazaRenn/SDH-GameSync.git
+[submodule "plugins/decky-wifi-locker"]
+	path = plugins/decky-wifi-locker
+	url = git@github.com:felipejfc/decky-wifi-locker.git
+[submodule "plugins/HueSync"]
+	path = plugins/HueSync
+	url = https://github.com/honjow/HueSync.git
+	branch = store
+[submodule "plugins/LetMeReShade"]
+	path = plugins/LetMeReShade
+	url = https://github.com/itsOwen/LetMeReShade.git
