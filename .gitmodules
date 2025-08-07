@@ -282,3 +282,7 @@
 [submodule "plugins/LetMeReShade"]
 	path = plugins/LetMeReShade
 	url = https://github.com/itsOwen/LetMeReShade.git
+[submodule "plugins/MuraDeck"]
+	path = plugins/MuraDeck
+	url = https://github.com/Moonveil-Kanata/MuraDeck.git
+	branch = main
