@@ -286,3 +286,6 @@
 	path = plugins/MuraDeck
 	url = https://github.com/Moonveil-Kanata/MuraDeck.git
 	branch = main
+[submodule "plugins/SDH-AnimationChangerShuffle"]
+	path = plugins/SDH-AnimationChangerShuffle
+	url = https://github.com/yogeshvar/SDH-AnimationChanger.git
