@@ -285,3 +285,7 @@
 [submodule "plugins/pwmless-brightness-control"]
 	path = plugins/pwmless-brightness-control
 	url = https://github.com/jefri931/pwmless-brightness-control.git
+[submodule "plugins/MuraDeck"]
+	path = plugins/MuraDeck
+	url = https://github.com/Moonveil-Kanata/MuraDeck.git
+	branch = main
