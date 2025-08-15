@@ -361,6 +361,7 @@ jobs:
         if [[ "$shouldUpload" == "true" ]]; then
           echo "::notice::Uploading"
           upload_response=$(upload_plugin)
+          upload_response_code=$?
           if [[ "$upload_response" =~ "Version already exists" ]]; then
             echo "::warning title=Could not upload $plugin::Version of plugin being pushed already exists, moving to next plugin."
           elif [[ "$upload_response" =~ "INVALID AUTH KEY" ]]; then
@@ -376,6 +377,10 @@ jobs:
                   echo "::error::$upload_response"
                   exit 1
                 fi
+            exit 1
+          elif [[ $upload_response_code -ne 0 ]]; then
+            echo "::error::Upload has failed, please see output below"
+            echo "::error::$upload_response"
             exit 1
           else
             echo "::notice::$upload_response"
