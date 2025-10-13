@@ -1,0 +1,54 @@
+name: Label PRs by Description
+on:
+    pull_request:
+        types: [opened, edited]
+permissions:
+    issues: write
+    pull-requests: write
+jobs:
+    label-by-description:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Label and assign pull request
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      // Label the PR based on its description
+                      const description = context.payload.pull_request.body || "";
+                      let label = "not-plugin";
+                      if (description.includes("# Update")) {
+                        label = "plugin-update";
+                      } else if (description.includes("# Add")) {
+                        label = "plugin-addition";
+                      } else if (description.includes("# Remove")) {
+                        label = "plugin-removal";
+                      } else if (description.includes("# Transfer")) {
+                        label = "plugin-maintainership";
+                      }
+                      const issue_number = context.payload.pull_request.number;
+                      await github.rest.issues.addLabels({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number,
+                        labels: [label]
+                      });
+
+                      // Assign the PR author as an assignee on the PR
+                      const author = context.payload.pull_request.user && context.payload.pull_request.user.login;
+                      if (author) {
+                        try {
+                          await github.rest.issues.addAssignees({
+                            owner: context.repo.owner,
+                            repo: context.repo.repo,
+                            issue_number,
+                            assignees: [author]
+                          });
+                        } catch (err) {
+                          core && core.info && core.info(`Could not assign ${author} to PR: ${err.message}`);
+                        }
+                      }
+            - name: Add pull request to SDH Tracker
+              uses: actions/add-to-project@v1.0.2
+              with:
+                  project-url: https://github.com/orgs/SteamDeckHomebrew/projects/9
+                  github-token: ${{ secrets.GITHUB_TOKEN }}

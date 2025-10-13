@@ -13,7 +13,7 @@
     - Deleted the unnecessary testing checkbox.
 -->
 
-# REPLACE_WITH_PLUGIN_NAME
+# Add REPLACE_WITH_PLUGIN_NAME to Plugin Store
 
 <!--
     Include a detailed summary of what the plugin does, attaching images or videos if necessary. If your plugin has similar functionality to another plugin on the store, explain how it differs and why your plugin should be allowed on the store.
