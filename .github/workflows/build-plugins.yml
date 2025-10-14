@@ -345,7 +345,8 @@ jobs:
         echo "::notice::Processing plugin $PLUGIN_NAME v$PLUGIN_VERSION (by $PLUGIN_AUTHOR)"
 
         upload_plugin () {
-          curl -X POST \
+          curl --fail-with-body \
+                -X POST \
                 -H "Authorization: ${SUBMIT_AUTH_KEY}" \
                 -F "name=$PLUGIN_NAME" \
                 -F "author=$PLUGIN_AUTHOR" \
@@ -361,25 +362,23 @@ jobs:
         if [[ "$shouldUpload" == "true" ]]; then
           echo "::notice::Uploading"
           upload_response=$(upload_plugin)
-          upload_response_code=$?
+          upload_exit_code=$?
           if [[ "$upload_response" =~ "Version already exists" ]]; then
             echo "::warning title=Could not upload $plugin::Version of plugin being pushed already exists, moving to next plugin."
           elif [[ "$upload_response" =~ "INVALID AUTH KEY" ]]; then
             echo "::error::Authentication Key used is invalid, exiting."
             exit 1
           elif [[ "$upload_response" =~ "invalid or missing URL scheme" ]]; then
-                echo "::error::url format in plugin.json is broken, please investigate."
-                if [[ "$upload_response" =~ "image" ]]; then
-                  echo "::error::Submitted screenshot URL does not exist or is broken."
-                  exit 1
-                else
-                  echo "::error::Unknown URL is broken, please see output below"
-                  echo "::error::$upload_response"
-                  exit 1
-                fi
+            echo "::error::url format in plugin.json is broken, please investigate."
+            if [[ "$upload_response" =~ "image" ]]; then
+              echo "::error::Submitted screenshot URL does not exist or is broken."
+            else
+              echo "::error::Unknown URL is broken, please see output below"
+              echo "::error::$upload_response"
+            fi
             exit 1
-          elif [[ $upload_response_code -ne 0 ]]; then
-            echo "::error::Upload has failed, please see output below"
+          elif [[ $upload_exit_code -ne 0 ]]; then
+            echo "::error::Upload has failed (exit code: $upload_exit_code), please see output below"
             echo "::error::$upload_response"
             exit 1
           else
