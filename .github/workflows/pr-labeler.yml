@@ -54,7 +54,7 @@ jobs:
               with:
                   project-url: https://github.com/orgs/SteamDeckHomebrew/projects/9
                   github-token: ${{ secrets.GITHUB_TOKEN }}
-            - name: Comment PR instructions
+            - name: Comment pull request instructions
               if: ${{ github.event.action == 'opened' }}
               uses: actions/github-script@v7
               continue-on-error: true
