@@ -1,4 +1,4 @@
-name: Label PRs by Description
+name: Label, assign, and comment on PR
 on:
     pull_request_target:
         types: [opened, edited, reopened]
