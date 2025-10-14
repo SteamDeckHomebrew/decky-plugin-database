@@ -52,3 +52,45 @@ jobs:
               with:
                   project-url: https://github.com/orgs/SteamDeckHomebrew/projects/9
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+            - name: Comment PR instructions
+              if: ${{ github.event.action == 'opened' }}
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const issue_number = context.payload.pull_request.number;
+                      const description = (context.payload.pull_request.body || "").toString();
+                      let body = "### Issues Found\n\n";
+                      let issuesFound = false;
+
+                      // Check if the user accidentally listed both/neither testing boxes
+                      const stableText = "Tested by a third party on SteamOS Stable or Beta update channel.";
+                      const previewText = "Tested by a third party on SteamOS Preview update channel.";
+
+                      if (description.includes(stableText) && description.includes(previewText)) {
+                        body += "- Both testing boxes are present in your description. Please remove one of them per the Markdown comment above the testing section.\n";
+                        issuesFound = true;
+                      }
+                      if (!description.includes(stableText) && !description.includes(previewText)) {
+                        body += "- Neither testing box is present in your description. Please include one of them per the Markdown comment above the testing section.\n";
+                        issuesFound = true;
+                      }
+
+                      // Finalize issue formatting
+                      if (!issuesFound) {
+                        body += "No issues with your PR description were found.\n";
+                      }
+                      body += "\n";
+
+                      // Add instructions
+                      body += "### Next Steps\n\n";
+                      body += "1. If we found any issues above, please edit your pull request description to resolve them and leave a comment saying you've done so.\n";
+                      body += "1. For the quickest review, please see the Community section of the pull request template for how you can help other developers.\n";
+                      body += "1. Once your description is correct, a maintainer will review your pull request as soon as possible.\n\n";
+                      body += "Thank you for your contribution! If you need any help, please reach out on our [Discord server](https://decky.xyz/discord). :heart:";
+
+                      await github.rest.issues.createComment({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number,
+                        body
+                      });
