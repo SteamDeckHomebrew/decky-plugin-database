@@ -1,0 +1,99 @@
+name: Label, assign, and comment on PR
+on:
+    pull_request_target:
+        types: [opened, edited, reopened]
+permissions:
+    issues: write
+    pull-requests: write
+jobs:
+    label-by-description:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Label and assign pull request
+              uses: actions/github-script@v7
+              continue-on-error: true
+              with:
+                  script: |
+                      // Label the PR based on its description
+                      const description = context.payload.pull_request.body || "";
+                      let label = "not-plugin";
+                      if (description.includes("# Update")) {
+                        label = "plugin-update";
+                      } else if (description.includes("# Add")) {
+                        label = "plugin-addition";
+                      } else if (description.includes("# Remove")) {
+                        label = "plugin-removal";
+                      } else if (description.includes("# Transfer")) {
+                        label = "plugin-maintainership";
+                      }
+                      const issue_number = context.payload.pull_request.number;
+                      await github.rest.issues.addLabels({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number,
+                        labels: [label]
+                      });
+
+                      // Assign the PR author as an assignee on the PR
+                      const author = context.payload.pull_request.user && context.payload.pull_request.user.login;
+                      if (author) {
+                        try {
+                          await github.rest.issues.addAssignees({
+                            owner: context.repo.owner,
+                            repo: context.repo.repo,
+                            issue_number,
+                            assignees: [author]
+                          });
+                        } catch (err) {
+                          core && core.info && core.info(`Could not assign ${author} to PR: ${err.message}`);
+                        }
+                      }
+            - name: Add pull request to SDH Tracker
+              uses: actions/add-to-project@v1.0.2
+              continue-on-error: true
+              with:
+                  project-url: https://github.com/orgs/SteamDeckHomebrew/projects/9
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+            - name: Comment pull request instructions
+              if: ${{ github.event.action == 'opened' }}
+              uses: actions/github-script@v7
+              continue-on-error: true
+              with:
+                  script: |
+                      const issue_number = context.payload.pull_request.number;
+                      const description = (context.payload.pull_request.body || "").toString();
+                      let body = "### Issues Found\n\n";
+                      let issuesFound = false;
+
+                      // Check if the user accidentally listed both/neither testing boxes
+                      const stableText = "Tested by a third party on SteamOS Stable or Beta update channel.";
+                      const previewText = "Tested by a third party on SteamOS Preview update channel.";
+
+                      if (description.includes(stableText) && description.includes(previewText)) {
+                        body += "- Both testing boxes are present in your description. Please remove one of them per the Markdown comment above the testing section.\n";
+                        issuesFound = true;
+                      }
+                      if (!description.includes(stableText) && !description.includes(previewText)) {
+                        body += "- Neither testing box is present in your description. Please include one of them per the Markdown comment above the testing section.\n";
+                        issuesFound = true;
+                      }
+
+                      // Finalize issue formatting
+                      if (!issuesFound) {
+                        body += "No issues with your PR description were found.\n";
+                      }
+                      body += "\n";
+
+                      // Add instructions
+                      body += "### Next Steps\n\n";
+                      body += "1. If we found any issues above, please edit your pull request description to resolve them and leave a comment saying you've done so.\n";
+                      body += "1. For the quickest review, please see the Community section of the pull request template for how you can help other developers.\n";
+                      body += "1. Once your description is correct, a maintainer will review your pull request as soon as possible.\n\n";
+                      body += "Thank you for your contribution! If you need any help, please reach out on our [Discord server](https://decky.xyz/discord). :heart:";
+
+                      await github.rest.issues.createComment({
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        issue_number,
+                        body
+                      });
