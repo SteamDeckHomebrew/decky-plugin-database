@@ -1,7 +1,7 @@
 name: Label PRs by Description
 on:
-    pull_request:
-        types: [opened, edited]
+    pull_request_target:
+        types: [opened, edited, reopened]
 permissions:
     issues: write
     pull-requests: write
