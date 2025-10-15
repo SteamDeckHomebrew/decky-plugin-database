@@ -16,7 +16,7 @@
 	url = https://github.com/libvibrant/vibrantDeck.git
 [submodule "plugins/MusicControl"]
 	path = plugins/MusicControl
-	url = https://github.com/mirobouma/MusicControl.git
+	url = https://github.com/martinpl/MusicControl.git
 [submodule "plugins/protondb-decky"]
 	path = plugins/protondb-decky
 	url = https://github.com/OMGDuke/protondb-decky
