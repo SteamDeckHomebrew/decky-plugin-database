@@ -286,6 +286,9 @@
 	path = plugins/MuraDeck
 	url = https://github.com/Moonveil-Kanata/MuraDeck.git
 	branch = main
+[submodule "plugins/BetterKeyboard"]
+	path = plugins/BetterKeyboard
+	url = https://github.com/chenx-dust/BetterKeyboard.git
 [submodule "plugins/DimmerDeck"]
 	path = plugins/DimmerDeck
 	url = https://github.com/chenx-dust/DimmerDeck.git
