@@ -289,3 +289,6 @@
 [submodule "plugins/DimmerDeck"]
 	path = plugins/DimmerDeck
 	url = https://github.com/chenx-dust/DimmerDeck.git
+[submodule "plugins/SDH-GameThemeMusic"]
+	path = plugins/SDH-GameThemeMusic
+	url = https://github.com/MegalonVII/SDH-GameThemeMusic.git
