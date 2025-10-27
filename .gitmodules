@@ -16,7 +16,7 @@
 	url = https://github.com/libvibrant/vibrantDeck.git
 [submodule "plugins/MusicControl"]
 	path = plugins/MusicControl
-	url = https://github.com/mirobouma/MusicControl.git
+	url = https://github.com/martinpl/MusicControl.git
 [submodule "plugins/protondb-decky"]
 	path = plugins/protondb-decky
 	url = https://github.com/OMGDuke/protondb-decky
@@ -275,3 +275,20 @@
 [submodule "plugins/decky-wifi-locker"]
 	path = plugins/decky-wifi-locker
 	url = git@github.com:felipejfc/decky-wifi-locker.git
+[submodule "plugins/HueSync"]
+	path = plugins/HueSync
+	url = https://github.com/honjow/HueSync.git
+	branch = store
+[submodule "plugins/LetMeReShade"]
+	path = plugins/LetMeReShade
+	url = https://github.com/itsOwen/LetMeReShade.git
+[submodule "plugins/MuraDeck"]
+	path = plugins/MuraDeck
+	url = https://github.com/Moonveil-Kanata/MuraDeck.git
+	branch = main
+[submodule "plugins/BetterKeyboard"]
+	path = plugins/BetterKeyboard
+	url = https://github.com/chenx-dust/BetterKeyboard.git
+[submodule "plugins/DimmerDeck"]
+	path = plugins/DimmerDeck
+	url = https://github.com/chenx-dust/DimmerDeck.git
