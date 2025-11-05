@@ -13,7 +13,7 @@
     - Deleted the unnecessary testing checkbox.
 -->
 
-# REPLACE_WITH_PLUGIN_NAME
+# Transfer REPLACE_WITH_PLUGIN_NAME from ORIGINAL_REPO_OWNER_NAME to NEW_REPO_OWNER_NAME
 
 <!--
     Include a detailed summary of what updates you are adding to the plugin, attaching images or videos if necessary. If this is an urgent update (ex. security patch), please explain the urgency and notify the Loader Team on Discord.
