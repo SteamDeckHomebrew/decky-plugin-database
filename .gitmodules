@@ -292,3 +292,6 @@
 [submodule "plugins/SDH-GameThemeMusic"]
 	path = plugins/SDH-GameThemeMusic
 	url = https://github.com/MegalonVII/SDH-GameThemeMusic.git
+[submodule "plugins/decky-second-screen"]
+	path = plugins/decky-second-screen
+	url = https://github.com/Misticenea/decky-second-screen.git
