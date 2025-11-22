@@ -1,0 +1,9 @@
+{
+  "name": "Decky Plugin Backup",
+  "author": "FlorianThePro17",
+  "version": "1.0.0",
+  "description": "Sichert und stellt Decky-Plugins und ihre Einstellungen wieder her (YAML + Archive, inkl. CLI).",
+  "main": "backend/main.py",
+  "frontend": "frontend",
+  "backend": true
+}

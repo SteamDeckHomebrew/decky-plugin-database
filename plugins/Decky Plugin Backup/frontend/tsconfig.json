@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "decky-frontend-lib": ["node_modules/decky-frontend-lib"]
+    }
+  },
+  "include": ["src"]
+}
