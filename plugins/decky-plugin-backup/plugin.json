@@ -1,0 +1,7 @@
+{
+  "name": "Decky Plugin Backup",
+  "author": "FlorianThrPro17",
+  "description": "Sichert und stellt Decky-Plugins und ihre Einstellungen wieder her.",
+  "repo": "https://github.com/florianthepro/decky-plugin-backup",
+  "branch": "main"
+}
