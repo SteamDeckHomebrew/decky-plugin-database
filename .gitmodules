@@ -292,3 +292,6 @@
 [submodule "plugins/SDH-GameThemeMusic"]
 	path = plugins/SDH-GameThemeMusic
 	url = https://github.com/MegalonVII/SDH-GameThemeMusic.git
+[submodule "plugins/KrakenKeys"]
+	path = plugins/KrakenKeys
+	url = https://github.com/JRugen/KrakenKeys-DeckyPlugin.git
