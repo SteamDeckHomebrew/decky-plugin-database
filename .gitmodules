@@ -283,6 +283,9 @@
 	path = plugins/MuraDeck
 	url = https://github.com/Moonveil-Kanata/MuraDeck.git
 	branch = main
+[submodule "plugins/network-sentinel"]
+	path = plugins/network-sentinel
+	url = https://github.com/KrishGaur1354/network-sentinel.git
 [submodule "plugins/BetterKeyboard"]
 	path = plugins/BetterKeyboard
 	url = https://github.com/chenx-dust/BetterKeyboard.git
