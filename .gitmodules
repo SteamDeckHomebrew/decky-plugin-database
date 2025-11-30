@@ -279,10 +279,6 @@
 [submodule "plugins/LetMeReShade"]
 	path = plugins/LetMeReShade
 	url = https://github.com/itsOwen/LetMeReShade.git
-[submodule "plugins/MuraDeck"]
-	path = plugins/MuraDeck
-	url = https://github.com/Moonveil-Kanata/MuraDeck.git
-	branch = main
 [submodule "plugins/network-sentinel"]
 	path = plugins/network-sentinel
 	url = https://github.com/KrishGaur1354/network-sentinel.git
@@ -298,3 +294,7 @@
 [submodule "plugins/decky-lsfg-vk"]
 	path = plugins/decky-lsfg-vk
 	url = https://github.com/xXJSONDeruloXx/decky-lsfg-vk.git
+[submodule "plugins/MuraDeck"]
+	path = plugins/MuraDeck
+	url = https://github.com/Moonveil-Kanata/MuraDeck.git
+	branch = main
