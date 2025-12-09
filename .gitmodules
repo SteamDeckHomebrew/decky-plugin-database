@@ -298,3 +298,6 @@
 [submodule "plugins/decky-lsfg-vk"]
 	path = plugins/decky-lsfg-vk
 	url = https://github.com/xXJSONDeruloXx/decky-lsfg-vk.git
+[submodule "plugins/decky-stt-keyboard"]
+	path = plugins/decky-stt-keyboard
+	url = https://github.com/sebastianuxd/decky-stt-keyboard
