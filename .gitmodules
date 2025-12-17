@@ -16,7 +16,7 @@
 	url = https://github.com/libvibrant/vibrantDeck.git
 [submodule "plugins/MusicControl"]
 	path = plugins/MusicControl
-	url = https://github.com/mirobouma/MusicControl.git
+	url = https://github.com/martinpl/MusicControl.git
 [submodule "plugins/protondb-decky"]
 	path = plugins/protondb-decky
 	url = https://github.com/OMGDuke/protondb-decky
@@ -96,9 +96,6 @@
 [submodule "plugins/decky-networkinfo"]
 	path = plugins/decky-networkinfo
 	url = https://github.com/kimar/decky-networkinfo
-[submodule "plugins/SDH-GameThemeMusic"]
-	path = plugins/SDH-GameThemeMusic
-	url = git@github.com:OMGDuke/SDH-GameThemeMusic.git
 [submodule "plugins/decky-dictation"]
 	path = plugins/decky-dictation
 	url = git@github.com:cboiangiu/decky-dictation.git
@@ -282,6 +279,25 @@
 [submodule "plugins/LetMeReShade"]
 	path = plugins/LetMeReShade
 	url = https://github.com/itsOwen/LetMeReShade.git
+[submodule "plugins/network-sentinel"]
+	path = plugins/network-sentinel
+	url = https://github.com/KrishGaur1354/network-sentinel.git
+[submodule "plugins/BetterKeyboard"]
+	path = plugins/BetterKeyboard
+	url = https://github.com/chenx-dust/BetterKeyboard.git
+[submodule "plugins/DimmerDeck"]
+	path = plugins/DimmerDeck
+	url = https://github.com/chenx-dust/DimmerDeck.git
+[submodule "plugins/SDH-GameThemeMusic"]
+	path = plugins/SDH-GameThemeMusic
+	url = https://github.com/MegalonVII/SDH-GameThemeMusic.git
+[submodule "plugins/decky-lsfg-vk"]
+	path = plugins/decky-lsfg-vk
+	url = https://github.com/xXJSONDeruloXx/decky-lsfg-vk.git
+[submodule "plugins/DeckyClash"]
+	path = plugins/DeckyClash
+	url = https://github.com/chenx-dust/DeckyClash.git
+	branch = store
 [submodule "plugins/MuraDeck"]
 	path = plugins/MuraDeck
 	url = https://github.com/Moonveil-Kanata/MuraDeck.git

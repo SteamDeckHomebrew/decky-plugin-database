@@ -8,7 +8,7 @@
     - Filled out the Task Checklist.
 -->
 
-# REPLACE_WITH_PLUGIN_NAME
+# Remove REPLACE_WITH_PLUGIN_NAME from Plugin Store
 
 <!--
     Include a brief summary of the plugin being removed.
