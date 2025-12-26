@@ -297,6 +297,9 @@
 [submodule "plugins/Decky-CP"]
 	path = plugins/Decky-CP
 	url = https://github.com/39sdev/Decky-CP.git
+[submodule "plugins/Muon"]
+	path = plugins/Muon
+	url = https://github.com/wtlnetwork/muon
 [submodule "plugins/DeckyClash"]
 	path = plugins/DeckyClash
 	url = https://github.com/chenx-dust/DeckyClash.git
