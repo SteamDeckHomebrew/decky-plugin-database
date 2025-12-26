@@ -297,6 +297,10 @@
 [submodule "plugins/Muon"]
 	path = plugins/Muon
 	url = https://github.com/wtlnetwork/muon
+[submodule "plugins/DeckyClash"]
+	path = plugins/DeckyClash
+	url = https://github.com/chenx-dust/DeckyClash.git
+	branch = store
 [submodule "plugins/MuraDeck"]
 	path = plugins/MuraDeck
 	url = https://github.com/Moonveil-Kanata/MuraDeck.git
