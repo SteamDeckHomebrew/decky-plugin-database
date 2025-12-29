@@ -305,3 +305,6 @@
 	path = plugins/MuraDeck
 	url = https://github.com/Moonveil-Kanata/MuraDeck.git
 	branch = main
+[submodule "plugins/protondb-decky-extended"]
+	path = plugins/protondb-decky-extended
+	url = https://github.com/bschelst/protondb-decky-extended.git
