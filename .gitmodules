@@ -305,3 +305,6 @@
 	path = plugins/MuraDeck
 	url = https://github.com/Moonveil-Kanata/MuraDeck.git
 	branch = main
+[submodule "plugins/Reroll"]
+	path = plugins/Reroll
+	url = git@github.com:kayon/decky-reroll.git
