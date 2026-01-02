@@ -305,3 +305,6 @@
 	path = plugins/MuraDeck
 	url = https://github.com/Moonveil-Kanata/MuraDeck.git
 	branch = main
+[submodule "plugins/decky-clipboard"]
+	path = plugins/decky-clipboard
+	url = https://github.com/Torther/DeckyClipboard
