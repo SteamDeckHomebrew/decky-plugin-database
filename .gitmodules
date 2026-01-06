@@ -308,3 +308,6 @@
 	path = plugins/MuraDeck
 	url = https://github.com/Moonveil-Kanata/MuraDeck.git
 	branch = main
+[submodule "plugins/decky-speed-test"]
+	path = plugins/decky-speed-test
+	url = git@github.com:Dukeman330/decky-speed-test.git
