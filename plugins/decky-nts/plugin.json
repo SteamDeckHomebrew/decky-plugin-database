@@ -1,0 +1,10 @@
+{
+  "name": "NTS Radio",
+  "author": "dylwww",
+  "flags": [],
+  "main": "dist/index.js",
+  "publish": {
+    "tags": ["radio", "music"],
+    "description": "NTS Live 1 + Live 2 in Decky. HTML5 audio, auto-reconnect, and now-playing metadata."
+  }
+}
