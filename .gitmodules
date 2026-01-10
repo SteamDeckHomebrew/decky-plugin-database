@@ -311,3 +311,6 @@
 [submodule "plugins/decky-speed-test"]
 	path = plugins/decky-speed-test
 	url = git@github.com:Dukeman330/decky-speed-test.git
+[submodule "plugins/AllyCenter"]
+	path = plugins/AllyCenter
+	url = https://github.com/PixelAddictUnlocked/allycenter.git
