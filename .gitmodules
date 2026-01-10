@@ -19,7 +19,7 @@
 	url = https://github.com/martinpl/MusicControl.git
 [submodule "plugins/protondb-decky"]
 	path = plugins/protondb-decky
-	url = https://github.com/OMGDuke/protondb-decky
+	url = https://github.com/bschelst/protondb-decky
 [submodule "plugins/SDH-AudioLoader"]
 	path = plugins/SDH-AudioLoader
 	url = https://github.com/EMERALD0874/SDH-AudioLoader
@@ -308,3 +308,6 @@
 	path = plugins/MuraDeck
 	url = https://github.com/Moonveil-Kanata/MuraDeck.git
 	branch = main
+[submodule "plugins/decky-speed-test"]
+	path = plugins/decky-speed-test
+	url = git@github.com:Dukeman330/decky-speed-test.git
