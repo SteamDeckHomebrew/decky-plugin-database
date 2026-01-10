@@ -19,7 +19,7 @@
 	url = https://github.com/martinpl/MusicControl.git
 [submodule "plugins/protondb-decky"]
 	path = plugins/protondb-decky
-	url = https://github.com/OMGDuke/protondb-decky
+	url = https://github.com/bschelst/protondb-decky
 [submodule "plugins/SDH-AudioLoader"]
 	path = plugins/SDH-AudioLoader
 	url = https://github.com/EMERALD0874/SDH-AudioLoader
@@ -294,6 +294,9 @@
 [submodule "plugins/decky-lsfg-vk"]
 	path = plugins/decky-lsfg-vk
 	url = https://github.com/xXJSONDeruloXx/decky-lsfg-vk.git
+[submodule "plugins/Decky-CP"]
+	path = plugins/Decky-CP
+	url = https://github.com/39sdev/Decky-CP.git
 [submodule "plugins/Muon"]
 	path = plugins/Muon
 	url = https://github.com/wtlnetwork/muon
