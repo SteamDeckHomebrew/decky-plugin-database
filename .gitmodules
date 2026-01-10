@@ -311,3 +311,6 @@
 [submodule "plugins/decky-speed-test"]
 	path = plugins/decky-speed-test
 	url = git@github.com:Dukeman330/decky-speed-test.git
+[submodule "plugins/DeckPass"]
+	path = plugins/DeckPass
+	url = https://github.com/Teppichseite/DeckPass
