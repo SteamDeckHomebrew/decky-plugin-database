@@ -311,3 +311,6 @@
 [submodule "plugins/decky-speed-test"]
 	path = plugins/decky-speed-test
 	url = git@github.com:Dukeman330/decky-speed-test.git
+[submodule "plugins/snippets"]
+	path = plugins/snippets
+	url = https://github.com/xXJSONDeruloXx/snippets.git
