@@ -311,3 +311,6 @@
 [submodule "plugins/decky-speed-test"]
 	path = plugins/decky-speed-test
 	url = git@github.com:Dukeman330/decky-speed-test.git
+[submodule "plugins/steamstatus-decky"]
+	path = plugins/steamstatus-decky
+	url = https://github.com/bschelst/steamstatus-decky.git
