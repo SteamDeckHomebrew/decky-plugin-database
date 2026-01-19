@@ -314,3 +314,6 @@
 [submodule "plugins/snippets"]
 	path = plugins/snippets
 	url = https://github.com/xXJSONDeruloXx/snippets.git
+[submodule "plugins/decky-clipboard"]
+	path = plugins/decky-clipboard
+	url = https://github.com/Torther/DeckyClipboard
