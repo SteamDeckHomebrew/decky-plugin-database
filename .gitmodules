@@ -314,3 +314,6 @@
 [submodule "plugins/ShadowDeck"]
 	path = plugins/ShadowDeck
 	url = https://github.com/tikh-iv/ShadowDeck.git
+[submodule "plugins/decky-clipboard"]
+	path = plugins/decky-clipboard
+	url = https://github.com/Torther/DeckyClipboard
