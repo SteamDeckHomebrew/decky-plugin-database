@@ -314,3 +314,6 @@
 [submodule "plugins/decky-clipboard"]
 	path = plugins/decky-clipboard
 	url = https://github.com/Torther/DeckyClipboard
+[submodule "plugins/decky-hour-notifications"]
+	path = plugins/decky-hour-notifications
+	url = https://github.com/mpcallahan/DeckyHourNotifications.git
