@@ -314,3 +314,6 @@
 [submodule "plugins/decky-clipboard"]
 	path = plugins/decky-clipboard
 	url = https://github.com/Torther/DeckyClipboard
+[submodule "plugins/Decky-send"]
+	path = plugins/Decky-send
+	url = https://github.com/panyiwei-home/Decky-send.git
