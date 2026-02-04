@@ -317,3 +317,7 @@
 [submodule "plugins/decky-clipboard"]
 	path = plugins/decky-clipboard
 	url = https://github.com/Torther/DeckyClipboard
+[submodule "plugins/decky-efibootmgr"]
+	path = plugins/decky-efibootmgr
+	url = https://github.com/f-ever/decky-efibootmgr.git
+	branch = main
