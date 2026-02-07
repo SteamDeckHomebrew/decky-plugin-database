@@ -317,3 +317,6 @@
 [submodule "plugins/decky-clipboard"]
 	path = plugins/decky-clipboard
 	url = https://github.com/Torther/DeckyClipboard
+[submodule "plugins/decky-translator"]
+	path = plugins/decky-translator
+	url = https://github.com/cat-in-a-box/Decky-Translator.git
