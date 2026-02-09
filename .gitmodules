@@ -332,3 +332,6 @@
 [submodule "plugins/DeckPass"]
 	path = plugins/DeckPass
 	url = https://github.com/Teppichseite/DeckPass
+[submodule "plugins/CapyDeploy"]
+	path = plugins/CapyDeploy
+	url = https://github.com/lobinuxsoft/decky-capydeploy.git
