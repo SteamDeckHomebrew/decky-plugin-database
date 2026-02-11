@@ -320,3 +320,6 @@
 [submodule "plugins/Museck"]
 	path = plugins/Museck
 	url = https://github.com/Nezreka/Museck.git
+[submodule "plugins/DeckPass"]
+	path = plugins/DeckPass
+	url = https://github.com/Teppichseite/DeckPass
