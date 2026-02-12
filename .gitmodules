@@ -317,6 +317,12 @@
 [submodule "plugins/decky-clipboard"]
 	path = plugins/decky-clipboard
 	url = https://github.com/Torther/DeckyClipboard
+[submodule "plugins/Museck"]
+	path = plugins/Museck
+	url = https://github.com/Nezreka/Museck.git
+[submodule "plugins/DeckPass"]
+	path = plugins/DeckPass
+	url = https://github.com/Teppichseite/DeckPass
 [submodule "plugins/decky-launch-options"]
 	path = plugins/decky-launch-options
 	url = https://github.com/Wurielle/decky-launch-options.git
