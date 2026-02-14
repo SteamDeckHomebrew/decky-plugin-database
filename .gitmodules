@@ -320,3 +320,9 @@
 [submodule "plugins/decky-localsend"]
 	path = plugins/decky-localsend
 	url = https://github.com/MoYoez/decky-localsend.git
+[submodule "plugins/Museck"]
+	path = plugins/Museck
+	url = https://github.com/Nezreka/Museck.git
+[submodule "plugins/DeckPass"]
+	path = plugins/DeckPass
+	url = https://github.com/Teppichseite/DeckPass
