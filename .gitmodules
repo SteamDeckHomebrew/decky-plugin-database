@@ -317,6 +317,9 @@
 [submodule "plugins/decky-clipboard"]
 	path = plugins/decky-clipboard
 	url = https://github.com/Torther/DeckyClipboard
+[submodule "plugins/steamstatus-decky"]
+	path = plugins/steamstatus-decky
+	url = https://github.com/bschelst/steamstatus-decky.git
 [submodule "plugins/Museck"]
 	path = plugins/Museck
 	url = https://github.com/Nezreka/Museck.git
