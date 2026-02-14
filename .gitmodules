@@ -308,6 +308,9 @@
 	path = plugins/MuraDeck
 	url = https://github.com/Moonveil-Kanata/MuraDeck.git
 	branch = main
+[submodule "plugins/Reroll"]
+	path = plugins/Reroll
+	url = git@github.com:kayon/decky-reroll.git
 [submodule "plugins/decky-speed-test"]
 	path = plugins/decky-speed-test
 	url = git@github.com:Dukeman330/decky-speed-test.git
@@ -317,3 +320,9 @@
 [submodule "plugins/steamstatus-decky"]
 	path = plugins/steamstatus-decky
 	url = https://github.com/bschelst/steamstatus-decky.git
+[submodule "plugins/Museck"]
+	path = plugins/Museck
+	url = https://github.com/Nezreka/Museck.git
+[submodule "plugins/DeckPass"]
+	path = plugins/DeckPass
+	url = https://github.com/Teppichseite/DeckPass
