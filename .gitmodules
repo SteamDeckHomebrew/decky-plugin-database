@@ -329,3 +329,6 @@
 [submodule "plugins/DeckPass"]
 	path = plugins/DeckPass
 	url = https://github.com/Teppichseite/DeckPass
+[submodule "plugins/XboxAchievements"]
+	path = plugins/XboxAchievements
+	url = https://github.com/joeblack2k/decky-xboxachievements
