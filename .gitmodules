@@ -317,6 +317,9 @@
 [submodule "plugins/decky-clipboard"]
 	path = plugins/decky-clipboard
 	url = https://github.com/Torther/DeckyClipboard
+[submodule "plugins/decky-localsend"]
+	path = plugins/decky-localsend
+	url = https://github.com/MoYoez/decky-localsend.git
 [submodule "plugins/alarme-decky-plugin"]
 	path = plugins/alarme-decky-plugin
 	url = https://github.com/lemossilva/alarme-decky-plugin.git
