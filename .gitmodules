@@ -320,6 +320,12 @@
 [submodule "plugins/decky-localsend"]
 	path = plugins/decky-localsend
 	url = https://github.com/MoYoez/decky-localsend.git
+[submodule "plugins/alarme-decky-plugin"]
+	path = plugins/alarme-decky-plugin
+	url = https://github.com/lemossilva/alarme-decky-plugin.git
+[submodule "plugins/steamstatus-decky"]
+	path = plugins/steamstatus-decky
+	url = https://github.com/bschelst/steamstatus-decky.git
 [submodule "plugins/Museck"]
 	path = plugins/Museck
 	url = https://github.com/Nezreka/Museck.git
