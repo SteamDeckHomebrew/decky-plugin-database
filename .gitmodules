@@ -332,3 +332,6 @@
 [submodule "plugins/DeckPass"]
 	path = plugins/DeckPass
 	url = https://github.com/Teppichseite/DeckPass
+[submodule "plugins/potato-deals"]
+	path = plugins/potato-deals
+	url = https://github.com/koffcheck/potato-deals.git
