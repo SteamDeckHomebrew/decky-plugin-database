@@ -332,6 +332,9 @@
 [submodule "plugins/DeckPass"]
 	path = plugins/DeckPass
 	url = https://github.com/Teppichseite/DeckPass
+[submodule "plugins/awim-deck"]
+	path = plugins/awim-deck
+	url = https://github.com/ergolyam/awim-deck.git
 [submodule "plugins/decky-launch-options"]
 	path = plugins/decky-launch-options
 	url = https://github.com/Wurielle/decky-launch-options.git
