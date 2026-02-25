@@ -332,6 +332,12 @@
 [submodule "plugins/DeckPass"]
 	path = plugins/DeckPass
 	url = https://github.com/Teppichseite/DeckPass
+<<<<<<< add-capydeploy
 [submodule "plugins/CapyDeploy"]
 	path = plugins/CapyDeploy
 	url = https://github.com/lobinuxsoft/decky-capydeploy.git
+=======
+[submodule "plugins/decky-launch-options"]
+	path = plugins/decky-launch-options
+	url = https://github.com/Wurielle/decky-launch-options.git
+>>>>>>> main
