@@ -338,3 +338,6 @@
 [submodule "plugins/decky-launch-options"]
 	path = plugins/decky-launch-options
 	url = https://github.com/Wurielle/decky-launch-options.git
+[submodule "plugins/decky-nonsteam-badges"]
+	path = plugins/decky-nonsteam-badges
+	url = https://github.com/sebet/decky-nonsteam-badges
