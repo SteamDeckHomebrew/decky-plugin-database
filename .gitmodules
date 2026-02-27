@@ -332,6 +332,9 @@
 [submodule "plugins/DeckPass"]
 	path = plugins/DeckPass
 	url = https://github.com/Teppichseite/DeckPass
+[submodule "plugins/decky-translator"]
+	path = plugins/decky-translator
+	url = https://github.com/cat-in-a-box/Decky-Translator.git
 [submodule "plugins/decky-launch-options"]
 	path = plugins/decky-launch-options
 	url = https://github.com/Wurielle/decky-launch-options.git
