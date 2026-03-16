@@ -341,3 +341,9 @@
 [submodule "plugins/decky-launch-options"]
 	path = plugins/decky-launch-options
 	url = https://github.com/Wurielle/decky-launch-options.git
+[submodule "plugins/ShadowDeck"]
+    path = plugins/ShadowDeck
+    url = https://github.com/tikh-iv/ShadowDeck
+[submodule "plugins/decky-multi-user"]
+	path = plugins/decky-multi-user
+	url = https://github.com/nikitaclicks/decky-multi-user
