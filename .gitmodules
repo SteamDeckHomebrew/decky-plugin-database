@@ -344,3 +344,6 @@
 [submodule "plugins/decky-multi-user"]
 	path = plugins/decky-multi-user
 	url = https://github.com/nikitaclicks/decky-multi-user
+[submodule "plugins/Decky-Clipper"]
+	path = plugins/Decky-Clipper
+	url = https://github.com/Managor/Decky-Clipper.git
