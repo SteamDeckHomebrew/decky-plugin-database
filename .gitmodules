@@ -347,3 +347,6 @@
 [submodule "plugins/decky-multi-user"]
 	path = plugins/decky-multi-user
 	url = https://github.com/nikitaclicks/decky-multi-user
+[submodule "plugins/hiddify-vpn"]
+	path = plugins/hiddify-vpn
+	url = https://github.com/denmrnngp-cloud/decky-hiddify
