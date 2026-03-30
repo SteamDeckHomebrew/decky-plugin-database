@@ -350,3 +350,6 @@
 [submodule "plugins/SuggestMe-decky-plugin"]
 	path = plugins/SuggestMe-decky-plugin
 	url = https://github.com/lemossilva/suggestme-decky-plugin.git
+[submodule "plugins/decky-download-all"]
+	path = plugins/decky-download-all
+	url = https://github.com/bentemple/decky-download-all.git
