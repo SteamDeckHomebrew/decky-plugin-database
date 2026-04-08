@@ -350,3 +350,6 @@
 [submodule "plugins/decky-download-all"]
 	path = plugins/decky-download-all
 	url = https://github.com/bentemple/decky-download-all.git
+[submodule "plugins/decky-volume-mixer"]
+	path = plugins/decky-volume-mixer
+	url = https://github.com/allmazz/decky-volume-mixer.git
