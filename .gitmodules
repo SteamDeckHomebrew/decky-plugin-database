@@ -353,3 +353,6 @@
 [submodule "plugins/Deck Shelves"]
 	path = plugins/Deck Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/Deck-Shelves"]
+	path = plugins/Deck-Shelves
+	url = https://github.com/santojon/Deck-Shelves.git
