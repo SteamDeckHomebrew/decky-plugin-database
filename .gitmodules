@@ -350,3 +350,6 @@
 [submodule "plugins/decky-download-all"]
 	path = plugins/decky-download-all
 	url = https://github.com/bentemple/decky-download-all.git
+[submodule "plugins/decky-proton-pulse"]
+	path = plugins/decky-proton-pulse
+	url = git@github.com:mdeguzis/decky-proton-pulse.git
