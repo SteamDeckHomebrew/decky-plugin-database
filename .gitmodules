@@ -350,3 +350,6 @@
 [submodule "plugins/decky-download-all"]
 	path = plugins/decky-download-all
 	url = https://github.com/bentemple/decky-download-all.git
+[submodule "plugins/decky-nonsteam-badges"]
+	path = plugins/decky-nonsteam-badges
+	url = https://github.com/sebet/decky-nonsteam-badges
