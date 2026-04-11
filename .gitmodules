@@ -350,3 +350,6 @@
 [submodule "plugins/decky-download-all"]
 	path = plugins/decky-download-all
 	url = https://github.com/bentemple/decky-download-all.git
+[submodule "plugins/Deck-Shelves"]
+	path = plugins/Deck-Shelves
+	url = https://github.com/santojon/Deck-Shelves.git
