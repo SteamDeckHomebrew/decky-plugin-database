@@ -350,3 +350,7 @@
 [submodule "plugins/decky-download-all"]
 	path = plugins/decky-download-all
 	url = https://github.com/bentemple/decky-download-all.git
+[submodule "plugins/decky-ftpd"]
+	path = plugins/decky-ftpd
+	url = https://github.com/codevski/decky-ftpd
+	branch = main
