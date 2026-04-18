@@ -353,4 +353,3 @@
 [submodule "plugins/decky-ftpd"]
 	path = plugins/decky-ftpd
 	url = https://github.com/codevski/decky-ftpd
-	branch = main
