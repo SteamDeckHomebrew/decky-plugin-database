@@ -353,3 +353,6 @@
 [submodule "plugins/decky-download-all"]
 	path = plugins/decky-download-all
 	url = https://github.com/bentemple/decky-download-all.git
+[submodule "plugins/easy-ssh"]
+	path = plugins/easy-ssh
+	url = https://github.com/heynedim/easy-ssh.git
