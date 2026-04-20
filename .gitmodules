@@ -353,3 +353,6 @@
 [submodule "plugins/decky-download-all"]
 	path = plugins/decky-download-all
 	url = https://github.com/bentemple/decky-download-all.git
+[submodule "plugins/achievement-companion"]
+	path = plugins/achievement-companion
+	url = https://github.com/CodeNode-Automation/achievement-companion.git
