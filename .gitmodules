@@ -356,3 +356,6 @@
 [submodule "plugins/achievement-companion"]
 	path = plugins/achievement-companion
 	url = https://github.com/CodeNode-Automation/achievement-companion.git
+[submodule "plugins/decky-nonsteam-badges"]
+	path = plugins/decky-nonsteam-badges
+	url = https://github.com/sebet/decky-nonsteam-badges
