@@ -358,4 +358,4 @@
 	url = https://github.com/sebet/decky-nonsteam-badges
 [submodule "plugins/decky-apps"]
 	path = plugins/decky-apps
-	url = https://github.com/allmazz/decky-apps
+	url = https://github.com/allmazz/decky-apps.git
