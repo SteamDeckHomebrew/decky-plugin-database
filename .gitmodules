@@ -347,9 +347,15 @@
 [submodule "plugins/decky-multi-user"]
 	path = plugins/decky-multi-user
 	url = https://github.com/nikitaclicks/decky-multi-user
+[submodule "plugins/SuggestMe-decky-plugin"]
+	path = plugins/SuggestMe-decky-plugin
+	url = https://github.com/lemossilva/suggestme-decky-plugin.git
 [submodule "plugins/decky-download-all"]
 	path = plugins/decky-download-all
 	url = https://github.com/bentemple/decky-download-all.git
 [submodule "plugins/deck-stats"]
 	path = plugins/deck-stats
 	url = https://github.com/iwsen/deck-stats.git
+[submodule "plugins/decky-nonsteam-badges"]
+	path = plugins/decky-nonsteam-badges
+	url = https://github.com/sebet/decky-nonsteam-badges
