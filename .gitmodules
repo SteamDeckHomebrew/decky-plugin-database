@@ -359,3 +359,6 @@
 [submodule "plugins/decky-nonsteam-badges"]
 	path = plugins/decky-nonsteam-badges
 	url = https://github.com/sebet/decky-nonsteam-badges
+[submodule "plugins/Deck-Shelves"]
+	path = plugins/Deck-Shelves
+	url = https://github.com/santojon/Deck-Shelves.git
