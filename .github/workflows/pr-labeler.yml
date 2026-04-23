@@ -3,6 +3,7 @@ on:
     pull_request_target:
         types: [opened, edited, reopened]
 permissions:
+    contents: read
     issues: write
     pull-requests: write
 jobs:
@@ -48,6 +49,42 @@ jobs:
                           core && core.info && core.info(`Could not assign ${author} to PR: ${err.message}`);
                         }
                       }
+            - name: Checkout PR code
+              uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.event.pull_request.head.sha }}
+                  fetch-depth: 0
+                  submodules: "recursive"
+                  token: ${{ secrets.GITHUB_TOKEN }}
+            - name: Check plugin LICENSE files
+              id: license-check
+              run: |
+                  git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+                  BASE_SHA=${{ github.event.pull_request.base.sha }}
+                  HEAD_SHA=${{ github.event.pull_request.head.sha }}
+                  CHANGED_PLUGINS=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- plugins/ | cut -d/ -f2 | sort -u)
+
+                  LICENSE_ISSUES=""
+                  for plugin in $CHANGED_PLUGINS; do
+                    LICENSE_FILE="plugins/$plugin/LICENSE"
+                    if [ ! -f "$LICENSE_FILE" ]; then
+                      LICENSE_ISSUES="${LICENSE_ISSUES}- **$plugin**: No LICENSE file found.\n"
+                      continue
+                    fi
+                    CONTENT=$(cat "$LICENSE_FILE")
+                    if echo "$CONTENT" | grep -qi "Hypothetical Plugin Developer"; then
+                      LICENSE_ISSUES="${LICENSE_ISSUES}- **$plugin**: LICENSE still contains \"Hypothetical Plugin Developer\". Please replace it with your own name. See [the plugin template LICENSE](https://github.com/SteamDeckHomebrew/decky-plugin-template/blob/main/LICENSE).\n"
+                    fi
+                    if ! echo "$CONTENT" | grep -qi "Steam Deck Homebrew"; then
+                      LICENSE_ISSUES="${LICENSE_ISSUES}- **$plugin**: LICENSE is missing the required \"Steam Deck Homebrew\" credit. Crediting Steam Deck Homebrew is mandatory.\n"
+                    fi
+                  done
+
+                  {
+                    echo "issues<<EOF"
+                    echo -e "$LICENSE_ISSUES"
+                    echo "EOF"
+                  } >> "$GITHUB_OUTPUT"
             - name: Add pull request to SDH Tracker
               uses: actions/add-to-project@v1.0.2
               continue-on-error: true
@@ -58,6 +95,8 @@ jobs:
               if: ${{ github.event.action == 'opened' }}
               uses: actions/github-script@v7
               continue-on-error: true
+              env:
+                  LICENSE_ISSUES: ${{ steps.license-check.outputs.issues }}
               with:
                   script: |
                       const issue_number = context.payload.pull_request.number;
@@ -78,9 +117,16 @@ jobs:
                         issuesFound = true;
                       }
 
+                      // Check for LICENSE issues
+                      const licenseIssues = process.env.LICENSE_ISSUES || "";
+                      if (licenseIssues.trim()) {
+                        body += "\n**License Issues:**\n" + licenseIssues;
+                        issuesFound = true;
+                      }
+
                       // Finalize issue formatting
                       if (!issuesFound) {
-                        body += "No issues with your PR description were found.\n";
+                        body += "No issues with your PR were found.\n";
                       }
                       body += "\n";
 
