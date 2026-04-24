@@ -358,6 +358,11 @@
 	path = plugins/decklingo
 	url = https://github.com/Yhangzzz12/decklingo
   
+
+[submodule "plugins/deck-progress-tracker"]
+	path = plugins/deck-progress-tracker
+	url = https://github.com/maroun2/deck-progress-tracker.git
+
 [submodule "plugins/decky-nonsteam-badges"]
 	path = plugins/decky-nonsteam-badges
 	url = https://github.com/sebet/decky-nonsteam-badges
