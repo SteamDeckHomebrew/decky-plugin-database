@@ -356,6 +356,6 @@
 [submodule "plugins/decky-nonsteam-badges"]
 	path = plugins/decky-nonsteam-badges
 	url = https://github.com/sebet/decky-nonsteam-badges
-[submodule "plugins/decky-apps"]
-	path = plugins/decky-apps
-	url = https://github.com/allmazz/decky-apps.git
+[submodule "plugins/decky-desktop-apps"]
+	path = plugins/decky-desktop-apps
+	url = https://github.com/allmazz/decky-desktop-apps.git
