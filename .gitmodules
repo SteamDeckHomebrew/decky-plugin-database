@@ -353,6 +353,9 @@
 [submodule "plugins/decky-download-all"]
 	path = plugins/decky-download-all
 	url = https://github.com/bentemple/decky-download-all.git
+[submodule "plugins/SteamInputDB-Buddy"]
+	path = plugins/SteamInputDB-Buddy
+	url = https://github.com/Alia5/steaminputdb.com
 [submodule "plugins/deck-progress-tracker"]
 	path = plugins/deck-progress-tracker
 	url = https://github.com/maroun2/deck-progress-tracker.git
