@@ -359,3 +359,6 @@
 [submodule "plugins/decky-nonsteam-badges"]
 	path = plugins/decky-nonsteam-badges
 	url = https://github.com/sebet/decky-nonsteam-badges
+[submodule "plugins/hercules-codes"]
+	path = plugins/hercules-codes
+	url = https://github.com/RNovachkov/hercules-codes
