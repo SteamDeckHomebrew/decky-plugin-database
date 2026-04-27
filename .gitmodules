@@ -359,3 +359,6 @@
 [submodule "plugins/decky-nonsteam-badges"]
 	path = plugins/decky-nonsteam-badges
 	url = https://github.com/sebet/decky-nonsteam-badges
+[submodule "plugins/ha-deck"]
+	path = plugins/ha-deck
+	url = https://github.com/Marker284/ha-deck.git
