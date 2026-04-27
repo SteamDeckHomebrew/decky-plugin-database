@@ -359,3 +359,6 @@
 [submodule "plugins/decky-nonsteam-badges"]
 	path = plugins/decky-nonsteam-badges
 	url = https://github.com/sebet/decky-nonsteam-badges
+[submodule "plugins/decky-proton-pulse"]
+	path = plugins/decky-proton-pulse
+	url = git@github.com:mdeguzis/decky-proton-pulse.git
