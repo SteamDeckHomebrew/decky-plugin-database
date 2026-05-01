@@ -1,5 +1,6 @@
 <!--
     READ ALL COMMENTS IN THIS TEMPLATE BEFORE SUBMITTING YOUR PR!
+    NOT FOLLOWING THIS TEMPLATE MAY RESULT IN YOUR PR BEING DENIED FOR SUSPECTED AI USAGE!
 
     This template is for removing a plugin from the store. If you are taking any other action, please start over by creating a new pull request and selecting the appropriate template.
 

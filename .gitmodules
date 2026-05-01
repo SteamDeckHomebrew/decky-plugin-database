@@ -317,6 +317,9 @@
 [submodule "plugins/decky-clipboard"]
 	path = plugins/decky-clipboard
 	url = https://github.com/Torther/DeckyClipboard
+[submodule "plugins/GamesPrefixManager"]
+	path = plugins/GamesPrefixManager
+	url = https://github.com/Saad-Alareqi/GamesPrefixManager.git
 [submodule "plugins/decky-localsend"]
 	path = plugins/decky-localsend
 	url = https://github.com/MoYoez/decky-localsend.git
@@ -335,6 +338,27 @@
 [submodule "plugins/CapyDeploy"]
 	path = plugins/CapyDeploy
 	url = https://github.com/lobinuxsoft/decky-capydeploy.git
+[submodule "plugins/decky-translator"]
+	path = plugins/decky-translator
+	url = https://github.com/cat-in-a-box/Decky-Translator.git
 [submodule "plugins/decky-launch-options"]
 	path = plugins/decky-launch-options
 	url = https://github.com/Wurielle/decky-launch-options.git
+[submodule "plugins/ShadowDeck"]
+    path = plugins/ShadowDeck
+    url = https://github.com/tikh-iv/ShadowDeck
+[submodule "plugins/decky-multi-user"]
+	path = plugins/decky-multi-user
+	url = https://github.com/nikitaclicks/decky-multi-user
+[submodule "plugins/SuggestMe-decky-plugin"]
+	path = plugins/SuggestMe-decky-plugin
+	url = https://github.com/lemossilva/suggestme-decky-plugin.git
+[submodule "plugins/decky-download-all"]
+	path = plugins/decky-download-all
+	url = https://github.com/bentemple/decky-download-all.git
+[submodule "plugins/deck-progress-tracker"]
+	path = plugins/deck-progress-tracker
+	url = https://github.com/maroun2/deck-progress-tracker.git
+[submodule "plugins/decky-nonsteam-badges"]
+	path = plugins/decky-nonsteam-badges
+	url = https://github.com/sebet/decky-nonsteam-badges
