@@ -359,3 +359,6 @@
 [submodule "plugins/decky-nonsteam-badges"]
 	path = plugins/decky-nonsteam-badges
 	url = https://github.com/sebet/decky-nonsteam-badges
+[submodule "plugins/GeminiAI"]
+	path = plugins/GeminiAI
+	url = https://github.com/mark-lacdao/decky-gemini-plugin
