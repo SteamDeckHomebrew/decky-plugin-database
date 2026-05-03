@@ -361,4 +361,4 @@
 	url = https://github.com/sebet/decky-nonsteam-badges
 [submodule "plugins/GeminiAI"]
 	path = plugins/GeminiAI
-	url = git@github.com/mark-lacdao/decky-gemini-plugin.git
+	url = https://github.com/mark-lacdao/decky-gemini-plugin.git
