@@ -359,3 +359,6 @@
 [submodule "plugins/decky-nonsteam-badges"]
 	path = plugins/decky-nonsteam-badges
 	url = https://github.com/sebet/decky-nonsteam-badges
+[submodule "plugins/DeckCast"]
+	path = plugins/DeckCast
+	url = https://github.com/dPacc/DeckCast.git
