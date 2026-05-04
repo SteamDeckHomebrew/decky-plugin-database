@@ -359,3 +359,6 @@
 [submodule "plugins/decky-nonsteam-badges"]
 	path = plugins/decky-nonsteam-badges
 	url = https://github.com/sebet/decky-nonsteam-badges
+[submodule "plugins/UA_VoiceCCBridge"]
+	path = plugins/UA_VoiceCCBridge
+	url = https://github.com/Fok86/UA_VoiceCCBridge
