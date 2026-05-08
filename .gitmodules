@@ -362,3 +362,6 @@
 [submodule "plugins/achievement-companion"]
 	path = plugins/achievement-companion
 	url = https://github.com/parvagans/achievement-companion.git
+[submodule "plugins/Deck-Shelves"]
+	path = plugins/Deck-Shelves
+	url = https://github.com/santojon/Deck-Shelves.git
