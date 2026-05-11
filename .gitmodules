@@ -362,3 +362,6 @@
 [submodule "plugins/Deck-Shelves"]
 	path = plugins/Deck-Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/squad-up"]
+	path = plugins/squad-up
+	url = https://github.com/binaryj/squad-up.git
