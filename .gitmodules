@@ -362,3 +362,6 @@
 [submodule "plugins/Deck-Shelves"]
 	path = plugins/Deck-Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/pixel-buddy"]
+	path = plugins/pixel-buddy
+	url = https://github.com/Phill544/Pixel-Buddy
