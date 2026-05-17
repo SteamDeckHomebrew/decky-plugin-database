@@ -362,6 +362,9 @@
 [submodule "plugins/decky-nonsteam-badges"]
 	path = plugins/decky-nonsteam-badges
 	url = https://github.com/sebet/decky-nonsteam-badges
+[submodule "plugins/ha-deck"]
+	path = plugins/ha-deck
+	url = https://github.com/Marker284/ha-deck.git
 [submodule "plugins/decky-proton-launch"]
 	path = plugins/decky-proton-launch
 	url = https://github.com/moi952/decky-proton-launch.git
