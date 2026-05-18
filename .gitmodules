@@ -368,3 +368,6 @@
 [submodule "plugins/Deck-Shelves"]
 	path = plugins/Deck-Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/decky-proton-pulse"]
+	path = plugins/decky-proton-pulse
+	url = git@github.com:mdeguzis/decky-proton-pulse.git
