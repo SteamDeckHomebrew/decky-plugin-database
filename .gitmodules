@@ -278,7 +278,7 @@
 	branch = store
 [submodule "plugins/LetMeReShade"]
 	path = plugins/LetMeReShade
-	url = https://github.com/itsOwen/LetMeReShade.git
+	url = https://github.com/Cliffback/LetMeReShade.git
 [submodule "plugins/network-sentinel"]
 	path = plugins/network-sentinel
 	url = https://github.com/KrishGaur1354/network-sentinel.git
