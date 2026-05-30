@@ -368,3 +368,6 @@
 [submodule "plugins/Deck-Shelves"]
 	path = plugins/Deck-Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/currency-converter"]
+	path = plugins/currency-converter
+	url = https://github.com/S0S1S0CHKA/currency-converter.git
