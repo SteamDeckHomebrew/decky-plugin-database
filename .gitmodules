@@ -368,3 +368,6 @@
 [submodule "plugins/Deck-Shelves"]
 	path = plugins/Deck-Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/AirDeck"]
+	path = plugins/AirDeck
+	url = https://github.com/matthieupoupin3704-alt/AirDeck
