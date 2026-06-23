@@ -368,3 +368,6 @@
 [submodule "plugins/Deck-Shelves"]
 	path = plugins/Deck-Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/BC250-Toolkit"]
+	path = plugins/BC250-Toolkit
+	url = https://github.com/Necrosiak/bc250-toolkit-decky
