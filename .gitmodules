@@ -368,3 +368,6 @@
 [submodule "plugins/Deck-Shelves"]
 	path = plugins/Deck-Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/forza-dualsense-haptics"]
+	path = plugins/forza-dualsense-haptics
+	url = https://github.com/woodsi3/forza-dualsense-decky.git
