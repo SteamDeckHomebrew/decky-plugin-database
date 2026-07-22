@@ -1,5 +1,7 @@
 DO NOT USE THIS TEMPLATE. Select the Preview tab and click the appropriate link to access the correct sub-template.
 
+NOT FOLLOWING A TEMPLATE MAY RESULT IN YOUR PR BEING DENIED FOR SUSPECTED AI USAGE!
+
 - [Plugin addition](?expand=1&template=plugin_addition.md) - Plugins that are entirely new to the store.
 - [Plugin update](?expand=1&template=plugin_update.md) - Updating an existing plugin on the store WITHOUT changing the repository it is linked to.
 - [Plugin transfer](?expand=1&template=plugin_transfer.md) - Updating an existing plugin on the store AND changing the repository it is linked to.

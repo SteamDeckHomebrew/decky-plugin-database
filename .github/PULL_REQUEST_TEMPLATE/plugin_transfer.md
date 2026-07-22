@@ -1,5 +1,6 @@
 <!--
     READ ALL COMMENTS IN THIS TEMPLATE BEFORE SUBMITTING YOUR PR!
+    NOT FOLLOWING THIS TEMPLATE MAY RESULT IN YOUR PR BEING DENIED FOR SUSPECTED AI USAGE!
 
     This template is for updating an existing plugin on the store AND changing the repository it is linked to. If you are taking any other action, please start over by creating a new pull request and selecting the appropriate template.
 
@@ -43,6 +44,7 @@ REPLACE_WITH_CHANGE_REASONS
 - [ ] The original author or authorized maintainer of this plugin has either agreed to the transfer or has been unresponsive for an extended period as described above.
 - [ ] I am accept the responsibility of becoming the authorized maintainer of this plugin.
 - [ ] I have abided by the licenses of the libraries I am utilizing, including attaching license notices where appropriate.
+- [ ] Generative AI was NOT used to write a majority of the code I am submitting.
 
 ### Plugin
 
