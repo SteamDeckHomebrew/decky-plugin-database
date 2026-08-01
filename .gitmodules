@@ -368,3 +368,7 @@
 [submodule "plugins/Deck-Shelves"]
 	path = plugins/Deck-Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/BacklogManager"]
+	path = plugins/BacklogManager
+	url = https://github.com/luisfound/backlog-manager-plugin.git
+	branch = release/1.2.0
