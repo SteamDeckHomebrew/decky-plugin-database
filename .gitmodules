@@ -370,4 +370,4 @@
 	url = https://github.com/santojon/Deck-Shelves.git
 [submodule "plugins/Insignia"]
 	path = plugins/Insignia
-	url = https://github.com/snoein/decky-insignia.git
+	url = https://github.com/stevensnoeijen/decky-insignia.git
