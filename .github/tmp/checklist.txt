@@ -1,0 +1,26 @@
+## Task Checklist
+
+### Developer
+
+- [x] I am the original author or an authorized maintainer of this plugin.
+- [x] I have abided by the licenses of the libraries I am utilizing, including attaching license notices where appropriate.
+
+### Plugin
+
+- [x] I have verified that my plugin works properly on the Stable and Beta update channels of SteamOS.
+- [x] I have verified my plugin is unique or provides more/alternative functionality to a plugin already on the store.
+
+### Backend
+
+- **No**: I am using a custom backend other than Python.
+- **No**: I am using a tool or software from a 3rd party FOSS project that does not have it's dependencies [statically linked](https://en.wikipedia.org/wiki/Static_library).
+- **No**: I am using a custom binary that has all of it's dependencies statically linked.
+
+### Community
+
+- [ ] I have tested and left feedback on two other [pull requests][pulls] for new or updating plugins.
+- [ ] I have commented links to my testing report in this PR.
+
+## Testing
+
+- [ ] Tested by a third party on SteamOS Stable or Beta update channel.
