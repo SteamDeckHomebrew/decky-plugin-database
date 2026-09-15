@@ -368,3 +368,7 @@
 [submodule "plugins/Deck-Shelves"]
 	path = plugins/Deck-Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/RestartToWindows"]
+	path = plugins/RestartToWindows
+	url = https://github.com/nileshchakraborty/restart-to-windows.git
+	branch = main
