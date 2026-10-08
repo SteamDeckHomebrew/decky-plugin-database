@@ -33,6 +33,10 @@ on:
         type: boolean
         description: Build pre-selected list of plugins for testing. They will not be uploaded.
 
+permissions:
+  contents: read
+  pull-requests: read
+
 env:
   revision_force: ${{ inputs.force_revision }}
   pnpm_force: ${{ inputs.force_pnpm }}
