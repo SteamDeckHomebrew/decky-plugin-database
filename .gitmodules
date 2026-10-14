@@ -368,3 +368,6 @@
 [submodule "plugins/Deck-Shelves"]
 	path = plugins/Deck-Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/decky-time-changer"]
+	path = plugins/decky-time-changer
+	url = https://github.com/nanwangjkl/decky-time-changer.git
