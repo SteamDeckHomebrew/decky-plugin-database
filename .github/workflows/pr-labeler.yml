@@ -59,6 +59,7 @@ jobs:
                   github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
             - name: Move to needs review if the review is stale
               if: ${{ github.event.action == 'synchronize' }}
+              continue-on-error: true
               env:
                 GH_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
               run: |
