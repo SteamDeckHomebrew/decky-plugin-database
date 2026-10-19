@@ -1,7 +1,7 @@
 name: Label, assign, and comment on PR
 on:
     pull_request_target:
-        types: [opened, edited, reopened]
+        types: [opened, edited, reopened, synchronize]
 permissions:
     issues: write
     pull-requests: write
@@ -56,6 +56,17 @@ jobs:
                   labeled: plugin-addition, plugin-update
                   label-operator: AND
                   github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+            - name: Move to needs review if the review is stale
+              if: ${{ github.event.action == 'synchronize' }}
+              env:
+                GH_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+              run: |
+                  gh project item-edit \
+                    --project-id "12" \
+                    --owner "SteamDeckHomebrew" \
+                    --id "${{ github.event.pull_request.node_id }}" \
+                    --field "Status" \
+                    --value "Ready for review"
             - name: Comment pull request instructions
               if: ${{ github.event.action == 'opened' }}
               uses: actions/github-script@v7
