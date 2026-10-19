@@ -65,7 +65,7 @@ jobs:
               run: |
                   gh pr edit "${{ github.event.pull_request.number }}" \
                     --repo "${{ github.repository }}" \
-                    --add-reviewer "@SteamDeckHomebrew/plugin-review"
+                    --add-reviewer "SteamDeckHomebrew/plugin-review"
                   gh project item-edit \
                     --project-id "12" \
                     --owner "SteamDeckHomebrew" \
