@@ -55,7 +55,7 @@ jobs:
               with:
                   project-url: https://github.com/orgs/SteamDeckHomebrew/projects/12
                   labeled: plugin-addition, plugin-update
-                  label-operator: AND
+                  label-operator: OR
                   github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
             - name: Move to needs review if the review is stale
               if: ${{ github.event.action == 'synchronize' }}
