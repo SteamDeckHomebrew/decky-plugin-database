@@ -368,6 +368,9 @@
 [submodule "plugins/Deck-Shelves"]
 	path = plugins/Deck-Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/Docky"]
+	path = plugins/Docky
+	url = https://github.com/datbird/docky
 [submodule "plugins/deckamine"]
 	path = plugins/deckamine
 	url = https://github.com/elyarim/deckamine
