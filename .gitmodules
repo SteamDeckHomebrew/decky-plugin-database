@@ -371,3 +371,6 @@
 [submodule "plugins/Docky"]
 	path = plugins/Docky
 	url = https://github.com/datbird/docky
+[submodule "plugins/new-suspend-mode"]
+	path = plugins/new-suspend-mode
+	url = https://github.com/hileydson/New-Suspend-Mode.git
