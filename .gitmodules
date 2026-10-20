@@ -372,3 +372,6 @@
 	path = plugins/RestartToWindows
 	url = https://github.com/nileshchakraborty/restart-to-windows.git
 	branch = main
+[submodule "plugins/Docky"]
+	path = plugins/Docky
+	url = https://github.com/datbird/docky
