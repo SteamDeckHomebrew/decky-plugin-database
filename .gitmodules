@@ -371,3 +371,9 @@
 [submodule "plugins/decky-ipv6"]
 	path = plugins/decky-ipv6
 	url = https://github.com/spmzt/decky-ipv6.git
+[submodule "plugins/output-manager"]
+	path = plugins/output-manager
+	url = https://github.com/joeatethebeans/OutputManager.git
+[submodule "plugins/Docky"]
+	path = plugins/Docky
+	url = https://github.com/datbird/docky
