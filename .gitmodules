@@ -371,3 +371,6 @@
 [submodule "plugins/varta"]
 	path = plugins/varta
 	url = https://github.com/HARd/varta-decky.git
+[submodule "plugins/Docky"]
+	path = plugins/Docky
+	url = https://github.com/datbird/docky
