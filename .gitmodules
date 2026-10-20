@@ -368,6 +368,9 @@
 [submodule "plugins/Deck-Shelves"]
 	path = plugins/Deck-Shelves
 	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/output-manager"]
+	path = plugins/output-manager
+	url = https://github.com/joeatethebeans/OutputManager.git
 [submodule "plugins/Docky"]
 	path = plugins/Docky
 	url = https://github.com/datbird/docky
