@@ -371,3 +371,6 @@
 [submodule "plugins/pixel-buddy"]
 	path = plugins/pixel-buddy
 	url = https://github.com/Phill544/Pixel-Buddy
+[submodule "plugins/Docky"]
+	path = plugins/Docky
+	url = https://github.com/datbird/docky
