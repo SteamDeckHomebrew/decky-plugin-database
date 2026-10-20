@@ -33,6 +33,10 @@ on:
         type: boolean
         description: Build pre-selected list of plugins for testing. They will not be uploaded.
 
+permissions:
+  contents: read
+  pull-requests: read
+
 env:
   revision_force: ${{ inputs.force_revision }}
   pnpm_force: ${{ inputs.force_pnpm }}
@@ -49,7 +53,7 @@ jobs:
     steps:
     - name: Checkout
       if: ${{ !env.ACT }}
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         ref: ${{ github.event.pull_request.head.sha || github.sha }}
         fetch-depth: 0
@@ -194,9 +198,10 @@ jobs:
     steps:
     - name: Checkout
       if: ${{ !env.ACT }}
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         ref: ${{ github.event.pull_request.head.sha || github.sha }}
+        allow-unsafe-pr-checkout: true
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Checkout relevant plugin submodule
