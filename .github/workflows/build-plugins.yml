@@ -33,6 +33,10 @@ on:
         type: boolean
         description: Build pre-selected list of plugins for testing. They will not be uploaded.
 
+permissions:
+  contents: read
+  pull-requests: read
+
 env:
   revision_force: ${{ inputs.force_revision }}
   pnpm_force: ${{ inputs.force_pnpm }}
@@ -49,11 +53,12 @@ jobs:
     steps:
     - name: Checkout
       if: ${{ !env.ACT }}
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         ref: ${{ github.event.pull_request.head.sha || github.sha }}
         fetch-depth: 0
         submodules: "recursive"
+        allow-unsafe-pr-checkout: true
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Get changed files
@@ -179,6 +184,7 @@ jobs:
 
   build:
     name: Build plugin
+    if: ${{ needs.find.outputs.plugins != '' && needs.find.outputs.plugins != '[]' }}
     runs-on: ubuntu-latest
     environment:
       name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.plugin_override))) && 'env' || 'testing_env' }}
@@ -193,9 +199,10 @@ jobs:
     steps:
     - name: Checkout
       if: ${{ !env.ACT }}
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
       with:
         ref: ${{ github.event.pull_request.head.sha || github.sha }}
+        allow-unsafe-pr-checkout: true
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Checkout relevant plugin submodule
