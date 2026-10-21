@@ -383,3 +383,6 @@
 [submodule "plugins/Docky"]
 	path = plugins/Docky
 	url = https://github.com/datbird/docky
+[submodule "plugins/decky-desktop-apps"]
+        path = plugins/decky-desktop-apps
+        url = https://github.com/allmazz/decky-desktop-apps.git
