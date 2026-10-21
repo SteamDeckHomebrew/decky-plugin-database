@@ -356,9 +356,30 @@
 [submodule "plugins/MuteOnSleep"]
 	path = plugins/MuteOnSleep
 	url = https://github.com/genc-v/mute-on-sleep
+[submodule "plugins/Decky-Clipper"]
+	path = plugins/Decky-Clipper
+	url = https://github.com/Managor/Decky-Clipper.git
 [submodule "plugins/deck-progress-tracker"]
 	path = plugins/deck-progress-tracker
 	url = https://github.com/maroun2/deck-progress-tracker.git
 [submodule "plugins/decky-nonsteam-badges"]
 	path = plugins/decky-nonsteam-badges
 	url = https://github.com/sebet/decky-nonsteam-badges
+[submodule "plugins/decky-proton-launch"]
+	path = plugins/decky-proton-launch
+	url = https://github.com/moi952/decky-proton-launch.git
+[submodule "plugins/Deck-Shelves"]
+	path = plugins/Deck-Shelves
+	url = https://github.com/santojon/Deck-Shelves.git
+[submodule "plugins/DeckyClocker"]
+	path = plugins/DeckyClocker
+	url = https://github.com/Jaccident/DeckyClocker.git
+[submodule "plugins/decky-ipv6"]
+	path = plugins/decky-ipv6
+	url = https://github.com/spmzt/decky-ipv6.git
+[submodule "plugins/output-manager"]
+	path = plugins/output-manager
+	url = https://github.com/joeatethebeans/OutputManager.git
+[submodule "plugins/Docky"]
+	path = plugins/Docky
+	url = https://github.com/datbird/docky
