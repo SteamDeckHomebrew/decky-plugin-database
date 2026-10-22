@@ -386,3 +386,6 @@
 [submodule "plugins/decky-desktop-apps"]
         path = plugins/decky-desktop-apps
         url = https://github.com/allmazz/decky-desktop-apps.git
+[submodule "plugins/decky-volume-mixer"]
+        path = plugins/decky-volume-mixer
+        url = https://github.com/allmazz/decky-volume-mixer.git
