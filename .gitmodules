@@ -386,3 +386,7 @@
 [submodule "plugins/deckamine"]
 	path = plugins/deckamine
 	url = https://github.com/elyarim/deckamine
+[submodule "plugins/decky-desktop-apps"]
+	path = plugins/decky-desktop-apps
+	url = https://github.com/allmazz/decky-desktop-apps.git
+
