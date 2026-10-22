@@ -184,6 +184,7 @@ jobs:
 
   build:
     name: Build plugin
+    if: ${{ needs.find.outputs.plugins != '' && needs.find.outputs.plugins != '[]' }}
     runs-on: ubuntu-latest
     environment:
       name: ${{ (github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.plugin_override))) && 'env' || 'testing_env' }}
