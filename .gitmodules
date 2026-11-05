@@ -392,3 +392,6 @@
 [submodule "plugins/decky-volume-mixer"]
         path = plugins/decky-volume-mixer
         url = https://github.com/allmazz/decky-volume-mixer.git
+[submodule "plugins/ear-tuner"]
+	path = plugins/ear-tuner
+	url = https://github.com/collinschupman/decky-ear-tuner-plugin.git
