@@ -383,6 +383,10 @@
 [submodule "plugins/output-manager"]
 	path = plugins/output-manager
 	url = https://github.com/joeatethebeans/OutputManager.git
+[submodule "plugins/AudioOutputSwitcher"]
+	path = plugins/AudioOutputSwitcher
+	url = https://github.com/zomars/audio-output-switcher.git
+	branch = main
 [submodule "plugins/Docky"]
 	path = plugins/Docky
 	url = https://github.com/datbird/docky
