@@ -392,3 +392,6 @@
 [submodule "plugins/decky-volume-mixer"]
         path = plugins/decky-volume-mixer
         url = https://github.com/allmazz/decky-volume-mixer.git
+[submodule "plugins/Swindle"]
+	path = plugins/Swindle
+	url = https://github.com/naparuba/decky-swindle.git
