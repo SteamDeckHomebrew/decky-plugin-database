@@ -392,3 +392,6 @@
 [submodule "plugins/decky-volume-mixer"]
         path = plugins/decky-volume-mixer
         url = https://github.com/allmazz/decky-volume-mixer.git
+[submodule "activity"]
+	path = plugins/activity
+	url = git@github.com:o3h3-activity/activity-decky.git
