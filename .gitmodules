@@ -392,3 +392,6 @@
 [submodule "plugins/decky-volume-mixer"]
         path = plugins/decky-volume-mixer
         url = https://github.com/allmazz/decky-volume-mixer.git
+[submodule "plugins/deck-doctor"]
+	path = plugins/deck-doctor
+	url = https://github.com/Forlarin/deck-doctor
