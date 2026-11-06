@@ -395,3 +395,6 @@
 [submodule "plugins/decky-ssh"]
 	path = plugins/decky-ssh
 	url = https://github.com/nicholasyoannou/decky-ssh-switch.git
+[submodule "plugins/decky-dictation-ptt"]
+	path = plugins/decky-dictation-ptt
+	url = https://github.com/thelinuxgmr/decky-dictation-ptt.git
