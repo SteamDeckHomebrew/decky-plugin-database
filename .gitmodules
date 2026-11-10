@@ -395,3 +395,6 @@
 [submodule "plugins/decky-ssh"]
 	path = plugins/decky-ssh
 	url = https://github.com/nicholasyoannou/decky-ssh-switch.git
+[submodule "plugins/decky-ps3-pair"]
+	path = plugins/decky-ps3-pair
+	url = https://github.com/Remper1997/decky-ps3-pair
