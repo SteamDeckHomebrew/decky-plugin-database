@@ -395,3 +395,6 @@
 [submodule "plugins/decky-ssh"]
 	path = plugins/decky-ssh
 	url = https://github.com/nicholasyoannou/decky-ssh-switch.git
+[submodule "plugins/sdhq-plugin"]
+	path = plugins/sdhq-plugin
+	url = https://github.com/DeckFilter/sdhq-plugin.git
