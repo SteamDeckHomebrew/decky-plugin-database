@@ -395,3 +395,6 @@
 [submodule "plugins/deck-doctor"]
 	path = plugins/deck-doctor
 	url = https://github.com/Forlarin/deck-doctor
+[submodule "plugins/decky-ssh"]
+	path = plugins/decky-ssh
+	url = https://github.com/nicholasyoannou/decky-ssh-switch.git
