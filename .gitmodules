@@ -395,3 +395,6 @@
 [submodule "plugins/decky-ssh"]
 	path = plugins/decky-ssh
 	url = https://github.com/nicholasyoannou/decky-ssh-switch.git
+[submodule "plugins/NetCEC"]
+	path = plugins/NetCEC
+	url = https://github.com/MSPortnov/NetCEC.git
