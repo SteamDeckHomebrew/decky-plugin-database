@@ -395,6 +395,9 @@
 [submodule "plugins/decky-volume-mixer"]
         path = plugins/decky-volume-mixer
         url = https://github.com/allmazz/decky-volume-mixer.git
+[submodule "plugins/ear-tuner"]
+	path = plugins/ear-tuner
+	url = https://github.com/collinschupman/decky-ear-tuner-plugin.git
 [submodule "plugins/decky-ssh"]
 	path = plugins/decky-ssh
 	url = https://github.com/nicholasyoannou/decky-ssh-switch.git
