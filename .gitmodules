@@ -398,3 +398,6 @@
 [submodule "plugins/decky-ssh"]
 	path = plugins/decky-ssh
 	url = https://github.com/nicholasyoannou/decky-ssh-switch.git
+[submodule "plugins/AnyAspectRatio"]
+	path = plugins/AnyAspectRatio
+	url = https://github.com/TLin-Y/AnyAspectRatio-Decky.git
