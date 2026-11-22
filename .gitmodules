@@ -398,3 +398,6 @@
 [submodule "plugins/decky-ssh"]
 	path = plugins/decky-ssh
 	url = https://github.com/nicholasyoannou/decky-ssh-switch.git
+[submodule "plugins/gamesync-portproton"]
+	path = plugins/gamesync-portproton
+	url = https://github.com/Differin3/GameSync-NonSteam.git
