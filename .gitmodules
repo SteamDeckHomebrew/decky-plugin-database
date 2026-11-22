@@ -398,3 +398,6 @@
 [submodule "plugins/decky-ssh"]
 	path = plugins/decky-ssh
 	url = https://github.com/nicholasyoannou/decky-ssh-switch.git
+[submodule "plugins/legion-go-s-control"]
+	path = plugins/legion-go-s-control
+	url = https://github.com/alexjm19/legion-go-s-control.git
