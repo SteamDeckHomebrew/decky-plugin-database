@@ -398,3 +398,6 @@
 [submodule "plugins/decky-ssh"]
 	path = plugins/decky-ssh
 	url = https://github.com/nicholasyoannou/decky-ssh-switch.git
+[submodule "plugins/decky-my-rig"]
+	path = plugins/decky-my-rig
+	url = https://github.com/NekoGryphou/decky-my-rig.git
