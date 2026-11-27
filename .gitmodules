@@ -398,3 +398,7 @@
 [submodule "plugins/decky-ssh"]
 	path = plugins/decky-ssh
 	url = https://github.com/nicholasyoannou/decky-ssh-switch.git
+[submodule "plugins/game-base-social"]
+	path = plugins/game-base-social
+	url = https://github.com/toto-console/game-hub.git
+	branch = decky-store-dev108
