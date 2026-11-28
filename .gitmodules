@@ -398,3 +398,6 @@
 [submodule "plugins/decky-ssh"]
 	path = plugins/decky-ssh
 	url = https://github.com/nicholasyoannou/decky-ssh-switch.git
+[submodule "master-browser"]
+	path = plugins/master-browser
+	url = https://github.com/soullegacyvn-ux/Master-Browser.git
